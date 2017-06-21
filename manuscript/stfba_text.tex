@@ -57,6 +57,7 @@
 \usepackage[flushleft]{threeparttable}
 \usepackage{upgreek}
 \usepackage{amssymb}
+\usepackage{url}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                                             %%
@@ -239,14 +240,17 @@ Text for this section.
 Text and results for this section, as per the individual journal's instructions for authors. %\cite{koon,oreg,khar,zvai,xjon,schn,pond,smith,marg,hunn,advi,koha,mouse}
 
 \section*{Introduction}
-Constraint-based stoichiometric models are ubiquitous in metabolic research, with Flux Balance Analysis (FBA) being the most widely used method to describe metabolic phenotypes of cells growing in steady-state. Typically, FBA requires a reconstruction of the metabolic network described by a stoichiometric matrix $\mathbf{S} \in \mathbb{R}^{n \times r}$. Some of the reactions in $\mathbf{S}$ are denoted \emph{primary exchange} reactions. These reactions represent the exchange of material between the cell and the environment. The corresponding fluxes in $v$ are each constrained by a physiological upper and lower bound. Another subset of reactions correspond to \emph{currency exchange} fluxes. These reactions represent the exchange of currency metabolites between different sub-networks (or compartments) in the cell. In the context of this work, we consider only the exchange of energy (e.g. ATP hydrolysis) as currency exchange. For instance, this exchange can be used to model the exchange of energy between the mitochondria (where ATP is generated) and the nucleus (where ATP is used). In bacterial models, where compartments play a minor role, many ATP utilizing processes are lumped into one cytoplasmic reaction called \emph{ATP maintenance}. Finally, all other reactions are considered \emph{internal} reactions, and the sub-matrix of $\mathbf{S}$ corresponding to them is denoted $\Sint$.
+Constraint-based stoichiometric models are ubiquitous in metabolic research, with Flux Balance Analysis (FBA) being the most widely used method to describe metabolic phenotypes of cells growing in steady-state. Typically, FBA requires a reconstruction of the metabolic network described by a stoichiometric matrix $\mathbf{S} \in \mathbb{R}^{n \times r}$. Some of the reactions in $\mathbf{S}$ are denoted \emph{primary exchange} reactions. These reactions represent the exchange of material between the model and the environment, i.e. input of nutrients and export of by-products. These reactions are not real chemical transformations nor transport reaction, but rather ``conceptual'' constructs that enable the system to be in a non-trivial steady-state. Typically, primary exchange reactions have only one product and not substrates, or vice versa (see magenta reactions in Figure \ref{fig:cycles}). Another subset of reactions correspond to \emph{currency exchange} fluxes. These reactions represent the exchange of currency metabolites between different sub-networks (or compartments) in the cell. In the context of this work, we consider only the exchange of energy (e.g. ATP hydrolysis) as currency exchange. For instance, this exchange can be used to model the exchange of energy between the mitochondria (where ATP is generated) and the nucleus (where ATP is used). In bacterial models, where compartments play a minor role, many ATP utilizing processes are lumped into one cytoplasmic reaction called \emph{ATP maintenance} (see green reaction in Figure \ref{fig:cycles}). Finally, all other reactions are considered \emph{internal} reactions, and the sub-matrix of $\mathbf{S}$ corresponding to them is denoted $\Sint$.
 
-
+\subsection*{Steady-state assumption}
 $\mathbf{S}$ relates between the flux vector $v \in \mathbb{R}^{r}$ and the change in internal metabolite concentrations $x \in \mathbb{R}^{n}$:
 \begin{equation}
-\frac{dx}{dt} = \mathbf{S} \cdot v\,.
+\frac{dx}{dt} = \mathbf{S} \cdot v\,\,.
 \end{equation}
-The steady state assumption imposes a constraint that all internal concentrations are constant over time, therefore $\mathbf{S} \cdot v = 0$. 
+The steady state assumption imposes a constraint that all concentrations are constant over time, therefore
+\begin{equation}
+\mathbf{S} \cdot v = 0 \,\,. 
+\end{equation}
 
 \subsection*{Extreme pathways}
 Extreme pathways are convex basis vectors that span the null-space of $\mathbf{S}$ (i.e. the space of all flux solutions that satisfy the steady-state constraint). In \cite{Schilling2000-rn, Beard2002-xt}, three basic categories of extreme pathways were defined:
@@ -257,23 +261,22 @@ Extreme pathways are convex basis vectors that span the null-space of $\mathbf{S
 \end{description}
 
 \begin{figure}[h!]
-	\includegraphics[width=3.2in]{figure1.pdf}
+	\includegraphics[width=3.1in]{figure1.pdf}
 	\caption{\csentence{The Three Types of Extreme Pathways.}
-		In this simple network, one can identify all three types of extreme pathways. The Type I pathway (connecting between $A_{ex}$ and $E_{ex}$, cyan) is typically the type of solution that most constrain-based models are seeking. The Type II
-		pathway ($A \rightarrow B \rightarrow C \rightarrow A$, blue) is a typical futile cycle, since it does not involve any primary exchange reactions, but does \emph{waste} ATP. The Type III pathway ($A \rightarrow C \rightarrow D \rightarrow A$, red) is called internal since none of its reactions are exchange reactions. An internal cycle will never be thermodynamically feasible.}
+		A small toy model with 8 internal reaction (grey), 2 primary exchange reactions (magenta), and one currency exchange reaction (green). In this simple network, one can identify all three types of extreme pathways. The Type I pathway (connecting between $A_{ex}$ and $E_{ex}$, cyan) is typically the type of solution that most constrain-based models are seeking. The Type II pathway ($A \rightarrow B \rightarrow C \rightarrow A$, blue) is a typical futile cycle, since it does not involve any primary exchange reactions, but does \emph{waste} ATP. The Type III pathway ($A \rightarrow C \rightarrow D \rightarrow A$, red) is called internal since none of its reactions are exchange reactions. An internal cycle will never be thermodynamically feasible.}
     \label{fig:cycles}
 \end{figure}
 Figure \ref{fig:cycles} demonstrates this classification in a toy model. It is important to note, that this classification depends solely on the definition of primary and currency exchange reactions, and therefore is not a property of the stoichiometric matrix itself.
 
 In 2011, an extension of FBA was proposed that can eliminate all internal cycles (sometimes called "infeasible loops") from the solution space \cite{Schellenberger2011-bq}. This method is usually referred to as ``loopless'' FBA (ll-FBA). Later, we proved mathematically that this method is both sound and complete \cite{Noor2012-qb}. Thus, ll-FBA effectively eliminates all type III pathways from the solution space, without removing any of the other solutions -- namely type I and type II pathways. On its face, it seems to be exactly what one would want. Type I pathways are exactly the type of steady-state flux solutions one seeks in constraint-based models. Type II pathway might seem inefficient for the cell as they ``waste'' ATP without having any metabolic function, but they are still feasible and are even known to operate in vivo. Therefore, removing type II pathways from the solution space might impinge on the predictive value of a model.
 
-Nevertheless, there are cases where type II pathways must be removed. In some cases, especially in automatically generated stoichiometric models \cite{Fritzemeier2017-ba}, one can find type II cycles that \textit{generate} ATP. A simple example would be a standard futile cycle running in reverse. This special case of type II pathways is denoted \textit{Energy Generating Cycle} (EGC). Typically, reaction directionality constraints are imposed to prevent such cycles, but it is often the case that some of these EGCs have been overlooked and still exist in published models. Fritzemeier et al. \cite{Fritzemeier2017-ba} found that most network reconstructions in ModelSEED and MetaNetX contain such EGCs.
+Nevertheless, there are cases where type II pathways must be removed. In some cases, especially in automatically generated stoichiometric models \cite{Fritzemeier2017-ba}, one can find type II cycles that \textit{generate} ATP. A simple example would be a standard futile cycle running in reverse. This special case of type II pathways is denoted \textit{Energy Generating Cycle} (EGC). Typically, reaction directionality constraints are imposed to prevent such cycles, but it is often the case that some of these EGCs have been overlooked and still exist in published models. Fritzemeier et al. \cite{Fritzemeier2017-ba} found that most network reconstructions in ModelSEED (\url{http://modelseed.org/}) and MetaNetX (\url{http://www.metanetx.org/}) contain such EGCs.
 
-Some might ask, why aren't EGCs eliminated by ll-FBA, as they are also thermodynamically infeasible cycles? To answer this, it is important to understand that type III cycles and EGCs are infeasible in two different ways. Internal type III cycles stand in violation of the first law of thermodynamics, i.e. conservation of energy states. A type III cycle is equivalent to a perpetual motion machine, or a river flowing in a complete circle. EGCs are different, as they do not form a complete chemical cycle but are rather coupled to an ATP forming reaction. One could imagine a world where ADP + P$_i$ $\rightleftharpoons$ ATP + H$_2$O was a favorable reaction that could drive the other part of the cycle. Therefore, EGCs do not violate the first law of thermodynamics, and are only infeasible in light of what we know about ADP and ATP in physiologically relevant conditions. In other words, EGCs violate the second law of thermodynamics, i.e. they cause an increase in the Gibbs free energy of the system.
+Some might ask, why aren't EGCs eliminated by ll-FBA, as they are also thermodynamically infeasible cycles? To answer this, it is important to understand that type III cycles and EGCs are infeasible in two different ways. Internal type III cycles stand in violation of the first law of thermodynamics, i.e. conservation of energy states. A type III cycle is equivalent to a perpetual motion machine, or a river flowing in a complete circle. EGCs are different, as they do not form a complete chemical cycle but are rather coupled to an ATP forming reaction. One could imagine a world where ADP + P$_i$ $\rightleftharpoons$ ATP + H$_2$O was a favorable reaction that could drive the other part of the cycle. Therefore, EGCs do not violate the first law of thermodynamics, and are only infeasible in light of what we know about ADP and ATP in physiologically relevant conditions. In other words, EGCs violate the second law of thermodynamics, i.e. they altogether cause an increase in the Gibbs free energy of the system.
 
-Another way of looking at this, is to imagine running all the reactions in reverse. If we reverse all the reactions in a type III cycle, we will still have a type III cycle. If we do the same for an EGC, we would get a futile type II cycle, which is thermodynamically feasible. 
+Another way of looking at this, is to imagine running all the reactions in reverse. If we reverse all the reactions in a type III cycle, we will still have a type III cycle. If we do the same for an EGC, we would get a futile type II cycle, which is thermodynamically feasible.
 
-In the specific context of Flux Balance Analysis (FBA), EGCs are much more problematic than internal cycles, as their existence can increase the maximal yield of the metabolic network. A typical scenario would be an ATP-coupled cycle that effectively creates ATP from ADP and orthophosphate while all other intermediate compounds are mass balanced. This is equivalent to making ATP without any metabolic cost, which could effectively satisfy the ATP requirement of the biomass function and allow more resources to be diverted to biosynthesis. As we pointed out earlier, in well curated models such as the genome-scale \emph{E. coli} model \cite{Carrera2014-ys}, EGCs have been eliminated by manually constraining the directionality of many reactions (specifically, ATP coupled reactions). Although this is an effective way of removing EGCs, it has two major disadvantages: (i) it imposes hard constraints on reactions that might be reversible, and (ii) it is labor intensive and thus not scalable.
+In the specific context of Flux Balance Analysis (FBA), EGCs are much more problematic than internal cycles, as their existence can increase the maximal yield of the metabolic network. A typical scenario would be an ATP-coupled cycle that effectively creates ATP from ADP and orthophosphate while all other intermediate compounds are mass balanced. This is equivalent to making ATP without any metabolic cost, which could effectively satisfy the ATP requirement of the biomass function and allow more resources to be diverted to biosynthesis. As we pointed out earlier, in well curated models such as the genome-scale \emph{E. coli} model \cite{Carrera2014-ys}, EGCs have been eliminated by manually constraining the directionality of many reactions (specifically, ATP coupled reactions). Although this is an effective way of removing EGCs, it has two major disadvantages: (i) it imposes hard constraints on reactions that might otherwise be reversible, and (ii) it is labor intensive and thus not scalable. Recently, 
 
 \subsection*{Example of an Energy Generating Cycle in iJO1366}
 One of the well-known examples for an EGC appears in the latest genome-scale reconstruction of \emph{E. coli} metabolism, denoted iJO1366 \cite{Orth2011-qi}. Orth et al. published the model together with a warning that ``hydrogen peroxide producing and consuming reactions carry flux in unrealistic energy generating loops'' and therefore these reactions are constrained by default to zero. 
@@ -287,6 +290,15 @@ See table \ref{table:egc_example} and figure \ref{fig:egc_example}.
  		external input.}
  	\label{fig:egc_example}
 \end{figure*}
+
+In this EGC, the Malate oxidase (MOX) reaction is used in the direction of oxaloacetate reduction. As was suggested previously \cite{Fritzemeier2017-ba}, constraining the reaction to be irreversible only in the direction of malate oxidation (after all, its $\Delta_r G'^\circ$ is approximately $-100$ kJ/mol) would solve this problem and eliminate the EGC from the solution space.
+
+Nevertheless, many EGCs cannot be solved by constraining the direction of one thermodynamically irreversible reaction. Before giving an example for such a case, we must first explain the notion of \emph{distributed thermodynamic bottlenecks}.
+
+
+\subsection*{Distributed Thermodynamic Bottlenecks}
+What are distributed thermodynamic bottlenecks \cite{Mavrovouniotis1993-zq, Mavrovouniotis1996-dq}?
+\elad{continue...}
 
 \subsection*{Thermodynamic Flux Balance Analysis (TFBA)}
 
@@ -342,6 +354,8 @@ So st-FBA is very similar to TFBA, except that only the energy currency metaboli
 \subsection*{Implementation of st-FBA}
 The semi-thermodynamic Flux Balance Analysis algorithm was implemented using COBRApy \cite{Ebrahim2013-vw}.
 
+\subsection{Gibbs Energy of Formation Variation Analysis (GVA)}
+
 \wolf{I think one thing would be nice to show or discuss: naively, one might think that constraining the chemical potentials of cofactors has only an effect on reactions that contain ONLY cofactors; that this determines the usage / flux directions in these reaction; and that this then has effects on other parts of the network. But in fact (that's at least how I understand your method) it looks like there are much more effects because every metabolite (even though its chemical potential can be freely chosen) must have one definite value of its chemical potential - such that the entire system becomes much more constrained.}
 \elad{I think I can perform a kind of "FVA" on the potentials to see the ranges. It's also nice to compare that to the actual formation energies...}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -356,10 +370,11 @@ The semi-thermodynamic Flux Balance Analysis algorithm was implemented using COB
   The authors declare that they have no competing interests.
 
 \section*{Author's contributions}
-    Text for this section \ldots
+EN performed the study and wrote this paper.
 
 \section*{Acknowledgements}
-  Text for this section \ldots
+I thank Wolfram Liebermeister, Arren Bar-Even, Dimitris Christodoulou, Mattia Zampieri for very helpful discussions and suggestions.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                  The Bibliography                       %%
 %%                                                         %%

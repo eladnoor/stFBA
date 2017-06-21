@@ -174,3 +174,6 @@ def construct_stfba_model(cobra_model, config_fname='stfba_config.tsv'):
             metabolite_var.add_metabolites({m: v})
 
     return model
+
+def GVA(model):
+    pass

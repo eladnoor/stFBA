@@ -15,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="SPODM_cycle.svg">
+   sodipodi:docname="figure2.svg">
   <defs
      id="defs4">
     <marker
@@ -436,17 +436,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.2306277"
-     inkscape:cx="444.13151"
-     inkscape:cy="330.65958"
+     inkscape:zoom="1.4136385"
+     inkscape:cx="371.86297"
+     inkscape:cy="211.09264"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1871"
-     inkscape:window-height="1056"
-     inkscape:window-x="49"
-     inkscape:window-y="24"
-     inkscape:window-maximized="1"
+     inkscape:window-width="1675"
+     inkscape:window-height="995"
+     inkscape:window-x="2110"
+     inkscape:window-y="95"
+     inkscape:window-maximized="0"
      showguides="false"
      units="cm">
     <sodipodi:guide
@@ -462,7 +462,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -475,21 +475,21 @@
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Normal';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="217.62758"
-       y="938.30621"
+       y="845.63757"
        id="text5005"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan5007"
          x="217.62758"
-         y="938.30621">mqn8_c</tspan></text>
+         y="845.63757">mqn8_c</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text5009"
-       y="845.22534"
+       y="939.30878"
        x="215.70906"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Normal';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
-         y="845.22534"
+         y="939.30878"
          x="215.70906"
          id="tspan5011"
          sodipodi:role="line">mql8_c</tspan></text>
@@ -545,21 +545,21 @@
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Normal';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="465.67221"
-       y="937.79785"
+       y="846.01056"
        id="text7786"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan7788"
          x="465.67221"
-         y="937.79785">oaa_c</tspan></text>
+         y="846.01056">oaa_c</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text7790"
-       y="845.67206"
+       y="939.96039"
        x="465.418"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Normal';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
-         y="845.67206"
+         y="939.96039"
          x="465.418"
          id="tspan7792"
          sodipodi:role="line">mal_L_c</tspan></text>

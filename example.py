@@ -28,8 +28,9 @@ model.reactions.EX_o2_e.lower_bound = 0
 model.reactions.EX_o2_e.upper_bound = 0
 
 if model_name == 'iJO1366':
-    model.reactions.SPODM.lower_bound = 0
-    model.reactions.SPODM.upper_bound = 0
+    #model.reactions.SPODM.lower_bound = 0
+    #model.reactions.SPODM.upper_bound = 0
+    model.reactions.MOX.lower_bound = 0
 
 print "Calculating anaerobic yield with original %s model" % model_name
 
