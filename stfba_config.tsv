@@ -1,0 +1,21 @@
+!!SBtab TableName='FormationEnergy' TableType='Quantity' Document='STFBA' SBtabVersion='1.0'			
+!QuantityType	!Compound	!Value	!Unit
+standard formation energy	atp_c	-2296	kJ/mol
+standard formation energy	adp_c	-1424	kJ/mol
+standard formation energy	amp_c	-549	kJ/mol
+standard formation energy	pi_c	-1056	kJ/mol
+standard formation energy	ppi_c	-1939	kJ/mol
+standard formation energy	h2o_c	-157.6	kJ/mol
+standard formation energy	h_c	0	kJ/mol
+standard formation energy	h_e	0	kJ/mol
+%			
+!!SBtab TableName='ConcentrationConstraint' TableType='Quantity' Document='STFBA' SBtabVersion='1.0' Unit='M'			
+!QuantityType	!Compound	!Concentration:Min	!Concentration:Max
+concentration	atp_c	0.0096	0.0096
+concentration	adp_c	0.00056	0.00056
+concentration	amp_c	0.00028	0.00028
+concentration	pi_c	0.001	0.01
+concentration	ppi_c	0.000001	0.001
+concentration	h2o_c	1	1
+concentration	h_c	0.000000025	0.000000025
+concentration	h_e	0.0000001	0.0000001
