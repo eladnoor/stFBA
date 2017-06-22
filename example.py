@@ -8,18 +8,16 @@ Created on Wed Jan  4 12:07:00 2017
 
 from cobra.io.json import load_json_model
 from cobra import Metabolite, Reaction
-from find_energy_generating_cycle import find_egc, construct_stfba_model
+from find_energy_generating_cycle import stFBA
 from cobra.flux_analysis.parsimonious import optimize_minimal_flux
 from cobra.flux_analysis.loopless import construct_loopless_model
 from cobra.io.sbml import create_cobra_model_from_sbml_file
-
-solver = 'cplex'
 
 model_name_to_obj = {'e_coli_core': 'BIOMASS_Ecoli_core_w_GAM',
                      'iAF1260':     'BIOMASS_Ec_iAF1260_core_59p81M',
                      'iJO1366':     'BIOMASS_Ec_iJO1366_core_53p95M'}
 
-model_name = 'iJO1366'
+model_name = 'e_coli_core'
 
 model = create_cobra_model_from_sbml_file('model/%s.xml.gz' % model_name)
 model.objective = model_name_to_obj[model_name]
@@ -35,7 +33,7 @@ if model_name == 'iJO1366':
 print "Calculating anaerobic yield with original %s model" % model_name
 
 print "FBA max yield: ",
-fba_sol = model.optimize(solver=solver)
+fba_sol = model.optimize()
 print fba_sol.f
 
 #print "ll-FBA max yield: ",
@@ -50,7 +48,7 @@ print fba_sol.f
 
 # Make sure there are no EGCs in the core model before we start
 print "\nLooking for EGCs in the original model..."
-sol = find_egc(model)
+sol = stFBA.find_egc(model)
 
 if sol is not None:
     print "There is already at least one EGC in the model!"
@@ -99,24 +97,25 @@ else:
                          symporter3_reaction, atpase_reaction])
 
     # Try to find the EGC that we just added to the model
-    sol = find_egc(model)
+    sol = stFBA.find_egc(model)
 
 print "\nAdding STFBA constraints..."
-stfba_model = construct_stfba_model(model)
-sol = find_egc(stfba_model, already_irreversible=True)
+stfba_model = stFBA(model)
 
 print "Calculating anaerobic yield with updated %s model" % model_name
 
 print "FBA max yield: ",
-fba_sol = model.optimize(solver=solver)
+fba_sol = model.optimize()
 print fba_sol.f
 
 print "ll-FBA max yield: ",
 loopless_model = construct_loopless_model(model)
-llfba_sol = loopless_model.optimize(solver=solver)
+llfba_sol = loopless_model.optimize(solver='cplex')
 print llfba_sol.f
 
 print "st-FBA max yield: ",
-stfba_model = construct_stfba_model(model)
-stfba_sol = stfba_model.optimize(solver=solver)
+stfba_sol = stfba_model.optimize()
 print stfba_sol.f
+
+print "running GVA: ",
+gva = stfba_model.GVA()
