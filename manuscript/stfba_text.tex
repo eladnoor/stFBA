@@ -105,7 +105,7 @@
 %%                                          %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title{Removing both Futile and Unrealistic Energy-Generating Cycles in Flux Balance Analysis}
+\title{Removing both Internal and Unrealistic Energy-Generating Cycles in Flux Balance Analysis}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                                          %%
@@ -176,11 +176,7 @@
 \begin{abstractbox}
 
 \begin{abstract} % abstract
-\parttitle{First part title} %if any
-Text for this section.
-
-\parttitle{Second part title} %if any
-Text for this section.
+Constraint-based stoichiometric models are ubiquitous in metabolic research, with Flux Balance Analysis (FBA) being the most widely used method to describe metabolic phenotypes of cells growing in steady-state. Of the many variants of constrain-based modelling methods published throughout the years, only few have focused on thermodynamic issues, in particular the elimination of non-physical and non-physiological cyclic fluxes. In this work, we revisit two of these methods, namely thermodynamic FBA and loopless FBA, and analyze the strengths and weaknesses of each one. Finally, we suggest a compromise denoted \textit{semi-thermodynamic FBA} (st-FBA) which imposes stronger thermodynamic constrains on the flux polytope compared to loopless FBA, without requiring a large set of thermodynamic parameters as in the case of thermodynamic FBA. We show that st-FBA is a useful and simple way to eliminate thermodynamically infeasible cycles that generate ATP.
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -192,9 +188,10 @@ Text for this section.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{keyword}
-\kwd{sample}
-\kwd{article}
-\kwd{author}
+\kwd{thermodynamics}
+\kwd{flux-balance analysis}
+\kwd{loopless}
+\kwd{energy-generating cycles}
 \end{keyword}
 
 % MSC classifications codes, if any
@@ -240,7 +237,12 @@ Text for this section.
 Text and results for this section, as per the individual journal's instructions for authors. %\cite{koon,oreg,khar,zvai,xjon,schn,pond,smith,marg,hunn,advi,koha,mouse}
 
 \section*{Introduction}
-Constraint-based stoichiometric models are ubiquitous in metabolic research, with Flux Balance Analysis (FBA) being the most widely used method to describe metabolic phenotypes of cells growing in steady-state. Typically, FBA requires a reconstruction of the metabolic network with $n$ metabolites and $r$ reactions, which is described by a stoichiometric matrix $\mathbf{S} \in \mathbb{R}^{n \times r}$. Some of the reactions in $\mathbf{S}$ are denoted \emph{primary exchange} reactions. These reactions represent the exchange of material between the model and the environment, i.e. input of nutrients and export of by-products. These reactions are not real chemical transformations nor transport reaction, but rather ``conceptual'' constructs that enable the system to be in a non-trivial steady state. Typically, primary exchange reactions have only one product and not substrates, or vice versa (see magenta reactions in Figure \ref{fig:cycles}). Another subset of reactions correspond to \emph{currency exchange} fluxes. These reactions represent the exchange of currency metabolites between different sub-networks (or compartments) in the cell. In the context of this work, we consider only the exchange of energy (e.g. ATP hydrolysis) as currency exchange. For instance, this exchange can be used to model the exchange of energy between the mitochondria (where ATP is generated) and the nucleus (where ATP is used). In bacterial models, where compartments play a minor role, many ATP utilizing processes are lumped into one cytoplasmic reaction called \emph{ATP maintenance} (see green reaction in Figure \ref{fig:cycles}). Finally, all other reactions are considered \emph{internal} reactions, and the sub-matrix of $\mathbf{S}$ corresponding to them is denoted $\Sint$.
+The repertoire of genome-scale metabolic reconstructions is growing quickly, with more and more organisms being modelled every year \cite{King2016-it}. Likewise, the list of constraint-based modelling methods is getting longer with more than 100 papers published since 1961 in a rapidly increasing rate \cite{Lewis2012-mu} (see \url{http://cobramethods.wikidot.com/methods}). Flux Balance Analysis (FBA), is arguably the most well-known method to describe possible steady-state fluxes in a growing cell, and typically used to predict biomass yield and reaction essentiality. 
+
+Throughout the years, many extensions have been suggested in order to incorporate different aspects of thermodynamics into constrain-based frameworks \cite{Beard2002-xt, Warren2007-wm, Henry2007-xp, Schellenberger2011-bq, Price2006-ua, Bordel2010-pl, Fleming2010-py, Holzhutter2004-qj, Fleming2009-um, Kummel2006-qn, Henry2006-nt, Hoppe2007-sw, De_Martino2012-cj, Tepper2013-gd, Nolan2006-eg, Nagrath2007-bn, Boghigian2010-vz}.
+Two of these methods, \textit{thermodynamic FBA} \cite{Henry2007-xp} and \textit{loopless FBA} \cite{Schellenberger2011-bq} (also known as TMFA and ll-COBRA), define a new list of variables that represent the Gibbs free energy of formation of each metabolite in the system, and add constraints on reaction directionality that correspond to these free energies. Thermodynamic FBA imposes an extra set of constraints defining a range of possible values for each formation energy, and therefore requires many more parameters (which are often difficult to obtain). On the other hand, loopless FBA requires no extra parameters but does not necessarily eliminate all thermodynamically infeasible reactions or pathways. In this paper, we suggest a compromise denoted \textit{semi-thermodynamic FBA} (st-FBA) which imposes stronger thermodynamic constrains on the flux polytope compared to loopless FBA, without requiring a large set of thermodynamic parameters. Finally, we show that st-FBA is a useful and simple way to prevent flux in Energy Generating Cycles (EGCs) -- i.e. thermodynamically infeasible cycles that generate ATP or other energy currencies.
+
+Typically, FBA requires a reconstruction of the metabolic network with $n$ metabolites and $r$ reactions, which is described by a stoichiometric matrix $\mathbf{S} \in \mathbb{R}^{n \times r}$. Some of the reactions in $\mathbf{S}$ are denoted \emph{primary exchange} reactions. These reactions represent the exchange of material between the model and the environment, i.e. input of nutrients and export of by-products. These reactions are not real chemical transformations nor transport reaction, but rather ``conceptual'' constructs that enable the system to be in a non-trivial steady state. Typically, primary exchange reactions have only one product and not substrates, or vice versa (see magenta reactions in Figure \ref{fig:cycles}). Another subset of reactions correspond to \emph{currency exchange} fluxes. These reactions represent the exchange of currency metabolites between different sub-networks (or compartments) in the cell. In the context of this work, we consider only the exchange of energy (e.g. ATP hydrolysis) as currency exchange. For instance, this exchange can be used to model the exchange of energy between the mitochondria (where ATP is generated) and the nucleus (where ATP is used). In bacterial models, where compartments play a minor role, many ATP utilizing processes are lumped into one cytoplasmic reaction called \emph{ATP maintenance} (see green reaction in Figure \ref{fig:cycles}). Finally, all other reactions are considered \emph{internal} reactions, and the sub-matrix of $\mathbf{S}$ corresponding to them is denoted $\Sint$.
 
 \subsection*{Steady-state assumption}
 $\mathbf{S}$ relates between the flux vector $v \in \mathbb{R}^{r}$ and the change in metabolite concentrations $x \in \mathbb{R}^{n}$:
@@ -248,12 +250,17 @@ $\mathbf{S}$ relates between the flux vector $v \in \mathbb{R}^{r}$ and the chan
 \frac{dx}{dt} = \mathbf{S} \cdot v\,\,.
 \end{equation}
 The steady-state assumption imposes a constraint that all concentrations are constant over time, therefore
-\begin{equation}
+\begin{equation}\label{eq:st1}
 \mathbf{S} \cdot v = 0 \,\,. 
 \end{equation}
+Most constrain-based applications come with additional constraints on individual fluxes, i.e.
+\begin{equation}\label{eq:st2}
+\forall i~~~\alpha_i \leq v_i \leq \beta_i\,\,.
+\end{equation}
+
 
 \subsection*{Extreme pathways}
-Extreme pathways are convex basis vectors that span the null-space of $\mathbf{S}$ (i.e. the space of all flux solutions that satisfy the steady-state constraint). In \cite{Schilling2000-rn, Beard2002-xt}, three basic categories of extreme pathways were defined:
+Extreme pathways are convex basis vectors that define the polytope of solutions to the steady-state problem (Equations \ref{eq:st1}-\ref{eq:st2}). In \cite{Schilling2000-rn, Beard2002-xt}, three basic categories of extreme pathways were defined:
 \begin{description}
 \item[Type I] -- \textit{Primary systemic pathways}, i.e. pathways where at least one primary exchange flux is active.
 \item[Type II] -- \textit{Futile cycles}, i.e. pathways where none of the primary exchange fluxes are active, but at least one currency exchange flux is active.
@@ -270,7 +277,7 @@ Figure \ref{fig:cycles} demonstrates this classification in a toy model. It is i
 
 In 2011, an extension of FBA was proposed that can eliminate all internal cycles (sometimes called "infeasible loops") from the solution space \cite{Schellenberger2011-bq}. This method is usually referred to as ``loopless'' FBA (ll-FBA). Later, we proved mathematically that this method is both sound and complete \cite{Noor2012-qb}. Thus, ll-FBA effectively eliminates all type III pathways from the solution space, without removing any of the other solutions -- namely type I and type II pathways. On its face, it seems to be exactly what one would want. Type I pathways are exactly the type of steady-state flux solutions one seeks in constraint-based models. Type II pathway might seem inefficient for the cell as they ``waste'' ATP without having any metabolic function, but they are still feasible and are even known to operate in vivo. Therefore, removing type II pathways from the solution space might impinge on the predictive value of a model.
 
-Nevertheless, there are cases where type II pathways must be removed. In some cases, especially in automatically generated stoichiometric models \cite{Fritzemeier2017-ba}, one can find type II cycles that \textit{generate} ATP. A simple example would be a standard futile cycle running in reverse. This special case of type II pathways is denoted \textit{Energy Generating Cycle} (EGC). Typically, reaction directionality constraints are imposed to prevent such cycles, but it is often the case that some of these EGCs have been overlooked and still exist in published models. Fritzemeier et al. \cite{Fritzemeier2017-ba} found that most network reconstructions in ModelSEED (\url{http://modelseed.org/}) and MetaNetX (\url{http://www.metanetx.org/}) contain such EGCs.
+Nevertheless, there are cases where type II pathways must be removed. In some cases, especially in automatically generated stoichiometric models \cite{Fritzemeier2017-ba}, one can find type II cycles that \textit{generate} ATP. A simple example would be a standard futile cycle running in reverse. This special case of type II pathways is denoted \textit{Energy Generating Cycle} (EGC). Typically, reaction directionality constraints are imposed to prevent such cycles, but it is often the case that some of these EGCs have been overlooked and are still possible flux solutions in published models. Fritzemeier et al. \cite{Fritzemeier2017-ba} found that this is the case in most network reconstructions in ModelSEED (\url{http://modelseed.org/}) and MetaNetX (\url{http://www.metanetx.org/}). 
 
 Some might ask, why aren't EGCs eliminated by ll-FBA, as they are also thermodynamically infeasible cycles? To answer this, it is important to understand that type III cycles and EGCs are infeasible in two different ways. Internal type III cycles stand in violation of the first law of thermodynamics, i.e. conservation of energy states. A type III cycle is equivalent to a type one perpetual motion machine, or a river flowing in a complete circle\footnote{It would be more precise to say that type III cycles violate either the first or the second law. In essence, an internal cycle would would not violate the first law if it were not generating any heat. However, in order to have a net flux in a biochemical reaction, the reaction must be out of equilibrium (according to the second law) and therefore the molecules flowing from the high energy state to the lower state would necessarily generate heat.}. EGCs are different, as they do not form a complete chemical cycle but are rather coupled to an ATP forming reaction. One could imagine a world where ADP + P$_i$ $\rightleftharpoons$ ATP + H$_2$O was a favorable reaction that could drive the other part of the cycle. Therefore, EGCs do not violate the first law of thermodynamics, and are only infeasible in light of what we know about ADP and ATP in physiologically relevant conditions. In other words, EGCs violate the second law of thermodynamics, i.e. they altogether decrease the entropy of the universe.
 
@@ -430,7 +437,7 @@ I thank Wolfram Liebermeister, Arren Bar-Even, Dimitris Christodoulou, Mattia Za
 \section*{Tables}
 
 \begin{table}[h!]
-\caption{Example of an Energy Generating Cycle that occurs in iJO1366}
+\caption{Example of an Energy Generating Cycle that is possible in iJO1366}
 \begin{tabular}{l|l}
 \label{table:egc_example}
 Reaction & Formula\\\hline
