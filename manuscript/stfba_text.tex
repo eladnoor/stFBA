@@ -307,13 +307,15 @@ The second law of thermodynamics, as applied to enzyme-catalyzed reactions, stat
 \begin{eqnarray}
 	\Delta_r G' = \Delta_r G'^\circ + RT \cdot \sum_i \nu_i \ln(c_i)\,\,,
 \end{eqnarray}
-where $c_i$ is the concentration of reactant $i$ and $\nu_i$ is its stoichiometric coefficient (negative for substrates and positive for products). In matrix notation, for all reactions in the system:
+where $c_i$ is the concentration of reactant $i$ and $\nu_i$ is its stoichiometric coefficient (negative for substrates and positive for products) and $\Delta_r G'^\circ$ is the change in standard Gibbs free energy of this reactions. In matrix notation, for all reactions in the system:
 \begin{eqnarray}
 \mathbf{\Delta_r G'} = \mathbf{\Delta_r G'^\circ} + RT \cdot \mathbf{S}^\top \ln(\mathbf{c})\,\,.
 \end{eqnarray}
-\elad{continue...}
+In a series of paper from the 90's, Michael Mavrovouniotis developed methods for estimating these standard Gibbs energy changes \cite{Mavrovouniotis1990-wv, Mavrovouniotis1991-kf}, and for quantifying what he defined as thermodynamic bottlenecks \cite{Mavrovouniotis1993-zq, Mavrovouniotis1996-dq}. Mavrovouniotis noticed that the classic approach to reversibility, which is based on rather arbitrary thresholds imposed on every single reaction's $\Delta_r G'$, is insufficient. Moreover, since the vector of metabolite concentrations -- $\ln(\mathbf{c})$ -- is common to all reactions, the constraints on $\mathbf{\Delta_r G'}$ arising from the second law of thermodynamics can be coupled in a way that does not allow sets of reactions to be feasible together, even though each single reaction is feasible individually. Mavrovouniotis denoted such cases as \emph{distributed bottlenecks}.
 
-\subsubsection*{Example of Distributed Energy Generating Cycle}
+In the context of this work, we claim that distributed bottlenecks can also from EGCs. When such case occurs, it is especially difficult to eliminate these EGCs from the set of feasible fluxes, as no single directionality flux constraint can be justified thermodynamically. Only the \emph{combined} activity of all the EGC reactions is thermodynamically infeasible. Moreover, these distributed EGCs are not as rare as one might think.
+
+\subsubsection*{Example of Distributed Energy Generating Cycle in the Central Metabolism of E. coli}
 Consider the following three enzyme-catalyzed reactions:
 \begin{itemize}
 	\item Pyruvate kinase (PYK):\\ADP + PEP $\rightleftharpoons$ ATP + pyruvate
@@ -323,7 +325,9 @@ Consider the following three enzyme-catalyzed reactions:
 \end{itemize}
 In most if not all metabolic models that include PYK and PPS (or PPDK), these reaction are marked as irreversible. However, this annotation is not based on thermodynamic reversibility constraints, but rather from higher-level knowledge about the system. Pyruvate kinase (PYK, EC 2.7.1.40) is used exclusively in glycolysis and its activity is inhibited when gluconeogensis is required for growth. However, the reaction itself is reversible, as has been shown in vitro \cite{Lardy1945-ze}. In fact, the equilibrium constant has been measured to be as high as $1.5 \times 10^{-3}$ in some conditions \cite{Krimsky1959-mt}. The equilibrium constant of PEP synthase (PPS, EC 2.7.9.2) has not been directly measured in vitro, but a similar reaction catalyzed by pyruvate-phosphate dikinase (PPDK, EC 2.7.9.2) was found to be reversible with an equilibrium constant of $\sim10^{-3}$ at neutral pH, and as high as 0.5 at pH 8.39 \cite{Reeves1968-mq}. Combining the reaction of PPDK and the pyrophosphatase reaction PP$_i$ $\rightleftharpoons$ 2 P$_i$, would yield the PPS reaction \cite{De_Meis1982-pe}. The equilibrium constant of pyrophosphatase has been measured directly numerous times, and lies between 100 and 1000, depending on pH. Therefore, the equilibrium constant overall combined reaction (PEP synthase) is the product of both these values and is somewhere very close to 1. According to estimates done by eQuilibrator\footnote{http://equilibrator.weizmann.ac.il/} K'$_{\rm eq}$ $\approx$ 1.3 when the pH is set to 7.4 and the ionic strength is 0.1~M \cite{Flamholz2012-uu}.
 
-Overall, we see that all three reactions (ADK1, PYK, and PPS) are individually reversible. Nevertheless, combining all three reactions can create an energy generating cycle, as shown in Figure \ref{fig:distributed_egc}. This is one of the simplest examples for distributed bottlenecks.
+Overall, we see that all three reactions (ADK1, PYK, and PPS) are individually reversible. Nevertheless, combining all three reactions can create an energy generating cycle, as shown in Figure \ref{fig:distributed_egc}. This is one of the simplest examples for distributed EGCs, and it appears in the most ubiquitous metabolic pathway of all, glycolysis. One might ask, then why doesn't this EGC cause problems for the iJO1366 model for \emph{E. coli}? There is a simple answer, PYK and PPS are both annotated as irreversible reactions in this model (and virtually all similar models). Admittedly, the regulatory network in \emph{E. coli} is hard-wired to prevent backward flux in PYK and PPS is active and vice versa, therefore constraining these fluxes in the model might not be very harmful. However, one can imagine scenarios where the reversibility of PPS and PYK might be important to consider. For example, in metabolic engineering projects, where the possibility of evolving bypasses to certain pathways could play a major role.
+
+In the following sections, we describe two established methods for dealing with thermodynamic constraints and futile cycles in FBA models, discuss their strengths and weaknesses, and suggest a compromise that would specifically target distributed EGCs.
 
 \begin{figure}[h!]
 	\includegraphics[width=3in]{figure3.pdf}
