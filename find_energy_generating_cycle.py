@@ -130,7 +130,7 @@ class stFBA(object):
                 metabolite_var.add_metabolites({m: v})
 
     def optimize(self):
-        return self.model.optimize(solver=stFBA.SOLVER)
+        return self.model.optimize()
 
     def GVA(self):
         """
@@ -181,7 +181,7 @@ class stFBA(object):
         model.reactions.EX_h_e.lower_bound = -1000
         model.reactions.EX_h_e.upper_bound = 1000
 
-        FBA_sol = model.optimize(solver=stFBA.SOLVER)
+        FBA_sol = model.optimize()
         if FBA_sol.status == 'optimal' and FBA_sol.f > 1e-9:
             FBA_sol = \
                 optimize_minimal_flux(model,

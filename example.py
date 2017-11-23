@@ -5,6 +5,9 @@ Created on Wed Jan  4 12:07:00 2017
 
 @author: noore
 """
+#import sys
+#import os
+#sys.path.append(os.path.expanduser('~/git/cobrapy'))
 
 from cobra.io.json import load_json_model
 from cobra import Metabolite, Reaction
@@ -105,12 +108,12 @@ stfba_model = stFBA(model)
 print "Calculating anaerobic yield with updated %s model" % model_name
 
 print "FBA max yield: ",
-fba_sol = model.optimize()
+fba_sol = model.optimize(solver='cplex')
 print fba_sol.f
 
 print "ll-FBA max yield: ",
 loopless_model = construct_loopless_model(model)
-llfba_sol = loopless_model.optimize(solver='cplex')
+llfba_sol = loopless_model.optimize()
 print llfba_sol.f
 
 print "st-FBA max yield: ",
