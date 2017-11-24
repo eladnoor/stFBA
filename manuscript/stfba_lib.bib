@@ -1041,7 +1041,7 @@
   pages           = {3807--3814},
   month           = dec,
   issn            = {1367-4811},
-  __markedentry   = {[noore:6]},
+  __markedentry   = {[noore:]},
   abstract        = {Computation of steady-state flux solutions in large metabolic models is routinely performed using flux balance analysis based on a simple LP (Linear Programming) formulation. A minimal requirement for thermodynamic feasibility of the flux solution is the absence of internal loops, which are enforced using 'loopless constraints'. The resulting loopless flux problem is a substantially harder MILP (Mixed Integer Linear Programming) problem, which is computationally expensive for large metabolic models. We developed a pre-processing algorithm that significantly reduces the size of the original loopless problem into an easier and equivalent MILP problem. The pre-processing step employs a fast matrix sparsification algorithm-Fast- sparse null-space pursuit (SNP)-inspired by recent results on SNP. By finding a reduced feasible 'loop-law' matrix subject to known directionalities, Fast-SNP considerably improves the computational efficiency in several metabolic models running different loopless optimization problems. Furthermore, analysis of the topology encoded in the reduced loop matrix enabled identification of key directional constraints for the potential permanent elimination of infeasible loops in the underlying model. Overall, Fast-SNP is an effective and simple algorithm for efficient formulation of loop-law constraints, making loopless flux optimization feasible and numerically tractable at large scale. Source code for MATLAB including examples is freely available for download at http://www.aibn.uq.edu.au/cssb-resources under Software. Optimization uses Gurobi, CPLEX or GLPK (the latter is included with the algorithm). lars.nielsen@uq.edu.auSupplementary information: Supplementary data are available at Bioinformatics online.},
   citation-subset = {IM},
   completed       = {2017-08-07},
@@ -1059,6 +1059,13 @@
   pubmodel        = {Print-Electronic},
   pubstatus       = {ppublish},
   revised         = {2017-08-07},
+}
+
+@Unpublished{Machado2017-gh,
+  author = {Machado, Daniel and Matos, Marta and Sonnenschein, Nikolaus and Andrejev, Sergej},
+  title  = {framed: a metabolic modeling package for python (v0.4.0)},
+  doi    = {10.5281/zenodo.1048261},
+  url    = {https://github.com/cdanielmachado/framed/tree/0.4.0},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
