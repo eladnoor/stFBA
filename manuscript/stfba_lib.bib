@@ -1003,33 +1003,16 @@
   publisher = {Oxford University Press},
 }
 
-@Article{Matthias2008,
-  author = {Matthias, Heinemann and Anne, K{\"u}mmel and Nicola, Zamboni},
-  title  = {anNET: a tool for network-embedded thermodynamic analysis of quantitative metabolome data},
-  year   = {2008},
-}
-
-@Article{Kuemmel2006,
-  author    = {K{\"u}mmel, Anne and Panke, Sven and Heinemann, Matthias},
-  title     = {Putative regulatory sites unraveled by network-embedded thermodynamic analysis of metabolome data},
-  journal   = {Molecular systems biology},
-  year      = {2006},
-  volume    = {2},
-  number    = {1},
-  publisher = {EMBO Press},
-}
-
 @Article{Chan2017,
-  author        = {Siu Hung Joshua Chan and Lin Wang and Satyakam Dash and Costas D. Maranas},
-  title         = {Accelerating flux balance calculations in genome-scale metabolic models by localizing the application of loopless constraints},
-  __markedentry = {[noore:]},
-  abstract      = {Background: Genome-scale metabolic network models and constraint-based modeling techniques have become important tools for analyzing cellular metabolism. Thermodynamically infeasible cy-cles (TICs) causing unbounded metabolic flux ranges are often encountered. TICs satisfy the mass balance and directionality constraints but violate the second law of thermodynamics. Current prac-tices involve implementing additional constraints to ensure not only optimal but also loopless flux distributions. However, the mixed integer linear programming problems required to solve become computationally intractable for genome-scale metabolic models. Results: We aimed to identify the fewest needed constraints sufficient for optimality under the loop-less requirement. We found that loopless constraints are required only for the reactions that share elementary flux modes representing TICs with reactions that are part of the objective function. We put forth the concept of localized loopless constraints (LLCs) to enforce this minimal required set of loopless constraints. By combining with a novel procedure for minimal null-space calculation, the computational time for loopless flux variability analysis is reduced by a factor of 10-150 compared to the original loopless constraints and by 4-20 times compared to the currently fastest method Fast-SNP with the percent improvement increasing with model size. Importantly, LLCs offer a scalable strategy for loopless flux calculations for multi-compartment/multi-organism models of very large sizes (e.g. >104 reactions) not feasible before. Matlab functions are available at https://github.com/maranasgroup/lll-FVA.},
-  date          = {2017-11-11},
-  eprint        = {1711.04084v1},
-  eprintclass   = {q-bio.MN},
-  eprinttype    = {arXiv},
-  file          = {online:http\://arxiv.org/pdf/1711.04084v1:PDF},
-  keywords      = {q-bio.MN},
+  author      = {Siu Hung Joshua Chan and Lin Wang and Satyakam Dash and Costas D. Maranas},
+  title       = {Accelerating flux balance calculations in genome-scale metabolic models by localizing the application of loopless constraints},
+  abstract    = {Background: Genome-scale metabolic network models and constraint-based modeling techniques have become important tools for analyzing cellular metabolism. Thermodynamically infeasible cy-cles (TICs) causing unbounded metabolic flux ranges are often encountered. TICs satisfy the mass balance and directionality constraints but violate the second law of thermodynamics. Current prac-tices involve implementing additional constraints to ensure not only optimal but also loopless flux distributions. However, the mixed integer linear programming problems required to solve become computationally intractable for genome-scale metabolic models. Results: We aimed to identify the fewest needed constraints sufficient for optimality under the loop-less requirement. We found that loopless constraints are required only for the reactions that share elementary flux modes representing TICs with reactions that are part of the objective function. We put forth the concept of localized loopless constraints (LLCs) to enforce this minimal required set of loopless constraints. By combining with a novel procedure for minimal null-space calculation, the computational time for loopless flux variability analysis is reduced by a factor of 10-150 compared to the original loopless constraints and by 4-20 times compared to the currently fastest method Fast-SNP with the percent improvement increasing with model size. Importantly, LLCs offer a scalable strategy for loopless flux calculations for multi-compartment/multi-organism models of very large sizes (e.g. >104 reactions) not feasible before. Matlab functions are available at https://github.com/maranasgroup/lll-FVA.},
+  date        = {2017-11-11},
+  eprint      = {1711.04084v1},
+  eprintclass = {q-bio.MN},
+  eprinttype  = {arXiv},
+  file        = {online:http\://arxiv.org/pdf/1711.04084v1:PDF},
+  keywords    = {q-bio.MN},
 }
 
 @Article{Saa2016,
@@ -1041,7 +1024,6 @@
   pages           = {3807--3814},
   month           = dec,
   issn            = {1367-4811},
-  __markedentry   = {[noore:]},
   abstract        = {Computation of steady-state flux solutions in large metabolic models is routinely performed using flux balance analysis based on a simple LP (Linear Programming) formulation. A minimal requirement for thermodynamic feasibility of the flux solution is the absence of internal loops, which are enforced using 'loopless constraints'. The resulting loopless flux problem is a substantially harder MILP (Mixed Integer Linear Programming) problem, which is computationally expensive for large metabolic models. We developed a pre-processing algorithm that significantly reduces the size of the original loopless problem into an easier and equivalent MILP problem. The pre-processing step employs a fast matrix sparsification algorithm-Fast- sparse null-space pursuit (SNP)-inspired by recent results on SNP. By finding a reduced feasible 'loop-law' matrix subject to known directionalities, Fast-SNP considerably improves the computational efficiency in several metabolic models running different loopless optimization problems. Furthermore, analysis of the topology encoded in the reduced loop matrix enabled identification of key directional constraints for the potential permanent elimination of infeasible loops in the underlying model. Overall, Fast-SNP is an effective and simple algorithm for efficient formulation of loop-law constraints, making loopless flux optimization feasible and numerically tractable at large scale. Source code for MATLAB including examples is freely available for download at http://www.aibn.uq.edu.au/cssb-resources under Software. Optimization uses Gurobi, CPLEX or GLPK (the latter is included with the algorithm). lars.nielsen@uq.edu.auSupplementary information: Supplementary data are available at Bioinformatics online.},
   citation-subset = {IM},
   completed       = {2017-08-07},
@@ -1066,6 +1048,18 @@
   title  = {framed: a metabolic modeling package for python (v0.4.0)},
   doi    = {10.5281/zenodo.1048261},
   url    = {https://github.com/cdanielmachado/framed/tree/0.4.0},
+}
+
+@Article{Zamboni2008,
+  author        = {Zamboni, Nicola and K{\"u}mmel, Anne and Heinemann, Matthias},
+  title         = {anNET: a tool for network-embedded thermodynamic analysis of quantitative metabolome data},
+  journal       = {BMC bioinformatics},
+  year          = {2008},
+  volume        = {9},
+  number        = {1},
+  pages         = {199},
+  __markedentry = {[noore:6]},
+  publisher     = {BioMed Central},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

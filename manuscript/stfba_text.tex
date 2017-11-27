@@ -340,44 +340,50 @@ In the following sections, we describe two established methods for dealing with 
 
 \subsection*{Thermodynamic Flux Balance Analysis (TFBA)}
 
-\elad{Talk about Energy Balance Analysis \cite{Beard2002-xt}. Talk about the duality paper \cite{Warren2007-wm}. Compare to anNET \cite{Matthias2008, Kuemmel2006}}
+\elad{Talk about Energy Balance Analysis \cite{Beard2002-xt}. Talk about the duality paper \cite{Warren2007-wm}. Compare to NET analysis \cite{Kummel2006-px, Zamboni2008}}
 Thermodynamic FBA (also known as Thermo\-dynamic-based Metabolic Flux Analysis \cite{Henry2007-xp}) was designed to deal with thermodynamically infeasible flux solutions. However, its widespread adoption has been hampered by the requirement for thermodynamic parameters. The set of equations that describe TFBA are:
 \begin{eqnarray}
-\textbf{TFBA:} && \nonumber\\
+\textsf{\textbf{TFBA}} && \nonumber\\
+\mathbf{v^*} &=& \mathrm{arg\max_v} {~\mathbf{c}^\top\mathbf{v}}\nonumber\\
+\textsf{such that:} && \nonumber\\
 \mathbf{S} \cdot \mathbf{v} &=& \mathbf{0}  \label{eq:tfba1} \\
 \mathbf{0} &\leq& M \mathbf{y} - \mathbf{v} ~\leq~ M
 \label{eq:tfba2} \\
 \mathbf{0} &<& M \mathbf{y} + \Sint^\top \cdot \mathbf{\Delta_f G'} ~<~ M \label{eq:tfba3} \\
-\mathbf{v_{low}} &\leq& \mathbf{v} ~\leq~ \mathbf{v_{high}} \label{eq:tfba4}\\
+\mathbf{v}^L &\leq& \mathbf{v} ~\leq~ \mathbf{v}^U \label{eq:tfba4}\\
 \mathbf{y} &\in& \{0, 1\}^r \label{eq:tfba5}\\
-\mathbf{c} &=& \mathbf{\Delta_f G'}/RT - \mathbf{\Delta_f G'^\circ}/RT \label{eq:tfba6}\\
-\ln(\mathbf{b_{low}}) &\leq& \mathbf{c} ~\leq~ \ln(\mathbf{b_{high}}) \label{eq:tfba7}
+\mathbf{x} &=& \mathbf{\Delta_f G'}/RT - \mathbf{\Delta_f G'^\circ}/RT \label{eq:tfba6}\\
+\ln(\mathbf{b}^L) &\leq& \mathbf{x} ~\leq~ \ln(\mathbf{b}^U) \label{eq:tfba7}
 \end{eqnarray}
-where the constants are the stoichiometric matrix of internal reactions $\Sint \in \mathcal{R}^{m \times r}$  and the vector of standard Gibbs energies of formation $\mathbf{\Delta_f G'^\circ}$ (in units of kJ/mol), the gas constant $R$ = 8.31 J/mol/K and temperature $T$ = 300 K. The variables are the flux vector $\mathbf{v} \in \mathcal{R}_{+}^{r}$, the vector of binary reaction indicators $\mathbf{y} \in \{0,1\}^{r}$, and the vector of Gibbs energies of formation $\mathbf{\Delta_f G'} \in \mathcal{R}^{m}$. $M$ is set to a positive number which is larger than any possible flux value and larger than any possible $\Delta_r G'$. Equation \ref{eq:tfba2} ensures that $\forall j~v_j > 0 \rightarrow y_j = 1$ and $v_j < 0 \rightarrow y_j = 0$, and equation \ref{eq:tfba3} ensures that $y = 1 \rightarrow G_j < 0$ and $y = 0 \rightarrow G_j > 0$, where $G_j$ is the $j$th value in the reaction Gibbs energy vector $\mathbf{G} \equiv \Sint^\top \cdot \mathbf{\Delta_f G'}$. This forces any flux solution to follow the second law of thermodynamics \cite{Hoppe2007-sw, Machado2017-gh}, which is summarized as: $\forall j~s.t.~ v_j \neq 0$; sign$(v_j)$ = sign$(-G_j)$. It is a rather different notation compared to the original paper \cite{Henry2007-xp}, where one had to assume all fluxes are positive (which usually requires making the model irreversible by decomposing each reversible reaction into two irreversible ones). Using the reversible notation for TFBA can reduce the number of boolean variable considerably and thus decrease the effective running time of the MILP solver.
-Finally, Equations \ref{eq:tfba6}-\ref{eq:tfba7} together set the bounds on the Gibbs energies of formation, assuming the concentration of each metabolite is between $b_{low,i}$ and $b_{high,i}$. Note that the log-concentration vector $\mathbf{c}$ is not really a variable in the LP (as it is a linear transformation of the $\mathbf{\Delta_f G'}$ vector), and is only there for the sake of clarity.
+where $\mathbf{c} \in \mathcal{R}^r$ is the objective function, and the constants are the stoichiometric matrix of internal reactions $\Sint \in \mathcal{R}^{m \times r}$  and the vector of standard Gibbs energies of formation $\mathbf{\Delta_f G'^\circ}$ (in units of kJ/mol), the gas constant $R$ = 8.31 J/mol/K and temperature $T$ = 300 K. The variables are the flux vector $\mathbf{v} \in \mathcal{R}_{+}^{r}$, the vector of binary reaction indicators $\mathbf{y} \in \{0,1\}^{r}$, and the vector of Gibbs energies of formation $\mathbf{\Delta_f G'} \in \mathcal{R}^{m}$. $M$ is set to a positive number which is larger than any possible flux value and larger than any possible $\Delta_r G'$. Equation \ref{eq:tfba2} ensures that $\forall j~v_j > 0 \rightarrow y_j = 1$ and $v_j < 0 \rightarrow y_j = 0$, and equation \ref{eq:tfba3} ensures that $y = 1 \rightarrow G_j < 0$ and $y = 0 \rightarrow G_j > 0$, where $G_j$ is the $j$th value in the reaction Gibbs energy vector $\mathbf{G} \equiv \Sint^\top \cdot \mathbf{\Delta_f G'}$. This forces any flux solution to follow the second law of thermodynamics \cite{Hoppe2007-sw, Machado2017-gh}, which is summarized as $\forall j:v_j = 0~\vee~\text{sign}(v_j) = \text{sign}(-G_j)$. It is a rather different notation compared to the original paper \cite{Henry2007-xp}, where one had to assume all fluxes are positive (which usually requires making the model irreversible by decomposing each reversible reaction into two irreversible ones). Using the reversible notation for TFBA can reduce the number of boolean variable considerably and thus decrease the effective running time of the MILP solver.
+Finally, Equations \ref{eq:tfba6}-\ref{eq:tfba7} together set the bounds on the Gibbs energies of formation, assuming the concentration of each metabolite $i$ is between $b^L_i$ and $b^U_i$. Note that the log-concentration vector $\mathbf{x}$ is not really a variable in the LP (as it is a linear transformation of the $\mathbf{\Delta_f G'}$ vector), and is explicitly defined only for the sake of clarity.
 
 While the stoichiometric matrix ($\mathbf{S}$) and general flux constraints are exactly the same as in the standard FBA formulation, $\mathbf{\Delta_f G'^\circ}$ comes as an additional requirement for running TFBA. Unfortunately, we still lack precise measurement for many of the compounds comprising biochemical networks, and computational methods that estimate $\mathbf{\Delta_f G'^\circ}$ \cite{Jankowski2008-hd,Noor2012-mp,Noor2013-an,Jinich2014-nv} are far from perfect and sometimes introduce significant errors. The fact that TFBA also adds one boolean variable for each reaction in the model definitely doesn't help either, since solving the LP becomes much harder, requires a good MILP solver, and takes much longer than standard FBA. Due to the effort involved, and the unclear benefit of the method, TFBA has not gained a wide audience of users so far.
 
 \subsection*{Loopless Flux Balance Analysis (ll-FBA)}
 In light of these caveats, it might be easier to understand why ll-FBA was introduced four years \emph{after} TFBA \cite{Schellenberger2011-bq}. Essentially, the loopless algorithm uses exactly the same MILP design as TFBA, while forgoing the actual thermodynamic values. This way, thermodynamically infeasible internal (Type III) cycles are eliminated, while all other pathways are kept \cite{Noor2012-qb}. The set of equations describing ll-FBA are:
 \begin{eqnarray}
-\textbf{ll-FBA:} && \nonumber\\
+\textsf{\textbf{ll-FBA}} && \nonumber\\
+\mathbf{v^*} &=& \mathrm{arg\max_v} {~\mathbf{c}^\top\mathbf{v}}\nonumber\\
+\textsf{such that:} && \nonumber\\
 \mathbf{S} \cdot \mathbf{v} &=& \mathbf{0} \label{eq:llfba1} \\
 \mathbf{0} &\leq& M \mathbf{y} - \mathbf{v} ~\leq~ M
 \label{eq:llfba2} \\
 \mathbf{0} &<& M \mathbf{y} + \Sint ^\top \cdot \mathbf{\Delta_f G'} ~<~ M \label{eq:llfba3} \\
-\mathbf{v_{low}} &\leq& \mathbf{v} ~\leq~ \mathbf{v_{high}} \\
+\mathbf{v}^L &\leq& \mathbf{v} ~\leq~ \mathbf{v}^U \\
 \mathbf{y} &\in& \{0, 1\}^r
 \end{eqnarray}
 where all variables and constants are the same as in equations \ref{eq:tfba1}-\ref{eq:tfba7}. This formal representation of ll-FBA might seem different from Schellenberger et al. \cite{Schellenberger2011-bq}, but is actually equivalent. These changes facilitate the comparison to the TFBA algorithm. The original formulation contained a variable $\mathbf{G} \in \mathcal{R}^{r}$ which was constrained to be orthogonal to the null-space of $\Sint$. According to the fundamental theorem of linear algebra, the image of $A^\top$ is orthogonal to the null-space of $A$. Therefore, we chose to replace $\mathbf{G}$ with the expression $\Sint^\top \cdot \mathbf{\Delta_f G'}$, which is a general formula for a vector from the image of $\Sint^\top$. Another change we made, is to remove the margins introduced in \cite{Schellenberger2011-bq} for the $\mathbf{G}$ constraints, which prevent a degenerate solution $\mathbf{G} = \mathbf{0}$. Instead, we use a strong inequality for equation \ref{eq:llfba3}, exactly as the one in equation \ref{eq:tfba3}. The numerical implications of this change depend on the MILP solver and are not the focus of this work.
 
-It is quite simple to observe, that our formulation of ll-FBA, is equivalent to TFBA (Equations \ref{eq:tfba1}-\ref{eq:tfba5}), while dropping the two last constraints (Equations \ref{eq:tfba6} and \ref{eq:tfba7}). Alternatively, one could get the exact same result by setting $\mathbf{b_{low}} = -\infty$ and $\mathbf{b_{high}} = \infty$ (and consequently, the values of $\mathbf{\Delta_f G'^\circ}$ have no effect and can be set arbitrarily to 0). This means that ll-FBA is equivalent to TFBA with infinite concentration bounds.
+It is quite simple to observe, that our formulation of ll-FBA, is equivalent to TFBA (Equations \ref{eq:tfba1}-\ref{eq:tfba5}), while dropping the two last constraints (Equations \ref{eq:tfba6} and \ref{eq:tfba7}). Alternatively, one could get the exact same result by setting $\mathbf{b}^L = -\infty$ and $\mathbf{b}^U = \infty$ (and consequently, the values of $\mathbf{\Delta_f G'^\circ}$ have no effect and can be set arbitrarily to 0). This means that ll-FBA is equivalent to TFBA with infinite concentration bounds.
 
 
 \paragraph{Limited adoption of ll-FBA} Although ll-FBA requires no extra parameters compared to FBA, and its implementation is streamlined as part of the COBRA toolbox, it has yet to become mainstream. A plausible explanation would be that there is an alternative method for eliminating internal cycles in FBA solutions, which does not require an MILP, and can be easily implemented: after applying additions constraints that  define the relevant solution space (e.g. realizing the maximal biomass yield, or keeping all exchange fluxes constant), find a solution with the minimum sum of absolute (or squared) fluxes \cite{Holzhutter2004-qj}. Implementations of this principle with slight variations have been presented under different names such as parsimonious FBA \cite{Lewis2010-rx, Schuetz2012-sv} or CycleFreeFlux \cite{Desouki2015-lh}. Nevertheless, such methods are not suitable for some applications of ll-FBA, such as loopless Flux Variability Analysis (ll-FVA).
 
 \paragraph{Improvements of ll-FBA}
 More recently, two different approaches for reducing the number of boolean variables in ll-FBA have been published: Fast sparse null-space pursuit (fast-SNP) \cite{Saa2016} and Localized Loopless Constraints (LLCs) \cite{Chan2017}. These method do not change the ll-FBA problem, but rather try to get rid of constraints and boolean variables that are not necessary for solving it. Therefore, ll-FBA can be solved for much larger networks, and without the compromises that come with the methods that use flux minimization. It is still unclear whether these approaches can be extended to TFBA as well.
+
+That being said, the aim of this work is not to discuss issues of complexity and runtime, but rather the theoretical implications of thermodynamic and loop\-less constraints on the set of feasible flux solutions.
 
 \section*{Results}
 
@@ -388,15 +394,17 @@ First, one must define a set of energy currency metabolites. Although the defini
 
 Finally, we fix the values in the $\mathbf{G_f}$ vector only for these metabolites from the table, while the rest of the values remain free.
 \begin{eqnarray}
-\textbf{st-FBA:}\nonumber\\
+\textsf{\textbf{st-FBA}}\nonumber\\
+\mathbf{v^*} &=& \mathrm{arg\max_v} {~\mathbf{c}^\top\mathbf{v}}\nonumber\\
+\textsf{such that:} && \nonumber\\
 \mathbf{S} \cdot \mathbf{v} &=& \mathbf{0} \label{eq:stfba1}\\
 \mathbf{0} &\leq& M \mathbf{y} - \mathbf{v} ~\leq~ M \label{eq:stfba2}\\
 \mathbf{0} &<& M \mathbf{y} + \Sint^\top \cdot \mathbf{\Delta_f G'} < M \label{eq:stfba3}\\
-\mathbf{v_{low}} &\leq& \mathbf{v} ~\leq~ \mathbf{v_{high}} \label{eq:stfba4}\\
+\mathbf{v}^L &\leq& \mathbf{v} ~\leq~ \mathbf{v}^U \label{eq:stfba4}\\
 \mathbf{y} &\in& \{0, 1\}^r \label{eq:stfba5}\\
 \forall i~\textsf{in Table \ref{table:potentials}}\nonumber\\
-c_i &=& \Delta_f G'_i/RT - \Delta_f G'^\circ_i/RT \label{eq:stfba6}\\
-\ln(b_{low,i}) &\leq& c_i ~\leq~ \ln(b_{high,i}) \label{eq:stfba7}
+x_i &=& \Delta_f G'_i/RT - \Delta_f G'^\circ_i/RT \label{eq:stfba6}\\
+\ln(b^L_i) &\leq& x_i ~\leq~ \ln(b^U_i) \label{eq:stfba7}
 \end{eqnarray}
 So st-FBA is very similar to TFBA, except that only the energy currency metabolites have predefined bounds on their formation energies. In fact, since the concentrations of these metabolites tend to be tightly controlled by homeostasis, it is recommended to set them to fixed concentrations (i.e. by setting the lower and upper bounds to the same value).
 
