@@ -340,7 +340,6 @@ In the following sections, we describe two established methods for dealing with 
 
 \subsection*{Thermodynamic Flux Balance Analysis (TFBA)}
 
-\elad{Talk about Energy Balance Analysis \cite{Beard2002-xt}. Talk about the duality paper \cite{Warren2007-wm}. Compare to NET analysis \cite{Kummel2006-px, Zamboni2008}}
 Thermodynamic FBA (also known as Thermo\-dynamic-based Metabolic Flux Analysis \cite{Henry2007-xp}) was designed to deal with thermodynamically infeasible flux solutions. However, its widespread adoption has been hampered by the requirement for thermodynamic parameters. The set of equations that describe TFBA are:
 \begin{eqnarray}
 \textsf{\textbf{TFBA}} && \nonumber\\
@@ -380,10 +379,25 @@ It is quite simple to observe, that our formulation of ll-FBA, is equivalent to 
 
 \paragraph{Limited adoption of ll-FBA} Although ll-FBA requires no extra parameters compared to FBA, and its implementation is streamlined as part of the COBRA toolbox, it has yet to become mainstream. A plausible explanation would be that there is an alternative method for eliminating internal cycles in FBA solutions, which does not require an MILP, and can be easily implemented: after applying additions constraints that  define the relevant solution space (e.g. realizing the maximal biomass yield, or keeping all exchange fluxes constant), find a solution with the minimum sum of absolute (or squared) fluxes \cite{Holzhutter2004-qj}. Implementations of this principle with slight variations have been presented under different names such as parsimonious FBA \cite{Lewis2010-rx, Schuetz2012-sv} or CycleFreeFlux \cite{Desouki2015-lh}. Nevertheless, such methods are not suitable for some applications of ll-FBA, such as loopless Flux Variability Analysis (ll-FVA).
 
-\paragraph{Improvements of ll-FBA}
+\paragraph{Related methods and improvements}
+Already in 2002, Beard et al. \cite{Beard2002-xt} introduced Energy Balance Analysis (EBA), a method for enforcing the laws of thermodynamics in FBA simulations. The additional constraints that EBA enforces are essentially identical to ll-FBA, except that nonlinear optimization is applied instead of the MILP formulation introduced in equations \ref{eq:llfba2}-\ref{eq:llfba3}. Unfortunately, nonlinear optimization software tends to be much less efficient than state-of-the-art MILP solvers, and therefore the use of EBA was limited to relatively small models. Nevertheless, the methodology behind EBA was developed further and became a way to learn about chemical potentials from pure stoichiometric data \cite{Beard2004, Warren2007-wm, Reznik2013}. Network-embedded thermodynamic (NET) analysis \cite{Kummel2006-px, Kummel2006-qn, Zamboni2008} is derived from the same basic constraints (we discuss it in more detail in the following section).
+
 More recently, two different approaches for reducing the number of boolean variables in ll-FBA have been published: Fast sparse null-space pursuit (fast-SNP) \cite{Saa2016} and Localized Loopless Constraints (LLCs) \cite{Chan2017}. These method do not change the ll-FBA problem, but rather try to get rid of constraints and boolean variables that are not necessary for solving it. Therefore, ll-FBA can be solved for much larger networks, and without the compromises that come with the methods that use flux minimization. It is still unclear whether these approaches can be extended to TFBA as well.
 
 That being said, the aim of this work is not to discuss issues of complexity and runtime, but rather the theoretical implications of thermodynamic and loop\-less constraints on the set of feasible flux solutions.
+
+\subsection*{Network-Embedded Thermodynamic (NET) analysis}
+NET analysis \cite{Kummel2006-px} is a highly related method which applies the same directionality constraints as TFBA, but does not aim to predict flux distributions. Instead, it aims to explore the ranges of possible $\Delta_r G'$ values, and can check for thermodynamic inconsistencies in quantitative metabolomic data sets. The NET analysis optimization problem (adapted from \cite{Zamboni2008} to fit the notation in this manuscript) is:
+\begin{eqnarray}
+\textsf{\textbf{NET}} && \nonumber\\
+\forall k && \mathrm{\min/\max} ~~\Delta_r G'_k\nonumber\\
+\textsf{such that:} && \nonumber\\
+\forall i~~~~0 &\geq& \Delta_r G'_i \cdot v_i \label{eq:net1}\\
+\mathbf{\Delta_r G'} &=& \Sint ^\top \cdot \mathbf{\Delta_f G'} \\
+\mathbf{\Delta_f G'} &=& \mathbf{\Delta_f G'^\circ} + RT \cdot \mathbf{x} \\
+\ln(\mathbf{b}^L) &\leq& \mathbf{x} ~\leq~ \ln(\mathbf{b}^U) 
+\end{eqnarray}
+Note that here the second law of thermodynamics is explicit (equation \ref{eq:net1}), and not given as a pair of constraints involving boolean variables (as in TFBA and ll-FBA).
 
 \section*{Results}
 
@@ -411,7 +425,8 @@ So st-FBA is very similar to TFBA, except that only the energy currency metaboli
 \subsection*{Implementation of st-FBA}
 The semi-thermodynamic Flux Balance Analysis algorithm was implemented using COBRApy \cite{Ebrahim2013-vw}.
 
-\subsection{Gibbs Energy of Formation Variation Analysis (GVA)}
+
+\subsection*{Gibbs Energy of Formation Variation Analysis (GVA)}
 
 \wolf{I think one thing would be nice to show or discuss: naively, one might think that constraining the chemical potentials of cofactors has only an effect on reactions that contain ONLY cofactors; that this determines the usage / flux directions in these reaction; and that this then has effects on other parts of the network. But in fact (that's at least how I understand your method) it looks like there are much more effects because every metabolite (even though its chemical potential can be freely chosen) must have one definite value of its chemical potential - such that the entire system becomes much more constrained.}
 \elad{I think I can perform a kind of "FVA" on the potentials to see the ranges. It's also nice to compare that to the actual formation energies...}
