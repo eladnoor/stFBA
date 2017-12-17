@@ -12,7 +12,6 @@ from cobra import Reaction, Metabolite
 from cobra.flux_analysis.parsimonious import optimize_minimal_flux
 from cobra.manipulation.modify import convert_to_irreversible
 
-
 def find_egc(cobra_model, solver='cplex'):
     """
         try to locate EGCs by blocking all transport reactions and
@@ -48,14 +47,14 @@ def find_egc(cobra_model, solver='cplex'):
 
 def print_solution(sol):
     if sol is None:
-        print "Linear problem is not feasible"
+        print("Linear problem is not feasible")
     elif sol.status == 'optimal':
-        print "maximal ATP futile production: ", sol.f
+        print("maximal ATP futile production: %s" % sol.f)
         for rid, flux in sol.x_dict.iteritems():
             if abs(flux) > 1e-9:
-                print '%20s: %6.2f' % (rid, flux)
+                print('%20s: %6.2f' % (rid, flux))
     else:
-        print "Linear problem is %s" % sol.status
+        print("Linear problem is %s" % sol.status)
 
 
 def construct_stfba_model(cobra_model, config_fname='stfba_config.tsv'):

@@ -18,7 +18,7 @@ fba_sol_json = model_json.optimize(solver='cplex')
 #fba_sol_sbml = model_sbml.optimize(solver='cplex')
 #print "FBA SBML", fba_sol_sbml.status, fba_sol_sbml.f
 
-print "FBA JSON", fba_sol_json.status, fba_sol_json.f
+print("FBA JSON: %s, %f", fba_sol_json.status, fba_sol_json.f)
 
 #loopless_model_sbml = construct_loopless_model(model_sbml)
 #ll_sol_sbml = loopless_model_sbml.optimize(solver='cplex')
@@ -26,15 +26,15 @@ print "FBA JSON", fba_sol_json.status, fba_sol_json.f
 #
 loopless_model_json = construct_loopless_model(model_json)
 ll_sol_json = loopless_model_json.optimize(solver='cplex')
-print "ll-FBA JSON", ll_sol_json.status, ll_sol_json.f
+print("ll-FBA JSON: %s, %f", ll_sol_json.status, ll_sol_json.f)
 
 
 #%%
-print "SBML solution"
+print("SBML solution")
 for r, v in fba_sol_sbml.x_dict.iteritems():
     if v != 0 and r[0:3] == 'EX_':
-        print "%20s : %.1f" % (r, v)
-print "JSON solution"
+        print("%20s : %.1f", r, v)
+print("JSON solution")
 for r, v in fba_sol_json.x_dict.iteritems():
     if v != 0 and r[0:3] == 'EX_':
-        print "%20s : %.1f" % (r, v)
+        print("%20s : %.1f", r, v)

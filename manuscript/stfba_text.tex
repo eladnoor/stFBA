@@ -359,6 +359,8 @@ Finally, Equations \ref{eq:tfba6}-\ref{eq:tfba7} together set the bounds on the 
 
 While the stoichiometric matrix ($\mathbf{S}$) and general flux constraints are exactly the same as in the standard FBA formulation, $\mathbf{\Delta_f G'^\circ}$ comes as an additional requirement for running TFBA. Unfortunately, we still lack precise measurement for many of the compounds comprising biochemical networks, and computational methods that estimate $\mathbf{\Delta_f G'^\circ}$ \cite{Jankowski2008-hd,Noor2012-mp,Noor2013-an,Jinich2014-nv} are far from perfect and sometimes introduce significant errors. The fact that TFBA also adds one boolean variable for each reaction in the model definitely doesn't help either, since solving the LP becomes much harder, requires a good MILP solver, and takes much longer than standard FBA. Due to the effort involved, and the unclear benefit of the method, TFBA has not gained a wide audience of users so far.
 
+A more recent method called tEFMA \cite{Gerstl2015a, Gerstl2015} also aims to eliminate thermodynamically infeasible solutions, but in the context of Elementary Flux Mode Analysis (EFMA). Here, we focus only on FBA extensions, and therefore leave tEFMA and similar methods out of this comparison.
+
 \subsection*{Loopless Flux Balance Analysis (ll-FBA)}
 In light of these caveats, it might be easier to understand why ll-FBA was introduced four years \emph{after} TFBA \cite{Schellenberger2011-bq}. Essentially, the loopless algorithm uses exactly the same MILP design as TFBA, while forgoing the actual thermodynamic values. This way, thermodynamically infeasible internal (Type III) cycles are eliminated, while all other pathways are kept \cite{Noor2012-qb}. The set of equations describing ll-FBA are:
 \begin{eqnarray}
@@ -387,17 +389,22 @@ More recently, two different approaches for reducing the number of boolean varia
 That being said, the aim of this work is not to discuss issues of complexity and runtime, but rather the theoretical implications of thermodynamic and loop\-less constraints on the set of feasible flux solutions.
 
 \subsection*{Network-Embedded Thermodynamic (NET) analysis}
-NET analysis \cite{Kummel2006-px} is a highly related method which applies the same directionality constraints as TFBA, but does not aim to predict flux distributions. Instead, it aims to explore the ranges of possible $\Delta_r G'$ values, and can check for thermodynamic inconsistencies in quantitative metabolomic data sets. The NET analysis optimization problem (adapted from \cite{Zamboni2008} to fit the notation in this manuscript) is:
+NET analysis \cite{Kummel2006-px} is a highly related method which applies the same directionality constraints as TFBA, but does not aim to predict flux distributions. Instead, it aims to explore the ranges of possible $\Delta_r G'$ values, and can check for thermodynamic inconsistencies in quantitative metabolomic data sets. The NET analysis optimization problem (adapted from \cite{Kummel2006-px} to fit the notation in this manuscript) is:
 \begin{eqnarray}
 \textsf{\textbf{NET}} && \nonumber\\
 \forall k && \mathrm{\min/\max} ~~\Delta_r G'_k\nonumber\\
 \textsf{such that:} && \nonumber\\
-\forall i~~~~0 &\geq& \Delta_r G'_i \cdot v_i \label{eq:net1}\\
+\forall  v_i > 0 && \Delta_r G'_i < 0 \label{eq:net1}\\
+\forall  v_i < 0 && \Delta_r G'_i > 0 \label{eq:net2}\\
 \mathbf{\Delta_r G'} &=& \Sint ^\top \cdot \mathbf{\Delta_f G'} \\
-\mathbf{\Delta_f G'} &=& \mathbf{\Delta_f G'^\circ} + RT \cdot \mathbf{x} \\
-\ln(\mathbf{b}^L) &\leq& \mathbf{x} ~\leq~ \ln(\mathbf{b}^U) 
+\mathbf{x} &=& \mathbf{\Delta_f G'}/RT - \mathbf{\Delta_f G'^\circ}/RT \\
+\ln(\mathbf{b}^L) &\leq& \mathbf{x} ~\leq~ \ln(\mathbf{b}^U)\,.
 \end{eqnarray}
-Note that here the second law of thermodynamics is explicit (equation \ref{eq:net1}), and not given as a pair of constraints involving boolean variables (as in TFBA and ll-FBA).
+Note that here the second law of thermodynamics is laid out explicitly (equations \ref{eq:net1}-\ref{eq:net2}), and not given as a pair of constraints involving boolean variables (as in TFBA and ll-FBA). This is facilitated by the fact that all intracellular flux directions are a prerequisite for the NET analysis, and therefore these constraints are hard-coded in the linear optimization problem. The only free variables are the log-concentrations in the vector $\mathbf{x}$ (note that $\mathbf{\Delta_f G'}$ and $\mathbf{\Delta_r G'}$ are linear transforms of $\mathbf{x}$).
+
+Therefore, this formulation of NET analysis is a linear optimization problem, and does not require an MILP solver. However, in a more generalized case (such as the one used in \cite{Kummel2006-px}), constraints can also be imposed on the total concentrations of a subset of metabolites (for example, the sum of all pentose-phosphates). This requirement reflects the reality of many mass-spectrometry datasets where only the total concentration of several mass-isomers can be measured reliably. The downside is that these constraints are non-linear (due to the fact that our variables are log-concentrations, so the constraints would be on the sum of their exponents). 
+
+NET analysis is akin to Flux Variability Analysis (FVA), except that the fluxes are fixed and the studied variability is the possible range of Gibbs free energies. A GUI-based Matlab\texttrademark~program called anNET \cite{Zamboni2008} facilitates the application of NET analysis in labs working on quantitative metabolomics.
 
 \section*{Results}
 
@@ -418,9 +425,26 @@ Finally, we fix the values in the $\mathbf{G_f}$ vector only for these metabolit
 \mathbf{y} &\in& \{0, 1\}^r \label{eq:stfba5}\\
 \forall i~\textsf{in Table \ref{table:potentials}}\nonumber\\
 x_i &=& \Delta_f G'_i/RT - \Delta_f G'^\circ_i/RT \label{eq:stfba6}\\
-\ln(b^L_i) &\leq& x_i ~\leq~ \ln(b^U_i) \label{eq:stfba7}
+\ln(b^L_i) &\leq& x_i ~\leq~ \ln(b^U_i) \label{eq:stfba7}\,.
 \end{eqnarray}
 So st-FBA is very similar to TFBA, except that only the energy currency metabolites have predefined bounds on their formation energies. In fact, since the concentrations of these metabolites tend to be tightly controlled by homeostasis, it is recommended to set them to fixed concentrations (i.e. by setting the lower and upper bounds to the same value).
+
+\subsection*{Network-Embedded Semi-Thermodynamic analysis (NEST)}
+A relatively straight-forward way to measure the effect of semi-thermodynamic constraints on the solution space, is to use an approach derived from NET analysis.
+
+\begin{eqnarray}
+\textsf{\textbf{NEST}} && \nonumber\\
+\forall k && \mathrm{\min/\max} ~~\Delta_r G'_k\nonumber\\
+\textsf{such that:} && \nonumber\\
+\forall  v_i > 0 && \Delta_r G'_i < 0 \label{eq:net1}\\
+\forall  v_i < 0 && \Delta_r G'_i > 0 \label{eq:net2}\\
+\mathbf{\Delta_r G'} &=& \Sint ^\top \cdot \mathbf{\Delta_f G'} \\
+\forall i~\textsf{in Table \ref{table:potentials}}\nonumber\\
+x_i &=& \Delta_f G'_i/RT - \Delta_f G'^\circ_i/RT \\
+\ln(b^L_i) &\leq& x_i ~\leq~ \ln(b^U_i)\,.
+\end{eqnarray}
+Just as in st-FBA, the thermodynamic constraints are only applied to a subset of metabolites (i.e. energy co-factors which we know with high confidence). 
+
 
 \subsection*{Implementation of st-FBA}
 The semi-thermodynamic Flux Balance Analysis algorithm was implemented using COBRApy \cite{Ebrahim2013-vw}.
