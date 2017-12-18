@@ -9,28 +9,28 @@ from cobra.flux_analysis import loopless
 from cobra.io.sbml import create_cobra_model_from_sbml_file
 from cobra.io.json import load_json_model
 from cobra import Metabolite, Reaction
-from find_energy_generating_cycle import construct_loopless_model
-#from cobra.flux_analysis.loopless import construct_loopless_model
+from stfba.find_energy_generating_cycle import stFBA
+from cobra.flux_analysis.loopless import construct_loopless_model
 
 solver = 'cplex'
 
 
 #model_fname = 'e_coli_core.xml.gz'
-model_fname = 'iAF1260.xml.gz'
+model_fname = 'model/iAF1260.xml.gz'
 model = create_cobra_model_from_sbml_file(model_fname)
 
-model_fname = 'iJO1366.json'
+model_fname = 'model/iJO1366.json'
 model = load_json_model(model_fname)
 
 model.optimize(solver=solver)
-print "original model and FBA: ", model.solution
+print("original model and FBA: ", model.solution)
 
 # set the model to anaerobic conditions, in order to make ATP a limiting
 # factor for the maximal yield
 model.reactions.EX_o2_e.lower_bound = 0
 
 model.optimize(solver=solver)
-print "anaerobic model and FBA: ", model.solution
+print("anaerobic model and FBA: ", model.solution)
 
 
 # add a futile cycle that generates ATP    
@@ -67,7 +67,7 @@ model.add_reactions([symporter1_reaction, symporter2_reaction,
 loopless_model = construct_loopless_model(model)
 loopless_model.optimize(solver=solver)
 
-print "model with futile cycle and ll-FBA: ", loopless_model.solution
+print("model with futile cycle and ll-FBA: ", loopless_model.solution)
 
 R = 8.314e-3 # kJ/mol/K
 T = 298 # K
@@ -80,4 +80,4 @@ loopless_model.reactions.thermo_var_pi_c.upper_bound = -1073.3/(R*T)
 loopless_model.reactions.thermo_var_h2o_c.lower_bound = -157.6/(R*T)
 loopless_model.reactions.thermo_var_h2o_c.upper_bound = -157.6/(R*T)
 loopless_model.optimize(solver=solver)
-print "model with futile cycle and ll-FBA + ATP constraints: ", loopless_model.solution
+print("model with futile cycle and ll-FBA + ATP constraints: ", loopless_model.solution)

@@ -189,19 +189,19 @@ class stFBA(object):
             stFBA.print_solution(FBA_sol)
             return FBA_sol
         else:
-            print 'No EGCs found'
+            print('No EGCs found')
             return None
 
     @staticmethod
     def print_solution(sol):
         if sol is None:
-            print "Linear problem is not feasible"
+            print("Linear problem is not feasible")
         elif sol.status == 'optimal':
-            print "maximal ATP futile production: ", sol.f
+            print("maximal ATP futile production: ", sol.f)
             for rid, flux in sol.x_dict.iteritems():
                 if abs(flux) > 1e-9:
-                    print '%20s: %6.2f' % (rid, flux)
+                    print('%20s: %6.2f' % (rid, flux))
         else:
-            print "Linear problem is %s" % sol.status
+            print("Linear problem is %s" % sol.status)
 
 

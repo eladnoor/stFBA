@@ -17,6 +17,7 @@ MODEL_DIR = os.path.join(BASE_DIR, 'model')
 RESULT_DIR = os.path.join(BASE_DIR, 'res')
 IJO1366_JSON_FNAME = os.path.join(MODEL_DIR, 'iJO1366.json')
 CORE_SBML_FNAME = os.path.join(MODEL_DIR, 'e_coli_core.xml.gz')
+BIGG_METABOLITE_FNAME = os.path.join(DATA_DIR, 'bigg_models_metabolites.txt')
 
 M = 1e6
 eps = 1e-6
