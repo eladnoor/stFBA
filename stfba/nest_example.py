@@ -90,19 +90,16 @@ def get_kegg_dict(met_df, coeffs):
 
 
 def get_dGr0_prime(sparse):
-
     try:
         r = Reaction(sparse)
         if not r.check_full_reaction_balancing():
-            return np.nan, np.nan
+            return np.nan, np.nan, 'unbalanbed reaction'
         dG0_prime, dG0_std = equilibrator.dG0_prime(r)
-        return dG0_prime, dG0_std
+        return dG0_prime, dG0_std, ''
     except ValueError as e:
-        print('value error: ' + str(e))
-        return np.nan, np.nan
+        return np.nan, np.nan, 'value error: ' + str(e)
     except KeyError as e:
-        print('key error: ' + str(e))
-        return np.nan, np.nan
+        return np.nan, np.nan, 'key error: ' + str(e)
 
 
 def get_pfba_fluxes(cobra_model):
@@ -153,6 +150,7 @@ rxn_df['flux'] = rxn_df.index.map(flux_dict.get)
 rxn_df['flux_direction'] = rxn_df['flux'].apply(lambda x: np.sign(x) * (np.abs(x) > 1e-4))
 rxn_df['dG0_prime'] = np.nan
 rxn_df['dG0_prime_std'] = np.nan
+rxn_df['comment'] = ''
 rxn_df['constrain_dg'] = False
 
 #%%
@@ -163,21 +161,23 @@ for rxn in S_int.columns:
         # ATP synthase is complicated since it uses the proton motive force
         # to decrease the dG'0 of the ATP synthesis reaction. We just skip
         # it for now...
+        rxn_df.at[rxn, 'comment'] = 'ATP synthase is currently ignored'
         continue
     
     coeffs = S_int.loc[S_int[rxn] != 0, rxn]
     kegg_ids = coeffs.index.map(bigg2kegg_dict.get)
     if None in kegg_ids:
-        print('key error: Could not find KEGG mappings to all compounds in %s' % rxn)
-        # one of the metabolites does not have a KEGG ID, skip this reaction
+        rxn_df.at[rxn, 'comment'] = 'could not find KEGG mappings for all compounds'
         continue
+
     kegg_coeffs = pd.DataFrame(list(zip(kegg_ids, coeffs)))
     kegg_coeffs = kegg_coeffs.groupby(0).sum()
     sparse_kegg = kegg_coeffs[1].to_dict()
     
-    dgr0, dgr0_std = get_dGr0_prime(sparse_kegg)
+    dgr0, dgr0_std, msg = get_dGr0_prime(sparse_kegg)
     rxn_df.at[rxn, 'dG0_prime'] = dgr0
     rxn_df.at[rxn, 'dG0_prime_std'] = dgr0_std
+    rxn_df.at[rxn, 'comment'] = msg
 
     direction = rxn_df.at[rxn, 'flux_direction']
     if direction != 0 and np.isfinite(dgr0_std) and dgr0_std < DG_STD_MAX:
