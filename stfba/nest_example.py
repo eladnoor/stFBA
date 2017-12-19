@@ -10,13 +10,19 @@ import sys
 import settings
 import json
 
+DG_STD_MAX = 50 # kJ/mol
+
 CYTOPLASMIC_PH = 7.4
 CYTOPLASMIC_IONIC_STRENGTH = 0.25 # in M
-CYTOPLASMIC_CONC_LB = 1e-12 # in M
-CYTOPLASMIC_CONC_UB = 0.1 # in M
 
-EXTERNAL_CONC_LB = 1e-20 # in M
-EXTERNAL_CONC_UB = 1e20 # in M
+LB_DICT = {'c': 1e-9, 'p': 1e-9, 'e': 1e-9} # in M
+UB_DICT = {'c': 1e-1, 'p': 1e-1, 'e': 1} # in M
+
+if False:
+    # override constraints for testing purposes
+    LB_DICT = {'c': 1e-99, 'p': 1e-99, 'e': 1e-99} # in M
+    UB_DICT = {'c': 1e99, 'p': 1e99, 'e': 1e99} # in M
+
 
 sys.path.append(os.path.expanduser('~/git/equilibrator-api/'))
 from equilibrator_api import ComponentContribution, Reaction
@@ -39,8 +45,10 @@ else:
 def get_metabolite_df():
     bigg2kegg = []
     
-    # manually add nh4_c and nh4_e
+    # manually add nh4_c and nh4_e (they appear as nh3 in the text
+    # file BIGG_METABOLITE_FNAME, but in some models nh4 is used)
     bigg2kegg += [('nh4_c', 'nh4', 'C00014')]
+    bigg2kegg += [('nh4_p', 'nh4', 'C00014')]
     bigg2kegg += [('nh4_e', 'nh4', 'C00014')]
     
     # manually add q8_c q8h2_c (ubiquinone and ubiquinol)
@@ -68,18 +76,25 @@ def get_metabolite_df():
     return df.groupby('bigg.metabolite with suffix').first()
 
 
-def get_dGr0_prime(df):
-
-    if pd.isnull(df['KEGG ID']).any():
+def get_kegg_dict(met_df, coeffs):
+    _df = met_df.join(coeffs, on='bigg.metabolite')
+    _df = _df.loc[_df[coeffs.name] != 0, ['KEGG ID', coeffs.name]]
+    
+    if pd.isnull(_df['KEGG ID']).any():
         # we don't have a KEGG mapping to one of the reactants
         # and therefore we cannot have a dG'0 value
-        return np.nan, np.nan
+        return None
     
     # convert the DataFrame to a dictionary
-    sparse = df.groupby('KEGG ID').sum()[df.columns[1]].to_dict()
-    
+    return _df.groupby('KEGG ID').sum()[_df.columns[1]].to_dict()
+
+
+def get_dGr0_prime(sparse):
+
     try:
         r = Reaction(sparse)
+        if not r.check_full_reaction_balancing():
+            return np.nan, np.nan
         dG0_prime, dG0_std = equilibrator.dG0_prime(r)
         return dG0_prime, dG0_std
     except ValueError as e:
@@ -107,6 +122,7 @@ def get_pfba_fluxes(cobra_model):
 
 ###############################################################################
 bigg2kegg_df = get_metabolite_df()
+bigg2kegg_dict = bigg2kegg_df['KEGG ID'].to_dict()
 
 S = settings.get_stoichiometry_from_model(cobra_model)
 flux_dict = get_pfba_fluxes(cobra_model)
@@ -130,87 +146,88 @@ S_int = S[active_rxn]
 S_int = S_int.loc[np.abs(S_int).sum(1) > 0, :]
 
 #%%
+dir_constraints = []
+dgr = {}
+rxn_df = pd.DataFrame(index=S_int.columns)
+rxn_df['flux'] = rxn_df.index.map(flux_dict.get)
+rxn_df['flux_direction'] = rxn_df['flux'].apply(lambda x: np.sign(x) * (np.abs(x) > 1e-4))
+rxn_df['dG0_prime'] = np.nan
+rxn_df['dG0_prime_std'] = np.nan
+rxn_df['constrain_dg'] = False
+
+#%%
+coeff2lpsum = lambda c: pulp.lpSum(ln_conc[met] * coeff for met, coeff in c.iteritems())
+
+for rxn in S_int.columns:
+    if rxn == 'ATPS4rpp':
+        # ATP synthase is complicated since it uses the proton motive force
+        # to decrease the dG'0 of the ATP synthesis reaction. We just skip
+        # it for now...
+        continue
+    
+    coeffs = S_int.loc[S_int[rxn] != 0, rxn]
+    kegg_ids = coeffs.index.map(bigg2kegg_dict.get)
+    if None in kegg_ids:
+        print('key error: Could not find KEGG mappings to all compounds in %s' % rxn)
+        # one of the metabolites does not have a KEGG ID, skip this reaction
+        continue
+    kegg_coeffs = pd.DataFrame(list(zip(kegg_ids, coeffs)))
+    kegg_coeffs = kegg_coeffs.groupby(0).sum()
+    sparse_kegg = kegg_coeffs[1].to_dict()
+    
+    dgr0, dgr0_std = get_dGr0_prime(sparse_kegg)
+    rxn_df.at[rxn, 'dG0_prime'] = dgr0
+    rxn_df.at[rxn, 'dG0_prime_std'] = dgr0_std
+
+    direction = rxn_df.at[rxn, 'flux_direction']
+    if direction != 0 and np.isfinite(dgr0_std) and dgr0_std < DG_STD_MAX:
+        rxn_df.at[rxn, 'constrain_dg'] = True
+        
+        dgr[rxn] = settings.RT * coeff2lpsum(coeffs)
+        c = pulp.LpConstraint(direction * dgr[rxn],
+                              pulp.LpConstraintLE,
+                              name='dGr_%s' % rxn,
+                              rhs=-settings.eps - direction*dgr0)
+        dir_constraints.append(c)
+
+#%%
 # get the formation energies of all internal metabolites:
 met_df = pd.DataFrame(data=S_int.index, columns=['bigg.metabolite'])
 met_df['compartment'] = met_df['bigg.metabolite'].str.rsplit('_', 1).str[1]
 met_df = met_df.join(bigg2kegg_df[['KEGG ID']], on='bigg.metabolite')
-
-#%%
-dir_constraints = []
-dgr = {}
-rxn_res_df = pd.DataFrame(index=S_int.columns)
-rxn_res_df['flux'] = rxn_res_df.index.map(flux_dict.get)
-rxn_res_df['flux_direction'] = rxn_res_df['flux'].apply(lambda x: np.sign(x) * (np.abs(x) > 1e-4))
-rxn_res_df['dG0_prime'] = np.nan
-rxn_res_df['dG0_prime_std'] = np.nan
-
-for rxn, coeffs in S_int.iteritems():
-    _df = met_df.join(coeffs, on='bigg.metabolite')
-    _df = _df.loc[_df[coeffs.name] != 0, ['KEGG ID', coeffs.name]]
-    dgr0, dgr0_std = get_dGr0_prime(_df)
-    rxn_res_df.at[rxn, 'dG0_prime'] = dgr0
-    rxn_res_df.at[rxn, 'dG0_prime_std'] = dgr0_std
-
-rxn_res_df['constraint_dg'] = ((rxn_res_df['flux_direction'] != 0) &
-                               (~pd.isnull(rxn_res_df['dG0_prime_std'])) &
-                               (rxn_res_df['dG0_prime_std'] < 50))
-#%
-for rxn, coeffs in S_int.iteritems():
-    direction = rxn_res_df.at[rxn, 'flux_direction']
-    dgr0 = rxn_res_df.at[rxn, 'dG0_prime']
-    dgr0_std = rxn_res_df.at[rxn, 'dG0_prime_std']
-    
-    if rxn_res_df.at[rxn, 'constraint_dg']:
-        # convert the 'coeffs' series to a KEGG reaction format
-        dgr[rxn] = dgr0 + settings.RT * direction * pulp.lpSum(ln_conc[met] * coeff
-            for met, coeff in coeffs[coeffs != 0].iteritems())
-        dir_constraints.append(pulp.LpConstraint(dgr[rxn], pulp.LpConstraintLE,
-                                                 name='dGr_%s' % rxn,
-                                                 rhs=-settings.eps))
-
-# try to get formation energies from equilibrator-api
-#met_df['dG0f_prime'] = met_df['KEGG ID'].apply(kegg_to_dg0f_prime)
+met_df['ln_lb'] = met_df['compartment'].apply(lambda s: np.log(LB_DICT.get(s)))
+met_df['ln_ub'] = met_df['compartment'].apply(lambda s: np.log(UB_DICT.get(s)))
+met_df = met_df.set_index('bigg.metabolite')
 
 conc_df = pd.read_csv(os.path.join(settings.DATA_DIR, 'concentration_ranges.csv'),
                       index_col=0)
 
-met_df = met_df.join(conc_df, on='bigg.metabolite')
+for met, row in conc_df.iterrows():
+    if met in met_df.index:
+        met_df.loc[met, 'ln_lb'] = np.log(row['conc_lb'])
+        met_df.loc[met, 'ln_ub'] = np.log(row['conc_ub'])
 
 #%%
 conc_constraints = []
-for _, row in met_df.iterrows():
-    met = row['bigg.metabolite']
-    
-    if pd.isnull(row['conc_lb']):
-        if row['compartment'] == 'e':
-            conc_lb = EXTERNAL_CONC_LB
-        elif row['compartment'] == 'c':
-            conc_lb = CYTOPLASMIC_CONC_LB
-    else:
-        conc_lb = row['conc_lb']
-    
-    if pd.isnull(row['conc_ub']):
-        if row['compartment'] == 'e':
-            conc_ub = EXTERNAL_CONC_UB
-        elif row['compartment'] == 'c':
-            conc_ub = CYTOPLASMIC_CONC_UB
-    else:
-        conc_ub = row['conc_ub']
+for met, row in met_df.iterrows():
+    ln_lb = row['ln_lb']
+    ln_ub = row['ln_ub']
 
-    ln_lb = np.log(conc_lb)
-    ln_ub = np.log(conc_ub)
     if ln_lb > ln_ub:
         raise Exception('lb > ub for metabolite %s' % met)
     if ln_ub - ln_lb < settings.eps:
+        # add small margin to avoid numberical problems in LP
         ln_lb -= settings.eps/2.0
         ln_ub += settings.eps/2.0
-        
-    conc_constraints.append(pulp.LpConstraint(ln_conc[met], pulp.LpConstraintGE,
-                                              name='conc_%s_lower' % met,
-                                              rhs=ln_lb))
-    conc_constraints.append(pulp.LpConstraint(ln_conc[met], pulp.LpConstraintLE,
-                                              name='conc_%s_upper' % met,
-                                              rhs=ln_ub))
+    
+    const_lb = pulp.LpConstraint(ln_conc[met], pulp.LpConstraintGE,
+                                 name='conc_%s_lower' % met,
+                                 rhs=ln_lb)
+    const_ub = pulp.LpConstraint(ln_conc[met], pulp.LpConstraintLE,
+                                 name='conc_%s_upper' % met,
+                                 rhs=ln_ub)
+    
+    conc_constraints += [const_lb, const_ub]
 
 #%%
 lp_nodir = pulp.LpProblem('NEST_nodir')
@@ -222,6 +239,16 @@ lp_nest = pulp.LpProblem('NEST')
 for c in conc_constraints + dir_constraints:
     lp_nest.addConstraint(c)
 lp_nest.writeLP(os.path.join(settings.RESULT_DIR, 'nest.lp'))
+
+#%% First, check that the NEST problem is feasible (i.e. that it has at least
+#   one solution)
+lp_nest.solve(pulp_solver)
+if lp_nest.status != pulp.LpStatusOptimal:
+    print('NEST problem cannot be solved: status = %d' % lp_nest.status)
+    is_nest_feasible = False
+else:
+    print('NEST problem is feasible!')
+    is_nest_feasible = True
 
 #%%
 def get_min_and_max(lp, lp_var, name=None):
@@ -245,34 +272,49 @@ def get_min_and_max(lp, lp_var, name=None):
     return min_val, max_val
 
 #%% calculate the min and max dGf for each metabolite:
-met_res_df = []
-for met in S_int.index:
-    lnc_nodir_lb, lnc_nodir_ub = get_min_and_max(lp_nodir, ln_conc[met], met)
-    lnc_nest_lb, lnc_nest_ub = get_min_and_max(lp_nest, ln_conc[met], met)
-    met_res_df.append((met, lnc_nodir_lb, lnc_nodir_ub, lnc_nest_lb, lnc_nest_ub))
-
-met_res_df = pd.DataFrame(data=met_res_df,
-                          columns=['bigg.metabolite', 'lnc_nodir_lb', 'lnc_nodir_ub',
-                                   'lnc_nest_lb', 'lnc_nest_up'])
-met_res_df = met_res_df.set_index('bigg.metabolite')
-met_res_df.round(2).to_csv(os.path.join(settings.RESULT_DIR, 'nest_met.csv'))
-
+if is_nest_feasible:
+    met_res_df = []
+    for met in S_int.index:
+        lnc_nest_lb, lnc_nest_ub = get_min_and_max(lp_nest, ln_conc[met], met)
+        met_res_df.append((met, lnc_nest_lb, lnc_nest_ub))
+    
+    met_res_df = pd.DataFrame(data=met_res_df,
+                              columns=['bigg.metabolite', 'lnc_nest_lb', 'lnc_nest_up'])
+    met_res_df = met_res_df.join(met_df, on='bigg.metabolite')
+    met_res_df = met_res_df.set_index('bigg.metabolite')
+    met_res_df.round(2).to_csv(os.path.join(settings.RESULT_DIR, 'nest_met.csv'))
+else:
+    met_df.round(2).to_csv(os.path.join(settings.RESULT_DIR, 'nest_met.csv'))
+    
 #%% calculate the min and max dGr for each reaction:
 rxn_nest_results = []
 for rxn in S_int.columns:
     # first calculate the dGr range when directionaliry constraints are not imposed
     # (i.e. as a isolated reaction)
-    if rxn_res_df.at[rxn, 'constraint_dg']:
+    if rxn_df.at[rxn, 'constrain_dg']:
         dgr_nodir_lb, dgr_nodir_ub = get_min_and_max(lp_nodir, dgr[rxn], rxn)
-        dgr_nest_lb, dgr_nest_ub = get_min_and_max(lp_nest, dgr[rxn], rxn)
-        rxn_nest_results.append((rxn, dgr_nodir_lb, dgr_nodir_ub, dgr_nest_lb, dgr_nest_ub))
+        if is_nest_feasible:
+            dgr_nest_lb, dgr_nest_ub = get_min_and_max(lp_nest, dgr[rxn], rxn)
+        else:
+            dgr_nest_lb, dgr_nest_ub = None, None
         
-rxn_nest_results = pd.DataFrame(rxn_nest_results,
-                                columns=['bigg.reaction', 'dgr_nodir_lb',
-                                         'dgr_nodir_ub', 'dgr_nest_lb', 'dgr_nest_ub'])
-rxn_res_df = rxn_nest_results.join(rxn_res_df, on='bigg.reaction')
+        rxn_nest_results.append((rxn, dgr_nodir_lb, dgr_nodir_ub,
+                                 dgr_nest_lb, dgr_nest_ub))
+        
+rxn_res_df = pd.DataFrame(rxn_nest_results,
+                          columns=['bigg.reaction', 'dgr_nodir_lb',
+                                   'dgr_nodir_ub', 'dgr_nest_lb', 'dgr_nest_ub'])
+
+rxn_res_df = rxn_res_df.join(rxn_df, on='bigg.reaction', how='right')
 rxn_res_df.set_index('bigg.reaction')
-    
+
+# we now need to add the dGr'0 to the results, since the variable we use in the
+# LP is actually the difference and not dGr' itself
+rxn_res_df['dgr_nodir_lb'] += rxn_res_df['dG0_prime']
+rxn_res_df['dgr_nodir_ub'] += rxn_res_df['dG0_prime']
+rxn_res_df['dgr_nest_lb'] += rxn_res_df['dG0_prime']
+rxn_res_df['dgr_nest_ub'] += rxn_res_df['dG0_prime']
+
 forward = rxn_res_df['dgr_nodir_lb'] < 0
 backward = rxn_res_df['dgr_nodir_ub'] > 0
 rxn_res_df['allowed_direction'] = forward * 1 + backward * (-1)

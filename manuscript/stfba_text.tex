@@ -439,8 +439,8 @@ A relatively straight-forward way to measure the effect of semi-thermodynamic co
 \textsf{\textbf{NEST}} && \nonumber\\
 \forall k && \mathrm{\min/\max} ~~\Delta_r G'_k\nonumber\\
 \textsf{such that:} && \nonumber\\
-\forall  v_i > 0 && \Delta_r G'_i < 0 \label{eq:net1}\\
-\forall  v_i < 0 && \Delta_r G'_i > 0 \label{eq:net2}\\
+\forall  v_i > 0 && \Delta_r G'_i \leq -\varepsilon \label{eq:net1}\\
+\forall  v_i < 0 && \Delta_r G'_i \geq \varepsilon \label{eq:net2}\\
 \mathbf{\Delta_r G'} &=& \Sint ^\top \cdot \mathbf{\Delta_f G'} \\
 \mathbf{\Delta_f G'} &\in& \mathcal{R}^{m}\\
 \forall i~\textsf{in Table \ref{table:potentials}}\nonumber\\
