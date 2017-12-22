@@ -10,6 +10,8 @@ import pandas as pd
 import inspect
 import numpy as np
 
+LP_SOLVER = 'gurobi'
+
 SCRIPT_DIR = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 BASE_DIR = os.path.join(*os.path.split(SCRIPT_DIR)[0:-1])
 DATA_DIR = os.path.join(BASE_DIR, 'data')

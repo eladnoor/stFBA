@@ -13,14 +13,14 @@ from six import iteritems
 from cobra import Reaction, Metabolite
 from cobra.flux_analysis.parsimonious import optimize_minimal_flux
 from cobra.manipulation.modify import convert_to_irreversible
+from stfba import settings
 sys.path.append(os.path.expanduser('~/git/SBtab/python'))
 import SBtabTools
 
 class stFBA(object):
 
-    SOLVER = 'cplex'
-
-    def __init__(self, cobra_model, config_fname='stfba_config.tsv'):
+    def __init__(self, cobra_model, config_fname='data/stfba_config.tsv',
+                 solver=settings.LP_SOLVER):
         """
         construct a semi-thermodynamic model
 
@@ -50,7 +50,7 @@ class stFBA(object):
         T = 298  # K
 
         self.model = cobra_model.copy()
-        self.solver = stFBA.SOLVER
+        self.solver = solver
 
         convert_to_irreversible(self.model)
         max_ub = max(self.model.reactions.list_attr("upper_bound"))
@@ -130,29 +130,7 @@ class stFBA(object):
                 metabolite_var.add_metabolites({m: v})
 
     def optimize(self):
-        return self.model.optimize()
-
-    def GVA(self):
-        """
-            A variablity analysis for the allowed ranges of formation energies
-            given the maximal growth rate is maintained.
-        """
-        stFBA_sol = self.model.optimize(objective_sense='maximize')
-        max_gr = stFBA_sol.f
-
-        self.model.reactions[self.original_objective].lower_bound = 0.99*max_gr
-
-
-        range_dict = {}
-        for metabolite in self.original_metabolites:
-            self.model.objective = "thermo_var_" + metabolite.id
-            sol_min = self.model.optimize(objective_sense='minimize')
-            sol_max = self.model.optimize(objective_sense='maximize')
-            range_dict[metabolite.id] = (sol_min.f, sol_max.f)
-
-        self.model.objective = self.original_objective
-
-        return range_dict
+        return self.model.optimize(solver=self.solver)
 
     @staticmethod
     def find_egc(cobra_model, already_irreversible=False):

@@ -5,16 +5,11 @@ Created on Wed Jan  4 12:07:00 2017
 
 @author: noore
 """
-#import sys
-#import os
-#sys.path.append(os.path.expanduser('~/git/cobrapy'))
-
 from cobra.io.json import load_json_model
 from cobra import Metabolite, Reaction
-from find_energy_generating_cycle import stFBA
-from cobra.flux_analysis.parsimonious import optimize_minimal_flux
+from stfba.find_energy_generating_cycle import stFBA
 from cobra.flux_analysis.loopless import construct_loopless_model
-from cobra.io.sbml import create_cobra_model_from_sbml_file
+from stfba import settings
 
 model_name_to_obj = {'e_coli_core': 'BIOMASS_Ecoli_core_w_GAM',
                      'iAF1260':     'BIOMASS_Ec_iAF1260_core_59p81M',
@@ -22,7 +17,7 @@ model_name_to_obj = {'e_coli_core': 'BIOMASS_Ecoli_core_w_GAM',
 
 model_name = 'e_coli_core'
 
-model = create_cobra_model_from_sbml_file('model/%s.xml.gz' % model_name)
+model = load_json_model('model/%s.json' % model_name)
 model.objective = model_name_to_obj[model_name]
 model.reactions.EX_glc__D_e.lower_bound = -10
 model.reactions.EX_o2_e.lower_bound = 0
@@ -33,11 +28,10 @@ if model_name == 'iJO1366':
     #model.reactions.SPODM.upper_bound = 0
     model.reactions.MOX.lower_bound = 0
 
-print "Calculating anaerobic yield with original %s model" % model_name
+print("Calculating anaerobic yield with original %s model" % model_name)
 
-print "FBA max yield: ",
-fba_sol = model.optimize()
-print fba_sol.f
+fba_sol = model.optimize(solver=settings.LP_SOLVER)
+print("FBA max yield: %.3f" % fba_sol.f)
 
 #print "ll-FBA max yield: ",
 #loopless_model = construct_loopless_model(model)
@@ -50,13 +44,13 @@ print fba_sol.f
 #print stfba_sol.f
 
 # Make sure there are no EGCs in the core model before we start
-print "\nLooking for EGCs in the original model..."
+print("Looking for EGCs in the original model...")
 sol = stFBA.find_egc(model)
 
 if sol is not None:
-    print "There is already at least one EGC in the model!"
+    print("There is already at least one EGC in the model!")
 else:
-    print "\nAdding an EGC and trying again..."
+    print("Adding an EGC and trying again...")
     na1_e = Metabolite('M_na1_e', formula='Na',
                        name='na1_e', compartment='C_e')
     na1_c = Metabolite('M_na1_c', formula='Na',
@@ -102,23 +96,19 @@ else:
     # Try to find the EGC that we just added to the model
     sol = stFBA.find_egc(model)
 
-print "\nAdding STFBA constraints..."
+print("Adding STFBA constraints...")
 stfba_model = stFBA(model)
 
-print "Calculating anaerobic yield with updated %s model" % model_name
+print("Calculating anaerobic yield with updated %s model" % model_name)
 
-print "FBA max yield: ",
-fba_sol = model.optimize(solver='cplex')
-print fba_sol.f
+fba_sol = model.optimize(solver=settings.LP_SOLVER)
+print("FBA max yield: %.3f" % fba_sol.f)
 
-print "ll-FBA max yield: ",
 loopless_model = construct_loopless_model(model)
-llfba_sol = loopless_model.optimize()
-print llfba_sol.f
+llfba_sol = loopless_model.optimize(solver=settings.LP_SOLVER)
+print("ll-FBA max yield: %.3f" % llfba_sol.f)
 
-print "st-FBA max yield: ",
 stfba_sol = stfba_model.optimize()
-print stfba_sol.f
+if stfba_sol:
+    print("st-FBA max yield: %.3f" % stfba_sol.f)
 
-print "running GVA: ",
-gva = stfba_model.GVA()

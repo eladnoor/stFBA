@@ -11,8 +11,9 @@ from six import iteritems
 from cobra import Reaction, Metabolite
 from cobra.flux_analysis.parsimonious import optimize_minimal_flux
 from cobra.manipulation.modify import convert_to_irreversible
+from stfba import settings
 
-def find_egc(cobra_model, solver='cplex'):
+def find_egc(cobra_model, solver=settings.LP_SOLVER):
     """
         try to locate EGCs by blocking all transport reactions and
         maximizing the objective of creating ATP from ADP + Pi
@@ -41,6 +42,9 @@ def find_egc(cobra_model, solver='cplex'):
 
     FBA_sol = model.optimize(solver=solver)
     FBA_sol = optimize_minimal_flux(model)
+    if FBA_sol.status != 'optimal':
+        print('stFBA problem is: ' + FBA_sol.status)
+        return None
     print_solution(FBA_sol)
     return FBA_sol
 
