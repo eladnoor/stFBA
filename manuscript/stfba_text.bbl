@@ -1,1760 +1,337 @@
-%% BioMed_Central_Bib_Style_v1.01
+\begin{thebibliography}{10}
 
-\begin{thebibliography}{55}
-% BibTex style file: bmc-mathphys.bst (version 2.1), 2014-07-24
-\ifx \bisbn   \undefined \def \bisbn  #1{ISBN #1}\fi
-\ifx \binits  \undefined \def \binits#1{#1}\fi
-\ifx \bauthor  \undefined \def \bauthor#1{#1}\fi
-\ifx \batitle  \undefined \def \batitle#1{#1}\fi
-\ifx \bjtitle  \undefined \def \bjtitle#1{#1}\fi
-\ifx \bvolume  \undefined \def \bvolume#1{\textbf{#1}}\fi
-\ifx \byear  \undefined \def \byear#1{#1}\fi
-\ifx \bissue  \undefined \def \bissue#1{#1}\fi
-\ifx \bfpage  \undefined \def \bfpage#1{#1}\fi
-\ifx \blpage  \undefined \def \blpage #1{#1}\fi
-\ifx \burl  \undefined \def \burl#1{\textsf{#1}}\fi
-\ifx \doiurl  \undefined \def \doiurl#1{\textsf{#1}}\fi
-\ifx \betal  \undefined \def \betal{\textit{et al.}}\fi
-\ifx \binstitute  \undefined \def \binstitute#1{#1}\fi
-\ifx \binstitutionaled  \undefined \def \binstitutionaled#1{#1}\fi
-\ifx \bctitle  \undefined \def \bctitle#1{#1}\fi
-\ifx \beditor  \undefined \def \beditor#1{#1}\fi
-\ifx \bpublisher  \undefined \def \bpublisher#1{#1}\fi
-\ifx \bbtitle  \undefined \def \bbtitle#1{#1}\fi
-\ifx \bedition  \undefined \def \bedition#1{#1}\fi
-\ifx \bseriesno  \undefined \def \bseriesno#1{#1}\fi
-\ifx \blocation  \undefined \def \blocation#1{#1}\fi
-\ifx \bsertitle  \undefined \def \bsertitle#1{#1}\fi
-\ifx \bsnm \undefined \def \bsnm#1{#1}\fi
-\ifx \bsuffix \undefined \def \bsuffix#1{#1}\fi
-\ifx \bparticle \undefined \def \bparticle#1{#1}\fi
-\ifx \barticle \undefined \def \barticle#1{#1}\fi
-\ifx \bconfdate \undefined \def \bconfdate #1{#1}\fi
-\ifx \botherref \undefined \def \botherref #1{#1}\fi
-\ifx \url \undefined \def \url#1{\textsf{#1}}\fi
-\ifx \bchapter \undefined \def \bchapter#1{#1}\fi
-\ifx \bbook \undefined \def \bbook#1{#1}\fi
-\ifx \bcomment \undefined \def \bcomment#1{#1}\fi
-\ifx \oauthor \undefined \def \oauthor#1{#1}\fi
-\ifx \citeauthoryear \undefined \def \citeauthoryear#1{#1}\fi
-\ifx \endbibitem  \undefined \def \endbibitem {}\fi
-\ifx \bconflocation  \undefined \def \bconflocation#1{#1}\fi
-\ifx \arxivurl  \undefined \def \arxivurl#1{\textsf{#1}}\fi
-\csname PreBibitemsHook\endcsname
-
-%%% 1
-\bibitem{King2016-it}
-\begin{barticle}
-\bauthor{\bsnm{King}, \binits{Z.A.}},
-\bauthor{\bsnm{Lu}, \binits{J.}},
-\bauthor{\bsnm{Dräger}, \binits{A.}},
-\bauthor{\bsnm{Miller}, \binits{P.}},
-\bauthor{\bsnm{Federowicz}, \binits{S.}},
-\bauthor{\bsnm{Lerman}, \binits{J.A.}},
-\bauthor{\bsnm{Ebrahim}, \binits{A.}},
-\bauthor{\bsnm{Palsson}, \binits{B.O.}},
-\bauthor{\bsnm{Lewis}, \binits{N.E.}}:
-\batitle{{BiGG} models: A platform for integrating, standardizing and sharing
-  genome-scale models}.
-\bjtitle{Nucleic Acids Res.}
-\bvolume{44}(\bissue{D1}),
-\bfpage{515}--\blpage{22}
-(\byear{2016})
-\end{barticle}
-\endbibitem
-
-%%% 2
-\bibitem{Lewis2012-mu}
-\begin{botherref}
-\oauthor{\bsnm{Lewis}, \binits{E.N.}},
-\oauthor{\bsnm{Nagarajan}, \binits{H.}},
-\oauthor{\bsnm{Palsson}, \binits{O.B.}}:
-Constraining the metabolic genotype-phenotype relationship using a phylogeny of
-  in silico methods.
-Nat. Rev. Microbiol.
-(2012)
-\end{botherref}
-\endbibitem
-
-%%% 3
-\bibitem{Beard2002-xt}
-\begin{barticle}
-\bauthor{\bsnm{Beard}, \binits{D.A.}},
-\bauthor{\bsnm{Liang}, \binits{S.-D.}},
-\bauthor{\bsnm{Qian}, \binits{H.}}:
-\batitle{Energy balance for analysis of complex metabolic networks}.
-\bjtitle{Biophys. J.}
-\bvolume{83}(\bissue{1}),
-\bfpage{79}--\blpage{86}
-(\byear{2002})
-\end{barticle}
-\endbibitem
-
-%%% 4
-\bibitem{Warren2007-wm}
-\begin{barticle}
-\bauthor{\bsnm{Warren}, \binits{P.B.}},
-\bauthor{\bsnm{Jones}, \binits{J.L.}}:
-\batitle{Duality, thermodynamics, and the linear programming problem in
-  constraint-based models of metabolism}.
-\bjtitle{Phys. Rev. Lett.}
-\bvolume{99}(\bissue{10}),
-\bfpage{108101}
-(\byear{2007})
-\end{barticle}
-\endbibitem
-
-%%% 5
-\bibitem{Henry2007-xp}
-\begin{barticle}
-\bauthor{\bsnm{Henry}, \binits{S.C.}},
-\bauthor{\bsnm{Broadbelt}, \binits{J.L.}},
-\bauthor{\bsnm{Hatzimanikatis}, \binits{V.}}:
-\batitle{Thermodynamics-based metabolic flux analysis}.
-\bjtitle{Biophys. J.}
-\bvolume{92},
-\bfpage{1792}--\blpage{1805}
-(\byear{2007})
-\end{barticle}
-\endbibitem
-
-%%% 6
-\bibitem{Schellenberger2011-bq}
-\begin{barticle}
-\bauthor{\bsnm{Schellenberger}, \binits{J.}},
-\bauthor{\bsnm{Lewis}, \binits{E.N.}},
-\bauthor{\bsnm{Palsson}, \binits{O.B.}}:
-\batitle{Elimination of thermodynamically infeasible loops in steady-state
-  metabolic models}.
-\bjtitle{Biophys. J.}
-\bvolume{100},
-\bfpage{544}--\blpage{553}
-(\byear{2011})
-\end{barticle}
-\endbibitem
-
-%%% 7
-\bibitem{Price2006-ua}
-\begin{barticle}
-\bauthor{\bsnm{Price}, \binits{N.D.}},
-\bauthor{\bsnm{Thiele}, \binits{I.}},
-\bauthor{\bsnm{Palsson}, \binits{B.O.}}:
-\batitle{Candidate states of helicobacter pylori's genome-scale metabolic
-  network upon application of ``loop law'' thermodynamic constraints}.
-\bjtitle{Biophys. J.}
-\bvolume{90}(\bissue{11}),
-\bfpage{3919}--\blpage{3928}
-(\byear{2006})
-\end{barticle}
-\endbibitem
-
-%%% 8
-\bibitem{Bordel2010-pl}
-\begin{barticle}
-\bauthor{\bsnm{Bordel}, \binits{S.}},
-\bauthor{\bsnm{Nielsen}, \binits{J.}}:
-\batitle{Identification of flux control in metabolic networks using
-  non-equilibrium thermodynamics}.
-\bjtitle{Metab. Eng.}
-\bvolume{12}(\bissue{4}),
-\bfpage{369}--\blpage{377}
-(\byear{2010})
-\end{barticle}
-\endbibitem
-
-%%% 9
-\bibitem{Fleming2010-py}
-\begin{barticle}
-\bauthor{\bsnm{Fleming}, \binits{T.R.M.}},
-\bauthor{\bsnm{Thiele}, \binits{I.}},
-\bauthor{\bsnm{Provan}, \binits{G.}},
-\bauthor{\bsnm{Nasheuer}, \binits{P.H.}}:
-\batitle{Integrated stoichiometric, thermodynamic and kinetic modelling of
-  steady state metabolism}.
-\bjtitle{J. Theor. Biol.}
-\bvolume{264},
-\bfpage{683}--\blpage{692}
-(\byear{2010})
-\end{barticle}
-\endbibitem
-
-%%% 10
-\bibitem{Holzhutter2004-qj}
-\begin{barticle}
-\bauthor{\bsnm{Holzh{\"u}tter}, \binits{H.-G.}}:
-\batitle{The principle of flux minimization and its application to estimate
-  stationary fluxes in metabolic networks}.
-\bjtitle{Eur. J. Biochem.}
-\bvolume{271},
-\bfpage{2905}--\blpage{2922}
-(\byear{2004})
-\end{barticle}
-\endbibitem
-
-%%% 11
-\bibitem{Fleming2009-um}
-\begin{barticle}
-\bauthor{\bsnm{Fleming}, \binits{R.M.T.}},
-\bauthor{\bsnm{Thiele}, \binits{I.}},
-\bauthor{\bsnm{Nasheuer}, \binits{H.P.}}:
-\batitle{Quantitative assignment of reaction directionality in constraint-based
-  models of metabolism: application to escherichia coli}.
-\bjtitle{Biophys. Chem.}
-\bvolume{145}(\bissue{2-3}),
-\bfpage{47}--\blpage{56}
-(\byear{2009})
-\end{barticle}
-\endbibitem
-
-%%% 12
-\bibitem{Kummel2006-qn}
-\begin{botherref}
-\oauthor{\bsnm{Kümmel}, \binits{A.}},
-\oauthor{\bsnm{Panke}, \binits{S.}},
-\oauthor{\bsnm{Heinemann}, \binits{M.}}:
-Systematic assignment of thermodynamic constraints in metabolic network models.
-BMC Bioinformatics
-\textbf{7}
-(2006)
-\end{botherref}
-\endbibitem
-
-%%% 13
-\bibitem{Henry2006-nt}
-\begin{barticle}
-\bauthor{\bsnm{Henry}, \binits{C.S.}},
-\bauthor{\bsnm{Jankowski}, \binits{M.D.}},
-\bauthor{\bsnm{Broadbelt}, \binits{L.J.}},
-\bauthor{\bsnm{Hatzimanikatis}, \binits{V.}}:
-\batitle{Genome-scale thermodynamic analysis of escherichia coli metabolism}.
-\bjtitle{Biophys. J.}
-\bvolume{90}(\bissue{4}),
-\bfpage{1453}--\blpage{1461}
-(\byear{2006})
-\end{barticle}
-\endbibitem
-
-%%% 14
-\bibitem{Hoppe2007-sw}
-\begin{barticle}
-\bauthor{\bsnm{Hoppe}, \binits{A.}},
-\bauthor{\bsnm{Hoffmann}, \binits{S.}},
-\bauthor{\bsnm{Holzhütter}, \binits{H.-G.}}:
-\batitle{Including metabolite concentrations into flux balance analysis:
-  thermodynamic realizability as a constraint on flux distributions in
-  metabolic networks}.
-\bjtitle{BMC Syst. Biol.}
-\bvolume{1},
-\bfpage{23}
-(\byear{2007})
-\end{barticle}
-\endbibitem
-
-%%% 15
-\bibitem{De_Martino2012-cj}
-\begin{barticle}
-\bauthor{\bsnm{De~Martino}, \binits{D.}},
-\bauthor{\bsnm{Figliuzzi}, \binits{M.}},
-\bauthor{\bsnm{De~Martino}, \binits{A.}},
-\bauthor{\bsnm{Marinari}, \binits{E.}}:
-\batitle{A scalable algorithm to explore the gibbs energy landscape of
-  genome-scale metabolic networks}.
-\bjtitle{PLoS Comput. Biol.}
-\bvolume{8}(\bissue{6}),
-\bfpage{1002562}
-(\byear{2012})
-\end{barticle}
-\endbibitem
-
-%%% 16
-\bibitem{Tepper2013-gd}
-\begin{botherref}
-\oauthor{\bsnm{Tepper}, \binits{N.}},
-\oauthor{\bsnm{Noor}, \binits{E.}},
-\oauthor{\bsnm{Amador-Noguez}, \binits{D.}},
-\oauthor{\bsnm{Haraldsdóttir}, \binits{S.H.}},
-\oauthor{\bsnm{Milo}, \binits{R.}},
-\oauthor{\bsnm{Rabinowitz}, \binits{J.}},
-\oauthor{\bsnm{Liebermeister}, \binits{W.}},
-\oauthor{\bsnm{Shlomi}, \binits{T.}}:
-{Steady-State} metabolite concentrations reflect a balance between maximizing
-  enzyme efficiency and minimizing total metabolite load.
-PLoS One
-\textbf{8}
-(2013)
-\end{botherref}
-\endbibitem
-
-%%% 17
-\bibitem{Nolan2006-eg}
-\begin{barticle}
-\bauthor{\bsnm{Nolan}, \binits{R.P.}},
-\bauthor{\bsnm{Fenley}, \binits{A.P.}},
-\bauthor{\bsnm{Lee}, \binits{K.}}:
-\batitle{Identification of distributed metabolic objectives in the
-  hypermetabolic liver by flux and energy balance analysis}.
-\bjtitle{Metab. Eng.}
-\bvolume{8}(\bissue{1}),
-\bfpage{30}--\blpage{45}
-(\byear{2006})
-\end{barticle}
-\endbibitem
-
-%%% 18
-\bibitem{Nagrath2007-bn}
-\begin{barticle}
-\bauthor{\bsnm{Nagrath}, \binits{D.}},
-\bauthor{\bsnm{Avila-Elchiver}, \binits{M.}},
-\bauthor{\bsnm{Berthiaume}, \binits{F.}},
-\bauthor{\bsnm{Tilles}, \binits{A.W.}},
-\bauthor{\bsnm{Messac}, \binits{A.}},
-\bauthor{\bsnm{Yarmush}, \binits{M.L.}}:
-\batitle{Integrated energy and flux balance based multiobjective framework for
-  large-scale metabolic networks}.
-\bjtitle{Ann. Biomed. Eng.}
-\bvolume{35}(\bissue{6}),
-\bfpage{863}--\blpage{885}
-(\byear{2007})
-\end{barticle}
-\endbibitem
-
-%%% 19
-\bibitem{Boghigian2010-vz}
-\begin{barticle}
-\bauthor{\bsnm{Boghigian}, \binits{B.A.}},
-\bauthor{\bsnm{Shi}, \binits{H.}},
-\bauthor{\bsnm{Lee}, \binits{K.}},
-\bauthor{\bsnm{Pfeifer}, \binits{B.A.}}:
-\batitle{Utilizing elementary mode analysis, pathway thermodynamics, and a
-  genetic algorithm for metabolic flux determination and optimal metabolic
-  network design}.
-\bjtitle{BMC Syst. Biol.}
-\bvolume{4},
-\bfpage{49}
-(\byear{2010})
-\end{barticle}
-\endbibitem
-
-%%% 20
-\bibitem{Schilling2000-rn}
-\begin{barticle}
-\bauthor{\bsnm{Schilling}, \binits{C.H.}},
-\bauthor{\bsnm{Letscher}, \binits{D.}},
-\bauthor{\bsnm{Palsson}, \binits{B.O.}}:
-\batitle{Theory for the systemic definition of metabolic pathways and their use
-  in interpreting metabolic function from a pathway-oriented perspective}.
-\bjtitle{J. Theor. Biol.}
-\bvolume{203}(\bissue{3}),
-\bfpage{229}--\blpage{248}
-(\byear{2000})
-\end{barticle}
-\endbibitem
-
-%%% 21
-\bibitem{Price2002-ef}
-\begin{barticle}
-\bauthor{\bsnm{Price}, \binits{N.D.}},
-\bauthor{\bsnm{Famili}, \binits{I.}},
-\bauthor{\bsnm{Beard}, \binits{D.A.}},
-\bauthor{\bsnm{Palsson}, \binits{B.{\O}.}}:
-\batitle{Extreme pathways and kirchhoff's second law}.
-\bjtitle{Biophys. J.}
-\bvolume{83}(\bissue{5}),
-\bfpage{2879}--\blpage{2882}
-(\byear{2002})
-\end{barticle}
-\endbibitem
-
-%%% 22
-\bibitem{Wright2008-rh}
-\begin{barticle}
-\bauthor{\bsnm{Wright}, \binits{J.}},
-\bauthor{\bsnm{Wagner}, \binits{A.}}:
-\batitle{Exhaustive identification of steady state cycles in large
-  stoichiometric networks}.
-\bjtitle{BMC Syst. Biol.}
-\bvolume{2},
-\bfpage{61}
-(\byear{2008})
-\end{barticle}
-\endbibitem
-
-%%% 23
-\bibitem{Noor2012-qb}
-\begin{botherref}
-\oauthor{\bsnm{Noor}, \binits{E.}},
-\oauthor{\bsnm{Lewis}, \binits{E.N.}},
-\oauthor{\bsnm{Milo}, \binits{R.}}:
-A proof for loop-law constraints in stoichiometric metabolic networks.
-BMC Syst. Biol.
-\textbf{6}
-(2012)
-\end{botherref}
-\endbibitem
-
-%%% 24
-\bibitem{Fritzemeier2017-ba}
-\begin{barticle}
-\bauthor{\bsnm{Fritzemeier}, \binits{C.J.}},
-\bauthor{\bsnm{Hartleb}, \binits{D.}},
-\bauthor{\bsnm{Szappanos}, \binits{B.}},
-\bauthor{\bsnm{Papp}, \binits{B.}},
-\bauthor{\bsnm{Lercher}, \binits{M.J.}}:
-\batitle{Erroneous energy-generating cycles in published genome scale metabolic
-  networks: Identification and removal}.
-\bjtitle{PLoS Comput. Biol.}
-\bvolume{13}(\bissue{4}),
-\bfpage{1005494}
-(\byear{2017})
-\end{barticle}
-\endbibitem
-
-%%% 25
-\bibitem{DeMartino2013}
-\begin{barticle}
-\bauthor{\bsnm{De~Martino}, \binits{D.}},
-\bauthor{\bsnm{Capuani}, \binits{F.}},
-\bauthor{\bsnm{Mori}, \binits{M.}},
-\bauthor{\bsnm{De~Martino}, \binits{A.}},
-\bauthor{\bsnm{Marinari}, \binits{E.}}:
-\batitle{Counting and correcting thermodynamically infeasible flux cycles in
-  genome-scale metabolic networks}.
-\bjtitle{Metabolites}
-\bvolume{3}(\bissue{4}),
-\bfpage{946}--\blpage{966}
-(\byear{2013})
-\end{barticle}
-\endbibitem
-
-%%% 26
-\bibitem{Desouki2015-lh}
-\begin{botherref}
-\oauthor{\bsnm{Desouki}, \binits{A.a.}},
-\oauthor{\bsnm{Jarre}, \binits{F.}},
-\oauthor{\bsnm{Gelius-Dietrich}, \binits{G.}},
-\oauthor{\bsnm{Lercher}, \binits{J.M.}}:
-{CycleFreeFlux}: efficient removal of thermodynamically infeasible loops from
-  flux distributions.
-Bioinformatics,
-1--7
-(2015)
-\end{botherref}
-\endbibitem
-
-%%% 27
-\bibitem{Carrera2014-ys}
-\begin{botherref}
-\oauthor{\bsnm{Carrera}, \binits{J.}},
-\oauthor{\bsnm{Estrela}, \binits{R.}},
-\oauthor{\bsnm{Luo}, \binits{J.}},
-\oauthor{\bsnm{Rai}, \binits{N.}},
-\oauthor{\bsnm{Tsoukalas}, \binits{A.}},
-\oauthor{\bsnm{Tagkopoulos}, \binits{I.}}:
-An integrative, multi-scale, genome-wide model reveals the phenotypic landscape
-  of escherichia coli.
-Mol. Syst. Biol.
-\textbf{10}
-(2014)
-\end{botherref}
-\endbibitem
-
-%%% 28
-\bibitem{Orth2011-qi}
-\begin{botherref}
-\oauthor{\bsnm{Orth}, \binits{D.J.}},
-\oauthor{\bsnm{Conrad}, \binits{M.T.}},
-\oauthor{\bsnm{Na}, \binits{J.}},
-\oauthor{\bsnm{Lerman}, \binits{a.J.}},
-\oauthor{\bsnm{Nam}, \binits{H.}},
-\oauthor{\bsnm{Feist}, \binits{M.A.}},
-\oauthor{\bsnm{Palsson}, \binits{O.B.}}:
-A comprehensive genome-scale reconstruction of escherichia coli
-  metabolism--2011.
-Mol. Syst. Biol.
-\textbf{7}
-(2011)
-\end{botherref}
-\endbibitem
-
-%%% 29
-\bibitem{Mavrovouniotis1996-dq}
-\begin{barticle}
-\bauthor{\bsnm{Mavrovouniotis}, \binits{M.L.}}:
-\batitle{Duality theory for thermodynamic bottlenecks in bioreaction pathways}.
-\bjtitle{Chem. Eng. Sci.}
-\bvolume{51}(\bissue{9}),
-\bfpage{1495}--\blpage{1507}
-(\byear{1996})
-\end{barticle}
-\endbibitem
-
-%%% 30
-\bibitem{Mavrovouniotis1993-zq}
-\begin{barticle}
-\bauthor{\bsnm{Mavrovouniotis}, \binits{M.L.}}:
-\batitle{Identification of localized and distributed bottlenecks in metabolic
-  pathways}.
-\bjtitle{Proc. Int. Conf. Intell. Syst. Mol. Biol.}
-\bvolume{1},
-\bfpage{275}--\blpage{283}
-(\byear{1993})
-\end{barticle}
-\endbibitem
-
-%%% 31
-\bibitem{Mavrovouniotis1990-wv}
-\begin{barticle}
-\bauthor{\bsnm{Mavrovouniotis}, \binits{L.M.}}:
-\batitle{Group contributions for estimating standard gibbs energies of
-  formation of biochemical compounds in aqueous solution}.
-\bjtitle{Biotechnol. Bioeng.}
-\bvolume{36},
-\bfpage{1070}--\blpage{1082}
-(\byear{1990})
-\end{barticle}
-\endbibitem
-
-%%% 32
-\bibitem{Mavrovouniotis1991-kf}
-\begin{barticle}
-\bauthor{\bsnm{Mavrovouniotis}, \binits{M.L.}}:
-\batitle{Estimation of standard gibbs energy changes of biotransformations}.
-\bjtitle{J. Biol. Chem.}
-\bvolume{266}(\bissue{22}),
-\bfpage{14440}--\blpage{14445}
-(\byear{1991})
-\end{barticle}
-\endbibitem
-
-%%% 33
-\bibitem{Lardy1945-ze}
-\begin{barticle}
-\bauthor{\bsnm{Lardy}, \binits{H.A.}},
-\bauthor{\bsnm{Ziegler}, \binits{J.A.}}:
-\batitle{The enzymatic synthesis of phosphopyruvate from pyruvate}.
-\bjtitle{J. Biol. Chem.}
-\bvolume{159}(\bissue{2}),
-\bfpage{343}--\blpage{351}
-(\byear{1945})
-\end{barticle}
-\endbibitem
-
-%%% 34
-\bibitem{Krimsky1959-mt}
-\begin{barticle}
-\bauthor{\bsnm{Krimsky}, \binits{I.}}:
-\batitle{Phosphorylation of pyruvate by the pyruvate kinase reaction and
-  reversal of glycolysis in a reconstructed system}.
-\bjtitle{J. Biol. Chem.}
-\bvolume{234}(\bissue{2}),
-\bfpage{232}--\blpage{236}
-(\byear{1959})
-\end{barticle}
-\endbibitem
-
-%%% 35
-\bibitem{Reeves1968-mq}
-\begin{barticle}
-\bauthor{\bsnm{Reeves}, \binits{R.E.}},
-\bauthor{\bsnm{Menzies}, \binits{R.A.}},
-\bauthor{\bsnm{Hsu}, \binits{D.S.}}:
-\batitle{The pyruvate-phosphate dikinase reaction. the fate of phosphate and
-  the equilibrium}.
-\bjtitle{J. Biol. Chem.}
-\bvolume{243}(\bissue{20}),
-\bfpage{5486}--\blpage{5491}
-(\byear{1968})
-\end{barticle}
-\endbibitem
-
-%%% 36
-\bibitem{De_Meis1982-pe}
-\begin{barticle}
-\bauthor{\bparticle{de} \bsnm{Meis}, \binits{L.}}:
-\batitle{Mechanism of atp synthesis by sarciokasnuc reticulum atpase}.
-\bjtitle{Ann. N. Y. Acad. Sci.}
-\bvolume{402}(\bissue{1}),
-\bfpage{535}--\blpage{548}
-(\byear{1982})
-\end{barticle}
-\endbibitem
-
-%%% 37
-\bibitem{Flamholz2011}
-\begin{barticle}
-\bauthor{\bsnm{Flamholz}, \binits{A.}},
-\bauthor{\bsnm{Noor}, \binits{E.}},
-\bauthor{\bsnm{Bar-Even}, \binits{A.}},
-\bauthor{\bsnm{Milo}, \binits{R.}}:
-\batitle{equilibrator—the biochemical thermodynamics calculator}.
-\bjtitle{Nucleic acids research}
-\bvolume{40}(\bissue{D1}),
-\bfpage{770}--\blpage{775}
-(\byear{2011})
-\end{barticle}
-\endbibitem
-
-%%% 38
-\bibitem{Machado2017-gh}
-\begin{botherref}
-\oauthor{\bsnm{Machado}, \binits{D.}},
-\oauthor{\bsnm{Matos}, \binits{M.}},
-\oauthor{\bsnm{Sonnenschein}, \binits{N.}},
-\oauthor{\bsnm{Andrejev}, \binits{S.}}:
-framed: a metabolic modeling package for python (v0.4.0).
-doi:\doiurl{10.5281/zenodo.1048261}.
-\url{https://github.com/cdanielmachado/framed/tree/0.4.0}
-\end{botherref}
-\endbibitem
-
-%%% 39
-\bibitem{Jankowski2008-hd}
-\begin{barticle}
-\bauthor{\bsnm{Jankowski}, \binits{D.M.}},
-\bauthor{\bsnm{Henry}, \binits{S.C.}},
-\bauthor{\bsnm{Broadbelt}, \binits{J.L.}},
-\bauthor{\bsnm{Hatzimanikatis}, \binits{V.}}:
-\batitle{Group contribution method for thermodynamic analysis of complex
-  metabolic networks}.
-\bjtitle{Biophys. J.}
-\bvolume{95},
-\bfpage{1487}--\blpage{1499}
-(\byear{2008})
-\end{barticle}
-\endbibitem
-
-%%% 40
-\bibitem{Noor2012-mp}
-\begin{botherref}
-\oauthor{\bsnm{Noor}, \binits{E.}},
-\oauthor{\bsnm{Bar-Even}, \binits{A.}},
-\oauthor{\bsnm{Flamholz}, \binits{A.}},
-\oauthor{\bsnm{Lubling}, \binits{Y.}},
-\oauthor{\bsnm{Davidi}, \binits{D.}},
-\oauthor{\bsnm{Milo}, \binits{R.}}:
-An integrated open framework for thermodynamics of reactions that combines
-  accuracy and coverage.
-Bioinformatics,
-1--8
-(2012)
-\end{botherref}
-\endbibitem
-
-%%% 41
-\bibitem{Noor2013-an}
-\begin{botherref}
-\oauthor{\bsnm{Noor}, \binits{E.}},
-\oauthor{\bsnm{Haraldsd{\'o}ttir}, \binits{S.H.}},
-\oauthor{\bsnm{Milo}, \binits{R.}},
-\oauthor{\bsnm{Fleming}, \binits{T.R.M.}}:
-Consistent estimation of gibbs energy using component contributions.
-PLoS Comput. Biol.
-\textbf{9}
-(2013)
-\end{botherref}
-\endbibitem
-
-%%% 42
-\bibitem{Jinich2014-nv}
-\begin{botherref}
-\oauthor{\bsnm{Jinich}, \binits{A.}},
-\oauthor{\bsnm{Rappoport}, \binits{D.}},
-\oauthor{\bsnm{Dunn}, \binits{I.}},
-\oauthor{\bsnm{Sanchez-Lengeling}, \binits{B.}},
-\oauthor{\bsnm{Olivares-Amaya}, \binits{R.}},
-\oauthor{\bsnm{Noor}, \binits{E.}},
-\oauthor{\bsnm{Even}, \binits{B.A.}},
-\oauthor{\bsnm{Aspuru-Guzik}, \binits{A.}}:
-Quantum chemical approach to estimating the thermodynamics of metabolic
-  reactions.
-Sci. Rep.
-\textbf{4}
-(2014)
-\end{botherref}
-\endbibitem
-
-%%% 43
-\bibitem{Gerstl2015a}
-\begin{botherref}
-\oauthor{\bsnm{Gerstl}, \binits{M.P.}},
-\oauthor{\bsnm{Ruckerbauer}, \binits{D.E.}},
-\oauthor{\bsnm{Mattanovich}, \binits{D.}},
-\oauthor{\bsnm{Jungreuthmayer}, \binits{C.}},
-\oauthor{\bsnm{Zanghellini}, \binits{J.}}:
-Metabolomics integrated elementary flux mode analysis in large metabolic
-  networks.
-Scientific reports
-\textbf{5}
-(2015)
-\end{botherref}
-\endbibitem
-
-%%% 44
-\bibitem{Gerstl2015}
-\begin{barticle}
-\bauthor{\bsnm{Gerstl}, \binits{M.P.}},
-\bauthor{\bsnm{Jungreuthmayer}, \binits{C.}},
-\bauthor{\bsnm{Zanghellini}, \binits{J.}}:
-\batitle{tefma: computing thermodynamically feasible elementary flux modes in
-  metabolic networks}.
-\bjtitle{Bioinformatics}
-\bvolume{31}(\bissue{13}),
-\bfpage{2232}--\blpage{2234}
-(\byear{2015})
-\end{barticle}
-\endbibitem
-
-%%% 45
-\bibitem{Lewis2010-rx}
-\begin{botherref}
-\oauthor{\bsnm{Lewis}, \binits{E.N.}},
-\oauthor{\bsnm{Hixson}, \binits{K.K.}},
-\oauthor{\bsnm{Conrad}, \binits{M.T.}},
-\oauthor{\bsnm{Lerman}, \binits{a.J.}},
-\oauthor{\bsnm{Charusanti}, \binits{P.}},
-\oauthor{\bsnm{Polpitiya}, \binits{D.A.}},
-\oauthor{\bsnm{Adkins}, \binits{N.J.}},
-\oauthor{\bsnm{Schramm}, \binits{G.}},
-\oauthor{\bsnm{Purvine}, \binits{O.S.}},
-\oauthor{\bsnm{Lopez-Ferrer}, \binits{D.}},
-\oauthor{\bsnm{Weitz}, \binits{K.K.}},
-\oauthor{\bsnm{Eils}, \binits{R.}},
-\oauthor{\bsnm{K{\"o}nig}, \binits{R.}},
-\oauthor{\bsnm{Smith}, \binits{D.R.}},
-\oauthor{\bsnm{Palsson}, \binits{O.B.}}:
-Omic data from evolved e. coli are consistent with computed optimal growth from
-  genome-scale models.
-Mol. Syst. Biol.
-\textbf{6}
-(2010)
-\end{botherref}
-\endbibitem
-
-%%% 46
-\bibitem{Schuetz2012-sv}
-\begin{barticle}
-\bauthor{\bsnm{Schuetz}, \binits{R.}},
-\bauthor{\bsnm{Zamboni}, \binits{N.}},
-\bauthor{\bsnm{Zampieri}, \binits{M.}},
-\bauthor{\bsnm{Heinemann}, \binits{M.}},
-\bauthor{\bsnm{Sauer}, \binits{U.}}:
-\batitle{Multidimensional optimality of microbial metabolism}.
-\bjtitle{Science}
-\bvolume{336},
-\bfpage{601}--\blpage{604}
-(\byear{2012})
-\end{barticle}
-\endbibitem
-
-%%% 47
 \bibitem{Beard2004}
-\begin{barticle}
-\bauthor{\bsnm{Beard}, \binits{D.A.}},
-\bauthor{\bsnm{Babson}, \binits{E.}},
-\bauthor{\bsnm{Curtis}, \binits{E.}},
-\bauthor{\bsnm{Qian}, \binits{H.}}:
-\batitle{Thermodynamic constraints for biochemical networks}.
-\bjtitle{Journal of theoretical biology}
-\bvolume{228}(\bissue{3}),
-\bfpage{327}--\blpage{333}
-(\byear{2004})
-\end{barticle}
-\endbibitem
+Daniel~A Beard, Eric Babson, Edward Curtis, and Hong Qian.
+\newblock Thermodynamic constraints for biochemical networks.
+\newblock {\em Journal of theoretical biology}, 228(3):327--333, 2004.
 
-%%% 48
-\bibitem{Reznik2013}
-\begin{barticle}
-\bauthor{\bsnm{Reznik}, \binits{E.}},
-\bauthor{\bsnm{Mehta}, \binits{P.}},
-\bauthor{\bsnm{Segr{\`e}}, \binits{D.}}:
-\batitle{Flux imbalance analysis and the sensitivity of cellular growth to
-  changes in metabolite pools}.
-\bjtitle{PLoS computational biology}
-\bvolume{9}(\bissue{8}),
-\bfpage{1003195}
-(\byear{2013})
-\end{barticle}
-\endbibitem
+\bibitem{Beard2002-xt}
+Daniel~A Beard, Shou-Dan Liang, and Hong Qian.
+\newblock Energy balance for analysis of complex metabolic networks.
+\newblock {\em Biophys. J.}, 83(1):79--86, July 2002.
 
-%%% 49
-\bibitem{Kummel2006-px}
-\begin{barticle}
-\bauthor{\bsnm{Kümmel}, \binits{A.}},
-\bauthor{\bsnm{Panke}, \binits{S.}},
-\bauthor{\bsnm{Heinemann}, \binits{M.}}:
-\batitle{Putative regulatory sites unraveled by network-embedded thermodynamic
-  analysis of metabolome data}.
-\bjtitle{Mol. Syst. Biol.}
-\bvolume{2},
-\bfpage{2006}--\blpage{0034}
-(\byear{2006})
-\end{barticle}
-\endbibitem
-
-%%% 50
-\bibitem{Zamboni2008}
-\begin{barticle}
-\bauthor{\bsnm{Zamboni}, \binits{N.}},
-\bauthor{\bsnm{K{\"u}mmel}, \binits{A.}},
-\bauthor{\bsnm{Heinemann}, \binits{M.}}:
-\batitle{annet: a tool for network-embedded thermodynamic analysis of
-  quantitative metabolome data}.
-\bjtitle{BMC bioinformatics}
-\bvolume{9}(\bissue{1}),
-\bfpage{199}
-(\byear{2008})
-\end{barticle}
-\endbibitem
-
-%%% 51
-\bibitem{Saa2016}
-\begin{barticle}
-\bauthor{\bsnm{Saa}, \binits{P.A.}},
-\bauthor{\bsnm{Nielsen}, \binits{L.K.}}:
-\batitle{Fast-snp: a fast matrix pre-processing algorithm for efficient
-  loopless flux optimization of metabolic models.}
-\bjtitle{Bioinformatics (Oxford, England)}
-\bvolume{32},
-\bfpage{3807}--\blpage{3814}
-(\byear{2016}).
-doi:\doiurl{10.1093/bioinformatics/btw555}
-\end{barticle}
-\endbibitem
-
-%%% 52
-\bibitem{Chan2017}
-\begin{botherref}
-\oauthor{\bsnm{Chan}, \binits{S.H.J.}},
-\oauthor{\bsnm{Wang}, \binits{L.}},
-\oauthor{\bsnm{Dash}, \binits{S.}},
-\oauthor{\bsnm{Maranas}, \binits{C.D.}}:
-Accelerating flux balance calculations in genome-scale metabolic models by
-  localizing the application of loopless constraints.
-\arxivurl{1711.04084v1}
-\end{botherref}
-\endbibitem
-
-%%% 53
 \bibitem{Bennett2009-rm}
-\begin{barticle}
-\bauthor{\bsnm{Bennett}, \binits{D.B.}},
-\bauthor{\bsnm{Kimball}, \binits{H.E.}},
-\bauthor{\bsnm{Gao}, \binits{M.}},
-\bauthor{\bsnm{Osterhout}, \binits{R.}},
-\bauthor{\bsnm{Van~Dien}, \binits{J.S.}},
-\bauthor{\bsnm{Rabinowitz}, \binits{D.J.}}:
-\batitle{Absolute metabolite concentrations and implied enzyme active site
-  occupancy in escherichia coli}.
-\bjtitle{Nat. Chem. Biol.}
-\bvolume{5},
-\bfpage{593}--\blpage{599}
-(\byear{2009})
-\end{barticle}
-\endbibitem
+D~Bryson Bennett, H~Elizabeth Kimball, Melissa Gao, Robin Osterhout, J~Stephen
+  Van~Dien, and D~Joshua Rabinowitz.
+\newblock Absolute metabolite concentrations and implied enzyme active site
+  occupancy in escherichia coli.
+\newblock {\em Nat. Chem. Biol.}, 5:593--599, 28~August 2009.
 
-%%% 54
+\bibitem{Boghigian2010-vz}
+Brett~A Boghigian, Hai Shi, Kyongbum Lee, and Blaine~A Pfeifer.
+\newblock Utilizing elementary mode analysis, pathway thermodynamics, and a
+  genetic algorithm for metabolic flux determination and optimal metabolic
+  network design.
+\newblock {\em BMC Syst. Biol.}, 4:49, 23~April 2010.
+
+\bibitem{Bordel2010-pl}
+Sergio Bordel and Jens Nielsen.
+\newblock Identification of flux control in metabolic networks using
+  non-equilibrium thermodynamics.
+\newblock {\em Metab. Eng.}, 12(4):369--377, July 2010.
+
+\bibitem{Carrera2014-ys}
+Javier Carrera, Raissa Estrela, Jing Luo, Navneet Rai, Athanasios Tsoukalas,
+  and Ilias Tagkopoulos.
+\newblock An integrative, multi-scale, genome-wide model reveals the phenotypic
+  landscape of escherichia coli.
+\newblock {\em Mol. Syst. Biol.}, 10, 1~July 2014.
+
+\bibitem{Chan2017}
+Siu Hung~Joshua Chan, Lin Wang, Satyakam Dash, and Costas~D. Maranas.
+\newblock Accelerating flux balance calculations in genome-scale metabolic
+  models by localizing the application of loopless constraints.
+
+\bibitem{DeMartino2013}
+Daniele De~Martino, Fabrizio Capuani, Matteo Mori, Andrea De~Martino, and Enzo
+  Marinari.
+\newblock Counting and correcting thermodynamically infeasible flux cycles in
+  genome-scale metabolic networks.
+\newblock {\em Metabolites}, 3(4):946--966, 2013.
+
+\bibitem{De_Martino2012-cj}
+Daniele De~Martino, Matteo Figliuzzi, Andrea De~Martino, and Enzo Marinari.
+\newblock A scalable algorithm to explore the gibbs energy landscape of
+  genome-scale metabolic networks.
+\newblock {\em PLoS Comput. Biol.}, 8(6):e1002562, 21~June 2012.
+
+\bibitem{De_Meis1982-pe}
+L~de~Meis.
+\newblock Mechanism of atp synthesis by sarciokasnuc reticulum atpase.
+\newblock {\em Ann. N. Y. Acad. Sci.}, 402(1):535--548, 1~December 1982.
+
+\bibitem{Desouki2015-lh}
+A~a Desouki, F~Jarre, G~Gelius-Dietrich, and J~M Lercher.
+\newblock {CycleFreeFlux}: efficient removal of thermodynamically infeasible
+  loops from flux distributions.
+\newblock {\em Bioinformatics}, pages 1--7, 2015.
+
 \bibitem{Ebrahim2013-vw}
-\begin{barticle}
-\bauthor{\bsnm{Ebrahim}, \binits{A.}},
-\bauthor{\bsnm{Lerman}, \binits{J.A.}},
-\bauthor{\bsnm{Palsson}, \binits{B.O.}},
-\bauthor{\bsnm{Hyduke}, \binits{D.R.}}:
-\batitle{{COBRApy}: {COnstraints-Based} reconstruction and analysis for
-  python}.
-\bjtitle{BMC Syst. Biol.}
-\bvolume{7},
-\bfpage{74}
-(\byear{2013})
-\end{barticle}
-\endbibitem
+Ali Ebrahim, Joshua~A Lerman, Bernhard~O Palsson, and Daniel~R Hyduke.
+\newblock {COBRApy}: {COnstraints-Based} reconstruction and analysis for
+  python.
+\newblock {\em BMC Syst. Biol.}, 7:74, 8~August 2013.
 
-%%% 55
+\bibitem{Flamholz2011}
+Avi Flamholz, Elad Noor, Arren Bar-Even, and Ron Milo.
+\newblock equilibrator—the biochemical thermodynamics calculator.
+\newblock {\em Nucleic acids research}, 40(D1):D770--D775, 2011.
+
+\bibitem{Fleming2009-um}
+R~M~T Fleming, I~Thiele, and H~P Nasheuer.
+\newblock Quantitative assignment of reaction directionality in
+  constraint-based models of metabolism: application to escherichia coli.
+\newblock {\em Biophys. Chem.}, 145(2-3):47--56, December 2009.
+
+\bibitem{Fleming2010-py}
+T~R~M Fleming, I~Thiele, G~Provan, and P~H Nasheuer.
+\newblock Integrated stoichiometric, thermodynamic and kinetic modelling of
+  steady state metabolism.
+\newblock {\em J. Theor. Biol.}, 264:683--692, 1~June 2010.
+
+\bibitem{Fritzemeier2017-ba}
+Claus~Jonathan Fritzemeier, Daniel Hartleb, Balázs Szappanos, Balázs Papp,
+  and Martin~J Lercher.
+\newblock Erroneous energy-generating cycles in published genome scale
+  metabolic networks: Identification and removal.
+\newblock {\em PLoS Comput. Biol.}, 13(4):e1005494, April 2017.
+
+\bibitem{Gerstl2015}
+Matthias~P Gerstl, Christian Jungreuthmayer, and J{\"u}rgen Zanghellini.
+\newblock tefma: computing thermodynamically feasible elementary flux modes in
+  metabolic networks.
+\newblock {\em Bioinformatics}, 31(13):2232--2234, 2015.
+
+\bibitem{Gerstl2015a}
+Matthias~P Gerstl, David~E Ruckerbauer, Diethard Mattanovich, Christian
+  Jungreuthmayer, and J{\"u}rgen Zanghellini.
+\newblock Metabolomics integrated elementary flux mode analysis in large
+  metabolic networks.
+\newblock {\em Scientific reports}, 5, 2015.
+
+\bibitem{Henry2006-nt}
+Christopher~S Henry, Matthew~D Jankowski, Linda~J Broadbelt, and Vassily
+  Hatzimanikatis.
+\newblock Genome-scale thermodynamic analysis of escherichia coli metabolism.
+\newblock {\em Biophys. J.}, 90(4):1453--1461, 15~February 2006.
+
+\bibitem{Henry2007-xp}
+S~Christopher Henry, J~Linda Broadbelt, and Vassily Hatzimanikatis.
+\newblock Thermodynamics-based metabolic flux analysis.
+\newblock {\em Biophys. J.}, 92:1792--1805, 1~March 2007.
+
+\bibitem{Holzhutter2004-qj}
+Hermann-Georg Holzh{\"u}tter.
+\newblock The principle of flux minimization and its application to estimate
+  stationary fluxes in metabolic networks.
+\newblock {\em Eur. J. Biochem.}, 271:2905--2922, 1~July 2004.
+
+\bibitem{Hoppe2007-sw}
+Andreas Hoppe, Sabrina Hoffmann, and Hermann-Georg Holzhütter.
+\newblock Including metabolite concentrations into flux balance analysis:
+  thermodynamic realizability as a constraint on flux distributions in
+  metabolic networks.
+\newblock {\em BMC Syst. Biol.}, 1:23, 1~June 2007.
+
+\bibitem{Jankowski2008-hd}
+D~Matthew Jankowski, S~Christopher Henry, J~Linda Broadbelt, and Vassily
+  Hatzimanikatis.
+\newblock Group contribution method for thermodynamic analysis of complex
+  metabolic networks.
+\newblock {\em Biophys. J.}, 95:1487--1499, 1~August 2008.
+
+\bibitem{Jinich2014-nv}
+Adrian Jinich, Dmitrij Rappoport, Ian Dunn, Benjamin Sanchez-Lengeling, Roberto
+  Olivares-Amaya, Elad Noor, Bar~Arren Even, and Al{\'a}n Aspuru-Guzik.
+\newblock Quantum chemical approach to estimating the thermodynamics of
+  metabolic reactions.
+\newblock {\em Sci. Rep.}, 4, 1~November 2014.
+
+\bibitem{King2016-it}
+Zachary~A King, Justin Lu, Andreas Dräger, Philip Miller, Stephen Federowicz,
+  Joshua~A Lerman, Ali Ebrahim, Bernhard~O Palsson, and Nathan~E Lewis.
+\newblock {BiGG} models: A platform for integrating, standardizing and sharing
+  genome-scale models.
+\newblock {\em Nucleic Acids Res.}, 44(D1):D515--22, 4~January 2016.
+
+\bibitem{Krimsky1959-mt}
+I~Krimsky.
+\newblock Phosphorylation of pyruvate by the pyruvate kinase reaction and
+  reversal of glycolysis in a reconstructed system.
+\newblock {\em J. Biol. Chem.}, 234(2):232--236, February 1959.
+
+\bibitem{Kummel2006-px}
+Anne Kümmel, Sven Panke, and Matthias Heinemann.
+\newblock Putative regulatory sites unraveled by network-embedded thermodynamic
+  analysis of metabolome data.
+\newblock {\em Mol. Syst. Biol.}, 2:2006.0034, 20~June 2006.
+
+\bibitem{Kummel2006-qn}
+Anne Kümmel, Sven Panke, and Matthias Heinemann.
+\newblock Systematic assignment of thermodynamic constraints in metabolic
+  network models.
+\newblock {\em BMC Bioinformatics}, 7, 1~January 2006.
+
+\bibitem{Lardy1945-ze}
+Henry~A Lardy and John~A Ziegler.
+\newblock The enzymatic synthesis of phosphopyruvate from pyruvate.
+\newblock {\em J. Biol. Chem.}, 159(2):343--351, 1~July 1945.
+
+\bibitem{Lewis2010-rx}
+E~Nathan Lewis, K~Kim Hixson, M~Tom Conrad, a~Joshua Lerman, Pep Charusanti,
+  D~Ashoka Polpitiya, N~Joshua Adkins, Gunnar Schramm, O~Samuel Purvine, Daniel
+  Lopez-Ferrer, K~Karl Weitz, Roland Eils, Rainer K{\"o}nig, D~Richard Smith,
+  and O~Bernhard Palsson.
+\newblock Omic data from evolved e. coli are consistent with computed optimal
+  growth from genome-scale models.
+\newblock {\em Mol. Syst. Biol.}, 6, 1~July 2010.
+
+\bibitem{Lewis2012-mu}
+E~Nathan Lewis, Harish Nagarajan, and O~Bernhard Palsson.
+\newblock Constraining the metabolic genotype-phenotype relationship using a
+  phylogeny of in silico methods.
+\newblock {\em Nat. Rev. Microbiol.}, 1~February 2012.
+
+\bibitem{Machado2017-gh}
+Daniel Machado, Marta Matos, Nikolaus Sonnenschein, and Sergej Andrejev.
+\newblock framed: a metabolic modeling package for python (v0.4.0).
+
+\bibitem{Mavrovouniotis1990-wv}
+L~Michael Mavrovouniotis.
+\newblock Group contributions for estimating standard gibbs energies of
+  formation of biochemical compounds in aqueous solution.
+\newblock {\em Biotechnol. Bioeng.}, 36:1070--1082, 1~October 1990.
+
+\bibitem{Mavrovouniotis1991-kf}
+M~L Mavrovouniotis.
+\newblock Estimation of standard gibbs energy changes of biotransformations.
+\newblock {\em J. Biol. Chem.}, 266(22):14440--14445, 5~August 1991.
+
+\bibitem{Mavrovouniotis1993-zq}
+M~L Mavrovouniotis.
+\newblock Identification of localized and distributed bottlenecks in metabolic
+  pathways.
+\newblock {\em Proc. Int. Conf. Intell. Syst. Mol. Biol.}, 1:275--283, 1993.
+
+\bibitem{Mavrovouniotis1996-dq}
+Michael~L Mavrovouniotis.
+\newblock Duality theory for thermodynamic bottlenecks in bioreaction pathways.
+\newblock {\em Chem. Eng. Sci.}, 51(9):1495--1507, 1~May 1996.
+
+\bibitem{Nagrath2007-bn}
+Deepak Nagrath, Marco Avila-Elchiver, Francois Berthiaume, Arno~W Tilles,
+  Achille Messac, and Martin~L Yarmush.
+\newblock Integrated energy and flux balance based multiobjective framework for
+  large-scale metabolic networks.
+\newblock {\em Ann. Biomed. Eng.}, 35(6):863--885, June 2007.
+
+\bibitem{Nolan2006-eg}
+Ryan~P Nolan, Andrew~P Fenley, and Kyongbum Lee.
+\newblock Identification of distributed metabolic objectives in the
+  hypermetabolic liver by flux and energy balance analysis.
+\newblock {\em Metab. Eng.}, 8(1):30--45, January 2006.
+
+\bibitem{Noor2012-mp}
+Elad Noor, Arren Bar-Even, Avi Flamholz, Yaniv Lubling, Dan Davidi, and Ron
+  Milo.
+\newblock An integrated open framework for thermodynamics of reactions that
+  combines accuracy and coverage.
+\newblock {\em Bioinformatics}, pages 1--8, 1~May 2012.
+
+\bibitem{Noor2013-an}
+Elad Noor, S~Hulda Haraldsd{\'o}ttir, Ron Milo, and T~Ronan~M Fleming.
+\newblock Consistent estimation of gibbs energy using component contributions.
+\newblock {\em PLoS Comput. Biol.}, 9, 1~January 2013.
+
+\bibitem{Noor2012-qb}
+Elad Noor, E~Nathan Lewis, and Ron Milo.
+\newblock A proof for loop-law constraints in stoichiometric metabolic
+  networks.
+\newblock {\em BMC Syst. Biol.}, 6, 1~November 2012.
+
+\bibitem{Orth2011-qi}
+D~Jeffrey Orth, M~Tom Conrad, Jessica Na, a~Joshua Lerman, Hojung Nam, M~Adam
+  Feist, and O~Bernhard Palsson.
+\newblock A comprehensive genome-scale reconstruction of escherichia coli
+  metabolism--2011.
+\newblock {\em Mol. Syst. Biol.}, 7, 1~January 2011.
+
+\bibitem{Price2002-ef}
+Nathan~D Price, Iman Famili, Daniel~A Beard, and Bernhard~{\O} Palsson.
+\newblock Extreme pathways and kirchhoff's second law.
+\newblock {\em Biophys. J.}, 83(5):2879--2882, November 2002.
+
+\bibitem{Price2006-ua}
+Nathan~D Price, Ines Thiele, and Bernhard~O Palsson.
+\newblock Candidate states of helicobacter pylori's genome-scale metabolic
+  network upon application of ``loop law'' thermodynamic constraints.
+\newblock {\em Biophys. J.}, 90(11):3919--3928, 1~June 2006.
+
+\bibitem{Reeves1968-mq}
+R~E Reeves, R~A Menzies, and D~S Hsu.
+\newblock The pyruvate-phosphate dikinase reaction. the fate of phosphate and
+  the equilibrium.
+\newblock {\em J. Biol. Chem.}, 243(20):5486--5491, 25~October 1968.
+
+\bibitem{Reznik2013}
+Ed~Reznik, Pankaj Mehta, and Daniel Segr{\`e}.
+\newblock Flux imbalance analysis and the sensitivity of cellular growth to
+  changes in metabolite pools.
+\newblock {\em PLoS computational biology}, 9(8):e1003195, 2013.
+
+\bibitem{Saa2016}
+Pedro~A Saa and Lars~K Nielsen.
+\newblock Fast-snp: a fast matrix pre-processing algorithm for efficient
+  loopless flux optimization of metabolic models.
+\newblock {\em Bioinformatics (Oxford, England)}, 32:3807--3814, December 2016.
+
+\bibitem{Schellenberger2011-bq}
+Jan Schellenberger, E~Nathan Lewis, and O~Bernhard Palsson.
+\newblock Elimination of thermodynamically infeasible loops in steady-state
+  metabolic models.
+\newblock {\em Biophys. J.}, 100:544--553, 2~February 2011.
+
+\bibitem{Schilling2000-rn}
+C~H Schilling, D~Letscher, and B~O Palsson.
+\newblock Theory for the systemic definition of metabolic pathways and their
+  use in interpreting metabolic function from a pathway-oriented perspective.
+\newblock {\em J. Theor. Biol.}, 203(3):229--248, 7~April 2000.
+
+\bibitem{Schuetz2012-sv}
+Robert Schuetz, Nicola Zamboni, Mattia Zampieri, Matthias Heinemann, and Uwe
+  Sauer.
+\newblock Multidimensional optimality of microbial metabolism.
+\newblock {\em Science}, 336:601--604, 4~May 2012.
+
+\bibitem{Tepper2013-gd}
+Naama Tepper, Elad Noor, Daniel Amador-Noguez, S~Hulda Haraldsdóttir, Ron
+  Milo, Josh Rabinowitz, Wolfram Liebermeister, and Tomer Shlomi.
+\newblock {Steady-State} metabolite concentrations reflect a balance between
+  maximizing enzyme efficiency and minimizing total metabolite load.
+\newblock {\em PLoS One}, 8, 1~January 2013.
+
+\bibitem{Warren2007-wm}
+Patrick~B Warren and Janette~L Jones.
+\newblock Duality, thermodynamics, and the linear programming problem in
+  constraint-based models of metabolism.
+\newblock {\em Phys. Rev. Lett.}, 99(10):108101, 7~September 2007.
+
 \bibitem{Wilks2007-lh}
-\begin{barticle}
-\bauthor{\bsnm{Wilks}, \binits{J.C.}},
-\bauthor{\bsnm{Slonczewski}, \binits{J.L.}}:
-\batitle{ph of the cytoplasm and periplasm of escherichia coli: Rapid
-  measurement by green fluorescent protein fluorimetry}.
-\bjtitle{J. Bacteriol.}
-\bvolume{189}(\bissue{15}),
-\bfpage{5601}--\blpage{5607}
-(\byear{2007})
-\end{barticle}
-\endbibitem
+J~C Wilks and J~L Slonczewski.
+\newblock ph of the cytoplasm and periplasm of escherichia coli: Rapid
+  measurement by green fluorescent protein fluorimetry.
+\newblock {\em J. Bacteriol.}, 189(15):5601--5607, 1~August 2007.
+
+\bibitem{Wright2008-rh}
+Jeremiah Wright and Andreas Wagner.
+\newblock Exhaustive identification of steady state cycles in large
+  stoichiometric networks.
+\newblock {\em BMC Syst. Biol.}, 2:61, July 2008.
+
+\bibitem{Zamboni2008}
+Nicola Zamboni, Anne K{\"u}mmel, and Matthias Heinemann.
+\newblock annet: a tool for network-embedded thermodynamic analysis of
+  quantitative metabolome data.
+\newblock {\em BMC bioinformatics}, 9(1):199, 2008.
 
 \end{thebibliography}
-
-\newcommand{\BMCxmlcomment}[1]{}
-
-\BMCxmlcomment{
-
-<refgrp>
-
-<bibl id="B1">
-  <title><p>{BiGG} Models: A platform for integrating, standardizing and
-  sharing genome-scale models</p></title>
-  <aug>
-    <au><snm>King</snm><fnm>ZA</fnm></au>
-    <au><snm>Lu</snm><fnm>J</fnm></au>
-    <au><snm>Dräger</snm><fnm>A</fnm></au>
-    <au><snm>Miller</snm><fnm>P</fnm></au>
-    <au><snm>Federowicz</snm><fnm>S</fnm></au>
-    <au><snm>Lerman</snm><fnm>JA</fnm></au>
-    <au><snm>Ebrahim</snm><fnm>A</fnm></au>
-    <au><snm>Palsson</snm><fnm>BO</fnm></au>
-    <au><snm>Lewis</snm><fnm>NE</fnm></au>
-  </aug>
-  <source>Nucleic Acids Res.</source>
-  <pubdate>2016</pubdate>
-  <volume>44</volume>
-  <issue>D1</issue>
-  <fpage>D515</fpage>
-  <lpage>-22</lpage>
-</bibl>
-
-<bibl id="B2">
-  <title><p>Constraining the metabolic genotype-phenotype relationship using a
-  phylogeny of in silico methods</p></title>
-  <aug>
-    <au><snm>Lewis</snm><fnm>EN</fnm></au>
-    <au><snm>Nagarajan</snm><fnm>H</fnm></au>
-    <au><snm>Palsson</snm><fnm>OB</fnm></au>
-  </aug>
-  <source>Nat. Rev. Microbiol.</source>
-  <publisher>Nature Publishing Group</publisher>
-  <pubdate>2012</pubdate>
-</bibl>
-
-<bibl id="B3">
-  <title><p>Energy balance for analysis of complex metabolic
-  networks</p></title>
-  <aug>
-    <au><snm>Beard</snm><fnm>DA</fnm></au>
-    <au><snm>Liang</snm><fnm>SD</fnm></au>
-    <au><snm>Qian</snm><fnm>H</fnm></au>
-  </aug>
-  <source>Biophys. J.</source>
-  <pubdate>2002</pubdate>
-  <volume>83</volume>
-  <issue>1</issue>
-  <fpage>79</fpage>
-  <lpage>-86</lpage>
-</bibl>
-
-<bibl id="B4">
-  <title><p>Duality, thermodynamics, and the linear programming problem in
-  constraint-based models of metabolism</p></title>
-  <aug>
-    <au><snm>Warren</snm><fnm>PB</fnm></au>
-    <au><snm>Jones</snm><fnm>JL</fnm></au>
-  </aug>
-  <source>Phys. Rev. Lett.</source>
-  <pubdate>2007</pubdate>
-  <volume>99</volume>
-  <issue>10</issue>
-  <fpage>108101</fpage>
-</bibl>
-
-<bibl id="B5">
-  <title><p>Thermodynamics-based metabolic flux analysis</p></title>
-  <aug>
-    <au><snm>Henry</snm><fnm>SC</fnm></au>
-    <au><snm>Broadbelt</snm><fnm>JL</fnm></au>
-    <au><snm>Hatzimanikatis</snm><fnm>V</fnm></au>
-  </aug>
-  <source>Biophys. J.</source>
-  <pubdate>2007</pubdate>
-  <volume>92</volume>
-  <fpage>1792</fpage>
-  <lpage>-1805</lpage>
-</bibl>
-
-<bibl id="B6">
-  <title><p>Elimination of thermodynamically infeasible loops in steady-state
-  metabolic models</p></title>
-  <aug>
-    <au><snm>Schellenberger</snm><fnm>J</fnm></au>
-    <au><snm>Lewis</snm><fnm>EN</fnm></au>
-    <au><snm>Palsson</snm><fnm>OB</fnm></au>
-  </aug>
-  <source>Biophys. J.</source>
-  <pubdate>2011</pubdate>
-  <volume>100</volume>
-  <fpage>544</fpage>
-  <lpage>-553</lpage>
-</bibl>
-
-<bibl id="B7">
-  <title><p>Candidate states of Helicobacter pylori's genome-scale metabolic
-  network upon application of ``loop law'' thermodynamic
-  constraints</p></title>
-  <aug>
-    <au><snm>Price</snm><fnm>ND</fnm></au>
-    <au><snm>Thiele</snm><fnm>I</fnm></au>
-    <au><snm>Palsson</snm><fnm>BO</fnm></au>
-  </aug>
-  <source>Biophys. J.</source>
-  <pubdate>2006</pubdate>
-  <volume>90</volume>
-  <issue>11</issue>
-  <fpage>3919</fpage>
-  <lpage>-3928</lpage>
-</bibl>
-
-<bibl id="B8">
-  <title><p>Identification of flux control in metabolic networks using
-  non-equilibrium thermodynamics</p></title>
-  <aug>
-    <au><snm>Bordel</snm><fnm>S</fnm></au>
-    <au><snm>Nielsen</snm><fnm>J</fnm></au>
-  </aug>
-  <source>Metab. Eng.</source>
-  <pubdate>2010</pubdate>
-  <volume>12</volume>
-  <issue>4</issue>
-  <fpage>369</fpage>
-  <lpage>-377</lpage>
-</bibl>
-
-<bibl id="B9">
-  <title><p>Integrated stoichiometric, thermodynamic and kinetic modelling of
-  steady state metabolism</p></title>
-  <aug>
-    <au><snm>Fleming</snm><fnm>T R M</fnm></au>
-    <au><snm>Thiele</snm><fnm>I</fnm></au>
-    <au><snm>Provan</snm><fnm>G</fnm></au>
-    <au><snm>Nasheuer</snm><fnm>P H</fnm></au>
-  </aug>
-  <source>J. Theor. Biol.</source>
-  <pubdate>2010</pubdate>
-  <volume>264</volume>
-  <fpage>683</fpage>
-  <lpage>-692</lpage>
-</bibl>
-
-<bibl id="B10">
-  <title><p>The principle of flux minimization and its application to estimate
-  stationary fluxes in metabolic networks</p></title>
-  <aug>
-    <au><snm>Holzh{\"u}tter</snm><fnm>HG</fnm></au>
-  </aug>
-  <source>Eur. J. Biochem.</source>
-  <pubdate>2004</pubdate>
-  <volume>271</volume>
-  <fpage>2905</fpage>
-  <lpage>-2922</lpage>
-</bibl>
-
-<bibl id="B11">
-  <title><p>Quantitative assignment of reaction directionality in
-  constraint-based models of metabolism: application to Escherichia
-  coli</p></title>
-  <aug>
-    <au><snm>Fleming</snm><fnm>R M T</fnm></au>
-    <au><snm>Thiele</snm><fnm>I</fnm></au>
-    <au><snm>Nasheuer</snm><fnm>H P</fnm></au>
-  </aug>
-  <source>Biophys. Chem.</source>
-  <pubdate>2009</pubdate>
-  <volume>145</volume>
-  <issue>2-3</issue>
-  <fpage>47</fpage>
-  <lpage>-56</lpage>
-</bibl>
-
-<bibl id="B12">
-  <title><p>Systematic assignment of thermodynamic constraints in metabolic
-  network models</p></title>
-  <aug>
-    <au><snm>Kümmel</snm><fnm>A</fnm></au>
-    <au><snm>Panke</snm><fnm>S</fnm></au>
-    <au><snm>Heinemann</snm><fnm>M</fnm></au>
-  </aug>
-  <source>BMC Bioinformatics</source>
-  <pubdate>2006</pubdate>
-  <volume>7</volume>
-</bibl>
-
-<bibl id="B13">
-  <title><p>Genome-scale thermodynamic analysis of Escherichia coli
-  metabolism</p></title>
-  <aug>
-    <au><snm>Henry</snm><fnm>CS</fnm></au>
-    <au><snm>Jankowski</snm><fnm>MD</fnm></au>
-    <au><snm>Broadbelt</snm><fnm>LJ</fnm></au>
-    <au><snm>Hatzimanikatis</snm><fnm>V</fnm></au>
-  </aug>
-  <source>Biophys. J.</source>
-  <pubdate>2006</pubdate>
-  <volume>90</volume>
-  <issue>4</issue>
-  <fpage>1453</fpage>
-  <lpage>-1461</lpage>
-</bibl>
-
-<bibl id="B14">
-  <title><p>Including metabolite concentrations into flux balance analysis:
-  thermodynamic realizability as a constraint on flux distributions in
-  metabolic networks</p></title>
-  <aug>
-    <au><snm>Hoppe</snm><fnm>A</fnm></au>
-    <au><snm>Hoffmann</snm><fnm>S</fnm></au>
-    <au><snm>Holzhütter</snm><fnm>HG</fnm></au>
-  </aug>
-  <source>BMC Syst. Biol.</source>
-  <pubdate>2007</pubdate>
-  <volume>1</volume>
-  <fpage>23</fpage>
-</bibl>
-
-<bibl id="B15">
-  <title><p>A scalable algorithm to explore the Gibbs energy landscape of
-  genome-scale metabolic networks</p></title>
-  <aug>
-    <au><snm>De Martino</snm><fnm>D</fnm></au>
-    <au><snm>Figliuzzi</snm><fnm>M</fnm></au>
-    <au><snm>De Martino</snm><fnm>A</fnm></au>
-    <au><snm>Marinari</snm><fnm>E</fnm></au>
-  </aug>
-  <source>PLoS Comput. Biol.</source>
-  <pubdate>2012</pubdate>
-  <volume>8</volume>
-  <issue>6</issue>
-  <fpage>e1002562</fpage>
-</bibl>
-
-<bibl id="B16">
-  <title><p>{Steady-State} Metabolite Concentrations Reflect a Balance between
-  Maximizing Enzyme Efficiency and Minimizing Total Metabolite Load</p></title>
-  <aug>
-    <au><snm>Tepper</snm><fnm>N</fnm></au>
-    <au><snm>Noor</snm><fnm>E</fnm></au>
-    <au><snm>Amador Noguez</snm><fnm>D</fnm></au>
-    <au><snm>Haraldsdóttir</snm><fnm>SH</fnm></au>
-    <au><snm>Milo</snm><fnm>R</fnm></au>
-    <au><snm>Rabinowitz</snm><fnm>J</fnm></au>
-    <au><snm>Liebermeister</snm><fnm>W</fnm></au>
-    <au><snm>Shlomi</snm><fnm>T</fnm></au>
-  </aug>
-  <source>PLoS One</source>
-  <pubdate>2013</pubdate>
-  <volume>8</volume>
-</bibl>
-
-<bibl id="B17">
-  <title><p>Identification of distributed metabolic objectives in the
-  hypermetabolic liver by flux and energy balance analysis</p></title>
-  <aug>
-    <au><snm>Nolan</snm><fnm>RP</fnm></au>
-    <au><snm>Fenley</snm><fnm>AP</fnm></au>
-    <au><snm>Lee</snm><fnm>K</fnm></au>
-  </aug>
-  <source>Metab. Eng.</source>
-  <pubdate>2006</pubdate>
-  <volume>8</volume>
-  <issue>1</issue>
-  <fpage>30</fpage>
-  <lpage>-45</lpage>
-</bibl>
-
-<bibl id="B18">
-  <title><p>Integrated energy and flux balance based multiobjective framework
-  for large-scale metabolic networks</p></title>
-  <aug>
-    <au><snm>Nagrath</snm><fnm>D</fnm></au>
-    <au><snm>Avila Elchiver</snm><fnm>M</fnm></au>
-    <au><snm>Berthiaume</snm><fnm>F</fnm></au>
-    <au><snm>Tilles</snm><fnm>AW</fnm></au>
-    <au><snm>Messac</snm><fnm>A</fnm></au>
-    <au><snm>Yarmush</snm><fnm>ML</fnm></au>
-  </aug>
-  <source>Ann. Biomed. Eng.</source>
-  <pubdate>2007</pubdate>
-  <volume>35</volume>
-  <issue>6</issue>
-  <fpage>863</fpage>
-  <lpage>-885</lpage>
-</bibl>
-
-<bibl id="B19">
-  <title><p>Utilizing elementary mode analysis, pathway thermodynamics, and a
-  genetic algorithm for metabolic flux determination and optimal metabolic
-  network design</p></title>
-  <aug>
-    <au><snm>Boghigian</snm><fnm>BA</fnm></au>
-    <au><snm>Shi</snm><fnm>H</fnm></au>
-    <au><snm>Lee</snm><fnm>K</fnm></au>
-    <au><snm>Pfeifer</snm><fnm>BA</fnm></au>
-  </aug>
-  <source>BMC Syst. Biol.</source>
-  <pubdate>2010</pubdate>
-  <volume>4</volume>
-  <fpage>49</fpage>
-</bibl>
-
-<bibl id="B20">
-  <title><p>Theory for the systemic definition of metabolic pathways and their
-  use in interpreting metabolic function from a pathway-oriented
-  perspective</p></title>
-  <aug>
-    <au><snm>Schilling</snm><fnm>C H</fnm></au>
-    <au><snm>Letscher</snm><fnm>D</fnm></au>
-    <au><snm>Palsson</snm><fnm>B O</fnm></au>
-  </aug>
-  <source>J. Theor. Biol.</source>
-  <pubdate>2000</pubdate>
-  <volume>203</volume>
-  <issue>3</issue>
-  <fpage>229</fpage>
-  <lpage>-248</lpage>
-</bibl>
-
-<bibl id="B21">
-  <title><p>Extreme pathways and Kirchhoff's second law</p></title>
-  <aug>
-    <au><snm>Price</snm><fnm>ND</fnm></au>
-    <au><snm>Famili</snm><fnm>I</fnm></au>
-    <au><snm>Beard</snm><fnm>DA</fnm></au>
-    <au><snm>Palsson</snm><fnm>B{\O}</fnm></au>
-  </aug>
-  <source>Biophys. J.</source>
-  <pubdate>2002</pubdate>
-  <volume>83</volume>
-  <issue>5</issue>
-  <fpage>2879</fpage>
-  <lpage>-2882</lpage>
-</bibl>
-
-<bibl id="B22">
-  <title><p>Exhaustive identification of steady state cycles in large
-  stoichiometric networks</p></title>
-  <aug>
-    <au><snm>Wright</snm><fnm>J</fnm></au>
-    <au><snm>Wagner</snm><fnm>A</fnm></au>
-  </aug>
-  <source>BMC Syst. Biol.</source>
-  <pubdate>2008</pubdate>
-  <volume>2</volume>
-  <fpage>61</fpage>
-</bibl>
-
-<bibl id="B23">
-  <title><p>A proof for loop-law constraints in stoichiometric metabolic
-  networks</p></title>
-  <aug>
-    <au><snm>Noor</snm><fnm>E</fnm></au>
-    <au><snm>Lewis</snm><fnm>EN</fnm></au>
-    <au><snm>Milo</snm><fnm>R</fnm></au>
-  </aug>
-  <source>BMC Syst. Biol.</source>
-  <pubdate>2012</pubdate>
-  <volume>6</volume>
-</bibl>
-
-<bibl id="B24">
-  <title><p>Erroneous energy-generating cycles in published genome scale
-  metabolic networks: Identification and removal</p></title>
-  <aug>
-    <au><snm>Fritzemeier</snm><fnm>CJ</fnm></au>
-    <au><snm>Hartleb</snm><fnm>D</fnm></au>
-    <au><snm>Szappanos</snm><fnm>B</fnm></au>
-    <au><snm>Papp</snm><fnm>B</fnm></au>
-    <au><snm>Lercher</snm><fnm>MJ</fnm></au>
-  </aug>
-  <source>PLoS Comput. Biol.</source>
-  <pubdate>2017</pubdate>
-  <volume>13</volume>
-  <issue>4</issue>
-  <fpage>e1005494</fpage>
-</bibl>
-
-<bibl id="B25">
-  <title><p>Counting and correcting thermodynamically infeasible flux cycles in
-  genome-scale metabolic networks</p></title>
-  <aug>
-    <au><snm>De Martino</snm><fnm>D</fnm></au>
-    <au><snm>Capuani</snm><fnm>F</fnm></au>
-    <au><snm>Mori</snm><fnm>M</fnm></au>
-    <au><snm>De Martino</snm><fnm>A</fnm></au>
-    <au><snm>Marinari</snm><fnm>E</fnm></au>
-  </aug>
-  <source>Metabolites</source>
-  <publisher>Multidisciplinary Digital Publishing Institute</publisher>
-  <pubdate>2013</pubdate>
-  <volume>3</volume>
-  <issue>4</issue>
-  <fpage>946</fpage>
-  <lpage>-966</lpage>
-</bibl>
-
-<bibl id="B26">
-  <title><p>{CycleFreeFlux}: efficient removal of thermodynamically infeasible
-  loops from flux distributions</p></title>
-  <aug>
-    <au><snm>Desouki</snm><fnm>Aa</fnm></au>
-    <au><snm>Jarre</snm><fnm>F</fnm></au>
-    <au><snm>Gelius Dietrich</snm><fnm>G</fnm></au>
-    <au><snm>Lercher</snm><fnm>J M</fnm></au>
-  </aug>
-  <source>Bioinformatics</source>
-  <pubdate>2015</pubdate>
-  <fpage>1</fpage>
-  <lpage>-7</lpage>
-</bibl>
-
-<bibl id="B27">
-  <title><p>An integrative, multi-scale, genome-wide model reveals the
-  phenotypic landscape of Escherichia coli</p></title>
-  <aug>
-    <au><snm>Carrera</snm><fnm>J</fnm></au>
-    <au><snm>Estrela</snm><fnm>R</fnm></au>
-    <au><snm>Luo</snm><fnm>J</fnm></au>
-    <au><snm>Rai</snm><fnm>N</fnm></au>
-    <au><snm>Tsoukalas</snm><fnm>A</fnm></au>
-    <au><snm>Tagkopoulos</snm><fnm>I</fnm></au>
-  </aug>
-  <source>Mol. Syst. Biol.</source>
-  <pubdate>2014</pubdate>
-  <volume>10</volume>
-</bibl>
-
-<bibl id="B28">
-  <title><p>A comprehensive genome-scale reconstruction of Escherichia coli
-  metabolism--2011</p></title>
-  <aug>
-    <au><snm>Orth</snm><fnm>DJ</fnm></au>
-    <au><snm>Conrad</snm><fnm>MT</fnm></au>
-    <au><snm>Na</snm><fnm>J</fnm></au>
-    <au><snm>Lerman</snm><fnm>aJ</fnm></au>
-    <au><snm>Nam</snm><fnm>H</fnm></au>
-    <au><snm>Feist</snm><fnm>MA</fnm></au>
-    <au><snm>Palsson</snm><fnm>OB</fnm></au>
-  </aug>
-  <source>Mol. Syst. Biol.</source>
-  <pubdate>2011</pubdate>
-  <volume>7</volume>
-</bibl>
-
-<bibl id="B29">
-  <title><p>Duality theory for thermodynamic bottlenecks in bioreaction
-  pathways</p></title>
-  <aug>
-    <au><snm>Mavrovouniotis</snm><fnm>ML</fnm></au>
-  </aug>
-  <source>Chem. Eng. Sci.</source>
-  <pubdate>1996</pubdate>
-  <volume>51</volume>
-  <issue>9</issue>
-  <fpage>1495</fpage>
-  <lpage>-1507</lpage>
-</bibl>
-
-<bibl id="B30">
-  <title><p>Identification of localized and distributed bottlenecks in
-  metabolic pathways</p></title>
-  <aug>
-    <au><snm>Mavrovouniotis</snm><fnm>M L</fnm></au>
-  </aug>
-  <source>Proc. Int. Conf. Intell. Syst. Mol. Biol.</source>
-  <pubdate>1993</pubdate>
-  <volume>1</volume>
-  <fpage>275</fpage>
-  <lpage>-283</lpage>
-</bibl>
-
-<bibl id="B31">
-  <title><p>Group contributions for estimating standard Gibbs energies of
-  formation of biochemical compounds in aqueous solution</p></title>
-  <aug>
-    <au><snm>Mavrovouniotis</snm><fnm>LM</fnm></au>
-  </aug>
-  <source>Biotechnol. Bioeng.</source>
-  <pubdate>1990</pubdate>
-  <volume>36</volume>
-  <fpage>1070</fpage>
-  <lpage>-1082</lpage>
-</bibl>
-
-<bibl id="B32">
-  <title><p>Estimation of standard Gibbs energy changes of
-  biotransformations</p></title>
-  <aug>
-    <au><snm>Mavrovouniotis</snm><fnm>M L</fnm></au>
-  </aug>
-  <source>J. Biol. Chem.</source>
-  <pubdate>1991</pubdate>
-  <volume>266</volume>
-  <issue>22</issue>
-  <fpage>14440</fpage>
-  <lpage>-14445</lpage>
-</bibl>
-
-<bibl id="B33">
-  <title><p>The Enzymatic Synthesis of Phosphopyruvate from
-  Pyruvate</p></title>
-  <aug>
-    <au><snm>Lardy</snm><fnm>HA</fnm></au>
-    <au><snm>Ziegler</snm><fnm>JA</fnm></au>
-  </aug>
-  <source>J. Biol. Chem.</source>
-  <publisher>American Society for Biochemistry and Molecular
-  Biology</publisher>
-  <pubdate>1945</pubdate>
-  <volume>159</volume>
-  <issue>2</issue>
-  <fpage>343</fpage>
-  <lpage>-351</lpage>
-</bibl>
-
-<bibl id="B34">
-  <title><p>Phosphorylation of pyruvate by the pyruvate kinase reaction and
-  reversal of glycolysis in a reconstructed system</p></title>
-  <aug>
-    <au><snm>Krimsky</snm><fnm>I</fnm></au>
-  </aug>
-  <source>J. Biol. Chem.</source>
-  <pubdate>1959</pubdate>
-  <volume>234</volume>
-  <issue>2</issue>
-  <fpage>232</fpage>
-  <lpage>-236</lpage>
-</bibl>
-
-<bibl id="B35">
-  <title><p>The pyruvate-phosphate dikinase reaction. The fate of phosphate and
-  the equilibrium</p></title>
-  <aug>
-    <au><snm>Reeves</snm><fnm>R E</fnm></au>
-    <au><snm>Menzies</snm><fnm>R A</fnm></au>
-    <au><snm>Hsu</snm><fnm>D S</fnm></au>
-  </aug>
-  <source>J. Biol. Chem.</source>
-  <pubdate>1968</pubdate>
-  <volume>243</volume>
-  <issue>20</issue>
-  <fpage>5486</fpage>
-  <lpage>-5491</lpage>
-</bibl>
-
-<bibl id="B36">
-  <title><p>Mechanism of ATP Synthesis by Sarciokasnuc Reticulum
-  ATPase</p></title>
-  <aug>
-    <au><snm>Meis</snm><fnm>L</fnm></au>
-  </aug>
-  <source>Ann. N. Y. Acad. Sci.</source>
-  <publisher>Blackwell Publishing Ltd</publisher>
-  <pubdate>1982</pubdate>
-  <volume>402</volume>
-  <issue>1</issue>
-  <fpage>535</fpage>
-  <lpage>-548</lpage>
-</bibl>
-
-<bibl id="B37">
-  <title><p>eQuilibrator—the biochemical thermodynamics
-  calculator</p></title>
-  <aug>
-    <au><snm>Flamholz</snm><fnm>A</fnm></au>
-    <au><snm>Noor</snm><fnm>E</fnm></au>
-    <au><snm>Bar Even</snm><fnm>A</fnm></au>
-    <au><snm>Milo</snm><fnm>R</fnm></au>
-  </aug>
-  <source>Nucleic acids research</source>
-  <publisher>Oxford University Press</publisher>
-  <pubdate>2011</pubdate>
-  <volume>40</volume>
-  <issue>D1</issue>
-  <fpage>D770</fpage>
-  <lpage>-D775</lpage>
-</bibl>
-
-<bibl id="B38">
-  <title><p>framed: a metabolic modeling package for python
-  (v0.4.0)</p></title>
-  <aug>
-    <au><snm>Machado</snm><fnm>D</fnm></au>
-    <au><snm>Matos</snm><fnm>M</fnm></au>
-    <au><snm>Sonnenschein</snm><fnm>N</fnm></au>
-    <au><snm>Andrejev</snm><fnm>S</fnm></au>
-  </aug>
-  <url>https://github.com/cdanielmachado/framed/tree/0.4.0</url>
-</bibl>
-
-<bibl id="B39">
-  <title><p>Group contribution method for thermodynamic analysis of complex
-  metabolic networks</p></title>
-  <aug>
-    <au><snm>Jankowski</snm><fnm>DM</fnm></au>
-    <au><snm>Henry</snm><fnm>SC</fnm></au>
-    <au><snm>Broadbelt</snm><fnm>JL</fnm></au>
-    <au><snm>Hatzimanikatis</snm><fnm>V</fnm></au>
-  </aug>
-  <source>Biophys. J.</source>
-  <pubdate>2008</pubdate>
-  <volume>95</volume>
-  <fpage>1487</fpage>
-  <lpage>-1499</lpage>
-</bibl>
-
-<bibl id="B40">
-  <title><p>An integrated open framework for thermodynamics of reactions that
-  combines accuracy and coverage</p></title>
-  <aug>
-    <au><snm>Noor</snm><fnm>E</fnm></au>
-    <au><snm>Bar Even</snm><fnm>A</fnm></au>
-    <au><snm>Flamholz</snm><fnm>A</fnm></au>
-    <au><snm>Lubling</snm><fnm>Y</fnm></au>
-    <au><snm>Davidi</snm><fnm>D</fnm></au>
-    <au><snm>Milo</snm><fnm>R</fnm></au>
-  </aug>
-  <source>Bioinformatics</source>
-  <pubdate>2012</pubdate>
-  <fpage>1</fpage>
-  <lpage>-8</lpage>
-</bibl>
-
-<bibl id="B41">
-  <title><p>Consistent estimation of Gibbs energy using component
-  contributions</p></title>
-  <aug>
-    <au><snm>Noor</snm><fnm>E</fnm></au>
-    <au><snm>Haraldsd{\'o}ttir</snm><fnm>SH</fnm></au>
-    <au><snm>Milo</snm><fnm>R</fnm></au>
-    <au><snm>Fleming</snm><fnm>TRM</fnm></au>
-  </aug>
-  <source>PLoS Comput. Biol.</source>
-  <pubdate>2013</pubdate>
-  <volume>9</volume>
-</bibl>
-
-<bibl id="B42">
-  <title><p>Quantum Chemical Approach to Estimating the Thermodynamics of
-  Metabolic Reactions</p></title>
-  <aug>
-    <au><snm>Jinich</snm><fnm>A</fnm></au>
-    <au><snm>Rappoport</snm><fnm>D</fnm></au>
-    <au><snm>Dunn</snm><fnm>I</fnm></au>
-    <au><snm>Sanchez Lengeling</snm><fnm>B</fnm></au>
-    <au><snm>Olivares Amaya</snm><fnm>R</fnm></au>
-    <au><snm>Noor</snm><fnm>E</fnm></au>
-    <au><snm>Even</snm><fnm>BA</fnm></au>
-    <au><snm>Aspuru Guzik</snm><fnm>A</fnm></au>
-  </aug>
-  <source>Sci. Rep.</source>
-  <pubdate>2014</pubdate>
-  <volume>4</volume>
-</bibl>
-
-<bibl id="B43">
-  <title><p>Metabolomics integrated elementary flux mode analysis in large
-  metabolic networks</p></title>
-  <aug>
-    <au><snm>Gerstl</snm><fnm>MP</fnm></au>
-    <au><snm>Ruckerbauer</snm><fnm>DE</fnm></au>
-    <au><snm>Mattanovich</snm><fnm>D</fnm></au>
-    <au><snm>Jungreuthmayer</snm><fnm>C</fnm></au>
-    <au><snm>Zanghellini</snm><fnm>J</fnm></au>
-  </aug>
-  <source>Scientific reports</source>
-  <publisher>Nature Publishing Group</publisher>
-  <pubdate>2015</pubdate>
-  <volume>5</volume>
-</bibl>
-
-<bibl id="B44">
-  <title><p>tEFMA: computing thermodynamically feasible elementary flux modes
-  in metabolic networks</p></title>
-  <aug>
-    <au><snm>Gerstl</snm><fnm>MP</fnm></au>
-    <au><snm>Jungreuthmayer</snm><fnm>C</fnm></au>
-    <au><snm>Zanghellini</snm><fnm>J</fnm></au>
-  </aug>
-  <source>Bioinformatics</source>
-  <publisher>Oxford University Press</publisher>
-  <pubdate>2015</pubdate>
-  <volume>31</volume>
-  <issue>13</issue>
-  <fpage>2232</fpage>
-  <lpage>-2234</lpage>
-</bibl>
-
-<bibl id="B45">
-  <title><p>Omic data from evolved E. coli are consistent with computed optimal
-  growth from genome-scale models</p></title>
-  <aug>
-    <au><snm>Lewis</snm><fnm>EN</fnm></au>
-    <au><snm>Hixson</snm><fnm>KK</fnm></au>
-    <au><snm>Conrad</snm><fnm>MT</fnm></au>
-    <au><snm>Lerman</snm><fnm>aJ</fnm></au>
-    <au><snm>Charusanti</snm><fnm>P</fnm></au>
-    <au><snm>Polpitiya</snm><fnm>DA</fnm></au>
-    <au><snm>Adkins</snm><fnm>NJ</fnm></au>
-    <au><snm>Schramm</snm><fnm>G</fnm></au>
-    <au><snm>Purvine</snm><fnm>OS</fnm></au>
-    <au><snm>Lopez Ferrer</snm><fnm>D</fnm></au>
-    <au><snm>Weitz</snm><fnm>KK</fnm></au>
-    <au><snm>Eils</snm><fnm>R</fnm></au>
-    <au><snm>K{\"o}nig</snm><fnm>R</fnm></au>
-    <au><snm>Smith</snm><fnm>DR</fnm></au>
-    <au><snm>Palsson</snm><fnm>OB</fnm></au>
-  </aug>
-  <source>Mol. Syst. Biol.</source>
-  <pubdate>2010</pubdate>
-  <volume>6</volume>
-</bibl>
-
-<bibl id="B46">
-  <title><p>Multidimensional optimality of microbial metabolism</p></title>
-  <aug>
-    <au><snm>Schuetz</snm><fnm>R</fnm></au>
-    <au><snm>Zamboni</snm><fnm>N</fnm></au>
-    <au><snm>Zampieri</snm><fnm>M</fnm></au>
-    <au><snm>Heinemann</snm><fnm>M</fnm></au>
-    <au><snm>Sauer</snm><fnm>U</fnm></au>
-  </aug>
-  <source>Science</source>
-  <pubdate>2012</pubdate>
-  <volume>336</volume>
-  <fpage>601</fpage>
-  <lpage>-604</lpage>
-</bibl>
-
-<bibl id="B47">
-  <title><p>Thermodynamic constraints for biochemical networks</p></title>
-  <aug>
-    <au><snm>Beard</snm><fnm>DA</fnm></au>
-    <au><snm>Babson</snm><fnm>E</fnm></au>
-    <au><snm>Curtis</snm><fnm>E</fnm></au>
-    <au><snm>Qian</snm><fnm>H</fnm></au>
-  </aug>
-  <source>Journal of theoretical biology</source>
-  <publisher>Elsevier</publisher>
-  <pubdate>2004</pubdate>
-  <volume>228</volume>
-  <issue>3</issue>
-  <fpage>327</fpage>
-  <lpage>-333</lpage>
-</bibl>
-
-<bibl id="B48">
-  <title><p>Flux imbalance analysis and the sensitivity of cellular growth to
-  changes in metabolite pools</p></title>
-  <aug>
-    <au><snm>Reznik</snm><fnm>E</fnm></au>
-    <au><snm>Mehta</snm><fnm>P</fnm></au>
-    <au><snm>Segr{\`e}</snm><fnm>D</fnm></au>
-  </aug>
-  <source>PLoS computational biology</source>
-  <publisher>Public Library of Science</publisher>
-  <pubdate>2013</pubdate>
-  <volume>9</volume>
-  <issue>8</issue>
-  <fpage>e1003195</fpage>
-</bibl>
-
-<bibl id="B49">
-  <title><p>Putative regulatory sites unraveled by network-embedded
-  thermodynamic analysis of metabolome data</p></title>
-  <aug>
-    <au><snm>Kümmel</snm><fnm>A</fnm></au>
-    <au><snm>Panke</snm><fnm>S</fnm></au>
-    <au><snm>Heinemann</snm><fnm>M</fnm></au>
-  </aug>
-  <source>Mol. Syst. Biol.</source>
-  <pubdate>2006</pubdate>
-  <volume>2</volume>
-  <fpage>2006.0034</fpage>
-</bibl>
-
-<bibl id="B50">
-  <title><p>anNET: a tool for network-embedded thermodynamic analysis of
-  quantitative metabolome data</p></title>
-  <aug>
-    <au><snm>Zamboni</snm><fnm>N</fnm></au>
-    <au><snm>K{\"u}mmel</snm><fnm>A</fnm></au>
-    <au><snm>Heinemann</snm><fnm>M</fnm></au>
-  </aug>
-  <source>BMC bioinformatics</source>
-  <publisher>BioMed Central</publisher>
-  <pubdate>2008</pubdate>
-  <volume>9</volume>
-  <issue>1</issue>
-  <fpage>199</fpage>
-</bibl>
-
-<bibl id="B51">
-  <title><p>Fast-SNP: a fast matrix pre-processing algorithm for efficient
-  loopless flux optimization of metabolic models.</p></title>
-  <aug>
-    <au><snm>Saa</snm><fnm>PA</fnm></au>
-    <au><snm>Nielsen</snm><fnm>LK</fnm></au>
-  </aug>
-  <source>Bioinformatics (Oxford, England)</source>
-  <pubdate>2016</pubdate>
-  <volume>32</volume>
-  <fpage>3807</fpage>
-  <lpage>-3814</lpage>
-</bibl>
-
-<bibl id="B52">
-  <title><p>Accelerating flux balance calculations in genome-scale metabolic
-  models by localizing the application of loopless constraints</p></title>
-  <aug>
-    <au><snm>Chan</snm><fnm>SHJ</fnm></au>
-    <au><snm>Wang</snm><fnm>L</fnm></au>
-    <au><snm>Dash</snm><fnm>S</fnm></au>
-    <au><snm>Maranas</snm><fnm>CD</fnm></au>
-  </aug>
-</bibl>
-
-<bibl id="B53">
-  <title><p>Absolute metabolite concentrations and implied enzyme active site
-  occupancy in Escherichia coli</p></title>
-  <aug>
-    <au><snm>Bennett</snm><fnm>DB</fnm></au>
-    <au><snm>Kimball</snm><fnm>HE</fnm></au>
-    <au><snm>Gao</snm><fnm>M</fnm></au>
-    <au><snm>Osterhout</snm><fnm>R</fnm></au>
-    <au><snm>Van Dien</snm><fnm>JS</fnm></au>
-    <au><snm>Rabinowitz</snm><fnm>DJ</fnm></au>
-  </aug>
-  <source>Nat. Chem. Biol.</source>
-  <pubdate>2009</pubdate>
-  <volume>5</volume>
-  <fpage>593</fpage>
-  <lpage>-599</lpage>
-</bibl>
-
-<bibl id="B54">
-  <title><p>{COBRApy}: {COnstraints-Based} Reconstruction and Analysis for
-  Python</p></title>
-  <aug>
-    <au><snm>Ebrahim</snm><fnm>A</fnm></au>
-    <au><snm>Lerman</snm><fnm>JA</fnm></au>
-    <au><snm>Palsson</snm><fnm>BO</fnm></au>
-    <au><snm>Hyduke</snm><fnm>DR</fnm></au>
-  </aug>
-  <source>BMC Syst. Biol.</source>
-  <pubdate>2013</pubdate>
-  <volume>7</volume>
-  <fpage>74</fpage>
-</bibl>
-
-<bibl id="B55">
-  <title><p>pH of the Cytoplasm and Periplasm of Escherichia coli: Rapid
-  Measurement by Green Fluorescent Protein Fluorimetry</p></title>
-  <aug>
-    <au><snm>Wilks</snm><fnm>J C</fnm></au>
-    <au><snm>Slonczewski</snm><fnm>J L</fnm></au>
-  </aug>
-  <source>J. Bacteriol.</source>
-  <pubdate>2007</pubdate>
-  <volume>189</volume>
-  <issue>15</issue>
-  <fpage>5601</fpage>
-  <lpage>-5607</lpage>
-</bibl>
-
-</refgrp>
-} % end of \BMCxmlcomment
