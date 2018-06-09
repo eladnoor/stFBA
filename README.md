@@ -1,2 +1,6 @@
-# stFBA
-Implementation of the st-FBA algorithm, dependent on COBRApy
+Deprecated
+==========
+
+This repository has been moved to [GitLab](https://gitlab.com/elad.noor/stFBA).
+Any development after June 4th 2018 will not be updated on the GitHub version.
+Therefore, we strongly advise against using this repository.
